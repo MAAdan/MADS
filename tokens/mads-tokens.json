@@ -1,0 +1,402 @@
+{
+  "name": "MA Design System (MADS)",
+  "prefix": "mads",
+  "naming": "mads.{category}.{name} — CSS variables use hyphens: --mads-{category}-{name}",
+  "units": "Web uses rem at a 16px root. 1 web px = 1 iOS pt = 1 Android dp (sp for text).",
+  "tokens": {
+    "space": {
+      "--mads-space-0": {
+        "value": "0"
+      },
+      "--mads-space-1": {
+        "value": "0.25rem"
+      },
+      "--mads-space-2": {
+        "value": "0.5rem"
+      },
+      "--mads-space-3": {
+        "value": "1rem"
+      },
+      "--mads-space-4": {
+        "value": "2rem"
+      },
+      "--mads-space-5": {
+        "value": "4rem"
+      },
+      "--mads-space-6": {
+        "value": "8rem"
+      },
+      "--mads-space-7": {
+        "value": "16rem"
+      },
+      "--mads-space-8": {
+        "value": "32rem"
+      }
+    },
+    "font": {
+      "--mads-font-display-fallback": {
+        "value": "\"Arial Rounded MT Bold\", \"Arial Rounded MT\", \"Trebuchet MS\", sans-serif"
+      },
+      "--mads-font-body-fallback": {
+        "value": "\"Segoe UI\", system-ui, -apple-system, Roboto, sans-serif"
+      },
+      "--mads-font-mono-fallback": {
+        "value": "\"SF Mono\", ui-monospace, Menlo, Consolas, monospace"
+      },
+      "--mads-font-display": {
+        "value": "\"Unbounded\", var(--mads-font-display-fallback)"
+      },
+      "--mads-font-body": {
+        "value": "\"Onest\", var(--mads-font-body-fallback)"
+      },
+      "--mads-font-mono": {
+        "value": "\"JetBrains Mono\", var(--mads-font-mono-fallback)"
+      }
+    },
+    "text": {
+      "--mads-text-small-size": {
+        "value": "0.6875rem"
+      },
+      "--mads-text-small-line-height": {
+        "value": "1rem"
+      },
+      "--mads-text-default-size": {
+        "value": "0.8125rem"
+      },
+      "--mads-text-default-line-height": {
+        "value": "1.25rem"
+      },
+      "--mads-text-large-size": {
+        "value": "0.9375rem"
+      },
+      "--mads-text-large-line-height": {
+        "value": "1.5rem"
+      },
+      "--mads-text-xlarge-size": {
+        "value": "1.0625rem"
+      },
+      "--mads-text-xlarge-line-height": {
+        "value": "1.75rem"
+      },
+      "--mads-text-small": {
+        "value": "400 var(--mads-text-small-size)/var(--mads-text-small-line-height) var(--mads-font-body)"
+      },
+      "--mads-text-default": {
+        "value": "400 var(--mads-text-default-size)/var(--mads-text-default-line-height) var(--mads-font-body)"
+      },
+      "--mads-text-large": {
+        "value": "400 var(--mads-text-large-size)/var(--mads-text-large-line-height) var(--mads-font-body)"
+      },
+      "--mads-text-xlarge": {
+        "value": "400 var(--mads-text-xlarge-size)/var(--mads-text-xlarge-line-height) var(--mads-font-body)"
+      }
+    },
+    "heading": {
+      "--mads-heading-weight": {
+        "value": "700"
+      },
+      "--mads-heading-xsmall-size": {
+        "value": "0.9375rem"
+      },
+      "--mads-heading-xsmall-line-height": {
+        "value": "1.5rem"
+      },
+      "--mads-heading-small-size": {
+        "value": "1.0625rem"
+      },
+      "--mads-heading-small-line-height": {
+        "value": "1.5rem"
+      },
+      "--mads-heading-default-size": {
+        "value": "1.3125rem"
+      },
+      "--mads-heading-default-line-height": {
+        "value": "1.75rem"
+      },
+      "--mads-heading-large-size": {
+        "value": "1.4375rem"
+      },
+      "--mads-heading-large-line-height": {
+        "value": "2rem"
+      },
+      "--mads-heading-xlarge-size": {
+        "value": "1.6875rem"
+      },
+      "--mads-heading-xlarge-line-height": {
+        "value": "2.25rem"
+      },
+      "--mads-heading-xxlarge-size": {
+        "value": "2.1875rem"
+      },
+      "--mads-heading-xxlarge-line-height": {
+        "value": "2.25rem"
+      },
+      "--mads-heading-hero-size": {
+        "value": "clamp(2.875rem, 8.4vw, 7.5rem)"
+      },
+      "--mads-heading-hero-line-height": {
+        "value": ".95"
+      },
+      "--mads-heading-hero-weight": {
+        "value": "800"
+      },
+      "--mads-heading-hero-tracking": {
+        "value": "-.03em"
+      },
+      "--mads-heading-xsmall": {
+        "value": "var(--mads-heading-weight) var(--mads-heading-xsmall-size)/var(--mads-heading-xsmall-line-height) var(--mads-font-display)"
+      },
+      "--mads-heading-small": {
+        "value": "var(--mads-heading-weight) var(--mads-heading-small-size)/var(--mads-heading-small-line-height) var(--mads-font-display)"
+      },
+      "--mads-heading-default": {
+        "value": "var(--mads-heading-weight) var(--mads-heading-default-size)/var(--mads-heading-default-line-height) var(--mads-font-display)"
+      },
+      "--mads-heading-large": {
+        "value": "var(--mads-heading-weight) var(--mads-heading-large-size)/var(--mads-heading-large-line-height) var(--mads-font-display)"
+      },
+      "--mads-heading-xlarge": {
+        "value": "var(--mads-heading-weight) var(--mads-heading-xlarge-size)/var(--mads-heading-xlarge-line-height) var(--mads-font-display)"
+      },
+      "--mads-heading-xxlarge": {
+        "value": "var(--mads-heading-weight) var(--mads-heading-xxlarge-size)/var(--mads-heading-xxlarge-line-height) var(--mads-font-display)"
+      },
+      "--mads-heading-hero": {
+        "value": "var(--mads-heading-hero-weight) var(--mads-heading-hero-size)/var(--mads-heading-hero-line-height) var(--mads-font-display)"
+      }
+    },
+    "label": {
+      "--mads-label-weight": {
+        "value": "700"
+      },
+      "--mads-label-xsmall-size": {
+        "value": "0.6875rem"
+      },
+      "--mads-label-xsmall-line-height": {
+        "value": "1rem"
+      },
+      "--mads-label-small-size": {
+        "value": "0.8125rem"
+      },
+      "--mads-label-small-line-height": {
+        "value": "1rem"
+      },
+      "--mads-label-default-size": {
+        "value": "0.9375rem"
+      },
+      "--mads-label-default-line-height": {
+        "value": "1.25rem"
+      },
+      "--mads-label-xsmall": {
+        "value": "var(--mads-label-weight) var(--mads-label-xsmall-size)/var(--mads-label-xsmall-line-height) var(--mads-font-mono)"
+      },
+      "--mads-label-small": {
+        "value": "var(--mads-label-weight) var(--mads-label-small-size)/var(--mads-label-small-line-height) var(--mads-font-mono)"
+      },
+      "--mads-label-default": {
+        "value": "var(--mads-label-weight) var(--mads-label-default-size)/var(--mads-label-default-line-height) var(--mads-font-mono)"
+      }
+    },
+    "color": {
+      "--mads-color-dark": {
+        "value": "#17122B"
+      },
+      "--mads-color-dark-1": {
+        "value": "#544D74"
+      },
+      "--mads-color-light": {
+        "value": "#757575"
+      },
+      "--mads-color-white": {
+        "value": "#FFFFFF"
+      },
+      "--mads-color-amber-gold": {
+        "value": "#FFBE0B"
+      },
+      "--mads-color-blaze-orange": {
+        "value": "#FB5607"
+      },
+      "--mads-color-neon-pink": {
+        "value": "#FF006E"
+      },
+      "--mads-color-blue-violet": {
+        "value": "#8338EC"
+      },
+      "--mads-color-azure-blue": {
+        "value": "#3A86FF"
+      }
+    },
+    "icon": {
+      "--mads-icon-stroke": {
+        "value": "3.5"
+      }
+    },
+    "button": {
+      "--mads-button-primary-background": {
+        "value": "linear-gradient(90deg, var(--mads-color-blaze-orange), var(--mads-color-neon-pink))"
+      },
+      "--mads-button-primary-text": {
+        "value": "var(--mads-color-white)"
+      },
+      "--mads-button-primary-font": {
+        "value": "var(--mads-text-large)"
+      },
+      "--mads-button-primary-radius": {
+        "value": "999px"
+      },
+      "--mads-button-primary-padding-y": {
+        "value": "0.75rem"
+      },
+      "--mads-button-primary-padding-x": {
+        "value": "1.5rem"
+      },
+      "--mads-button-primary-gap": {
+        "value": "var(--mads-space-2)"
+      },
+      "--mads-button-primary-min-height": {
+        "value": "2.75rem"
+      }
+    },
+    "theme": {
+      "--mads-theme-background": {
+        "light": "#F6F4FB",
+        "dark": "#100C20"
+      },
+      "--mads-theme-surface": {
+        "light": "#FFFFFF",
+        "dark": "#1A1433"
+      },
+      "--mads-theme-surface-raised": {
+        "light": "#E9E4F6",
+        "dark": "#241C45"
+      },
+      "--mads-theme-surface-idle": {
+        "light": "#EEECF3",
+        "dark": "#1E1B29"
+      },
+      "--mads-theme-text": {
+        "light": "#17122B",
+        "dark": "#F4F0FB"
+      },
+      "--mads-theme-text-muted": {
+        "light": "#544D74",
+        "dark": "#B4ABC9"
+      },
+      "--mads-theme-text-faint": {
+        "light": "#8A83A6",
+        "dark": "#7D7497"
+      },
+      "--mads-theme-line": {
+        "light": "rgb(40 20 90 / .12)",
+        "dark": "rgb(236 228 255 / .10)"
+      },
+      "--mads-theme-fill-soft": {
+        "light": "rgb(40 20 90 / .05)",
+        "dark": "rgb(255 255 255 / .05)"
+      },
+      "--mads-theme-fill-ghost": {
+        "light": "rgb(40 20 90 / .09)",
+        "dark": "rgb(255 255 255 / .07)"
+      },
+      "--mads-theme-text-amber-gold": {
+        "light": "#A86400",
+        "dark": "#FFBE0B"
+      },
+      "--mads-theme-text-azure-blue": {
+        "light": "#1D5FD0",
+        "dark": "#5B9BFF"
+      },
+      "--mads-theme-text-neon-pink": {
+        "light": "#CC0058",
+        "dark": "#FF3D8B"
+      },
+      "--mads-theme-text-blue-violet": {
+        "light": "#6A25D1",
+        "dark": "#A878FF"
+      },
+      "--mads-theme-focus": {
+        "value": "var(--mads-color-amber-gold)"
+      }
+    },
+    "radius": {
+      "--mads-radius-small": {
+        "value": "0.5rem"
+      },
+      "--mads-radius-medium": {
+        "value": "1rem"
+      },
+      "--mads-radius-large": {
+        "value": "1.25rem"
+      },
+      "--mads-radius-xlarge": {
+        "value": "1.75rem"
+      },
+      "--mads-radius-full": {
+        "value": "999px"
+      }
+    },
+    "gradient": {
+      "--mads-gradient-brand": {
+        "value": "linear-gradient(90deg, var(--mads-color-amber-gold), var(--mads-color-blaze-orange) 35%, var(--mads-color-neon-pink) 70%, var(--mads-color-blue-violet))"
+      },
+      "--mads-gradient-orange-pink": {
+        "value": "linear-gradient(90deg, var(--mads-color-blaze-orange), var(--mads-color-neon-pink))"
+      },
+      "--mads-gradient-pink-violet": {
+        "value": "linear-gradient(90deg, var(--mads-color-neon-pink), var(--mads-color-blue-violet))"
+      },
+      "--mads-gradient-violet-azure": {
+        "value": "linear-gradient(90deg, var(--mads-color-blue-violet), var(--mads-color-azure-blue))"
+      },
+      "--mads-gradient-orange-amber": {
+        "value": "linear-gradient(90deg, var(--mads-color-blaze-orange), var(--mads-color-amber-gold))"
+      },
+      "--mads-gradient-amber-pink": {
+        "value": "linear-gradient(90deg, var(--mads-color-amber-gold), var(--mads-color-neon-pink))"
+      },
+      "--mads-gradient-surface": {
+        "value": "linear-gradient(160deg, var(--mads-theme-surface), var(--mads-theme-background))"
+      },
+      "--mads-gradient-surface-raised": {
+        "value": "linear-gradient(180deg, var(--mads-theme-surface-raised), var(--mads-theme-surface))"
+      },
+      "--mads-gradient-scrim": {
+        "value": "linear-gradient(var(--mads-theme-background) 82%, transparent)"
+      }
+    },
+    "shadow": {
+      "--mads-shadow-glow": {
+        "value": "0 6px 18px -8px rgb(255 0 110 / .6)"
+      },
+      "--mads-shadow-raised": {
+        "value": "0 20px 50px -20px rgb(0 0 0 / .8)"
+      }
+    },
+    "motion": {
+      "--mads-motion-duration-fast": {
+        "value": "200ms"
+      },
+      "--mads-motion-duration-base": {
+        "value": "350ms"
+      },
+      "--mads-motion-duration-slow": {
+        "value": "600ms"
+      },
+      "--mads-motion-easing-standard": {
+        "value": "cubic-bezier(.2, .7, .2, 1)"
+      },
+      "--mads-motion-easing-spring": {
+        "value": "cubic-bezier(.34, 1.56, .64, 1)"
+      },
+      "--mads-motion-easing-entrance": {
+        "value": "cubic-bezier(.2, .9, .25, 1.15)"
+      }
+    },
+    "ambient": {
+      "--mads-ambient-strength": {
+        "light": "16%",
+        "dark": "22%"
+      }
+    }
+  }
+}
