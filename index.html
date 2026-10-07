@@ -571,6 +571,9 @@ body { background: var(--dsd-bg); color: var(--dsd-ink); }
 .dsd-icon-tile:hover .dsd-icon-big[data-k="left"], .dsd-icon-tile.is-go .dsd-icon-big[data-k="left"] { animation: dsd-nudge-left .5s var(--dsd-spring); }
 .dsd-icon-tile:hover .dsd-icon-big[data-k="right"], .dsd-icon-tile.is-go .dsd-icon-big[data-k="right"] { animation: dsd-nudge-right .5s var(--dsd-spring); }
 .dsd-icon-tile:hover .dsd-icon-big[data-k="home"] path, .dsd-icon-tile.is-go .dsd-icon-big[data-k="home"] path { stroke-dasharray: 1 1.02; animation: dsd-draw .9s var(--dsd-ease); }
+/* Settings turns one tooth (60°) with the spring, so it lands looking unchanged */
+.dsd-icon-tile:hover .dsd-icon-big[data-k="settings"], .dsd-icon-tile.is-go .dsd-icon-big[data-k="settings"] { animation: dsd-turn .6s var(--dsd-spring); }
+@keyframes dsd-turn { to { transform: rotate(60deg); } }
 @keyframes dsd-nudge-up { 50% { transform: translateY(-6px); } }
 @keyframes dsd-nudge-down { 50% { transform: translateY(6px); } }
 @keyframes dsd-nudge-left { 50% { transform: translateX(-6px); } }
@@ -785,6 +788,22 @@ body { background: var(--dsd-bg); color: var(--dsd-ink); }
 .mads-button-icon[data-dir="next"]:active svg { transform: translateX(3px); }
 .mads-button-icon:focus-visible { outline: 2px solid var(--mads-color-neon-pink); outline-offset: 3px; }
 
+/* mads.button.round: icon-only, the secondary button as a 44 circle */
+.mads-button-round {
+  -webkit-appearance: none; appearance: none;
+  display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; flex: none;
+  border: 1px solid var(--mads-theme-line); border-radius: 50%;
+  background: var(--mads-theme-fill-soft); color: var(--mads-theme-text); cursor: pointer;
+  transition: background-color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard),
+              border-color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard),
+              transform var(--mads-motion-duration-fast) var(--mads-motion-easing-standard);
+}
+.mads-button-round svg { width: 1.25rem; height: 1.25rem; }
+.mads-button-round:hover, .mads-button-round.is-hover { background: var(--mads-theme-fill-ghost); border-color: var(--mads-theme-text-faint); }
+.mads-button-round:active, .mads-button-round.is-pressed { transform: scale(.98); transition-duration: 80ms; }
+.mads-button-round:focus-visible, .mads-button-round.is-focus { outline: 2px solid var(--mads-color-neon-pink); outline-offset: 3px; }
+.mads-button-round:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
 /* mads.toggle.theme */
 .mads-toggle-theme {
   -webkit-appearance: none; appearance: none; border: 0; padding: 0; cursor: pointer;
@@ -893,7 +912,7 @@ body { background: var(--dsd-bg); color: var(--dsd-ink); }
   @keyframes mads-rise { from { opacity: 0; transform: translateY(48px); } }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mads-button-secondary, .mads-button-ghost, .mads-button-icon, .mads-button-icon svg, .mads-toggle-theme, .mads-toggle-theme .knob, .mads-toggle-theme svg,
+  .mads-button-secondary, .mads-button-ghost, .mads-button-icon, .mads-button-icon svg, .mads-button-round, .mads-toggle-theme, .mads-toggle-theme .knob, .mads-toggle-theme svg,
   .mads-card-selectable, .mads-progress-track i, .dsd-motion-ball, .dsd-theme-stage { transition: none !important; }
   .mads-card-selectable .mads-progress-thin i, .mads-reveal { animation: none !important; }
   .mads-card-selectable[aria-pressed="true"] .mads-progress-thin i { width: 100%; }
@@ -1774,9 +1793,9 @@ html { scroll-behavior: smooth; }
           <h2 id="icons-title">Icons</h2>
           <span class="dsd-ns">mads.icon</span>
         </div>
-        <p class="dsd-cat-desc">Five icons drawn from the chevron in the middle of the MA logo. Each is a single line on a 24px grid with the same 3.5 stroke, so the icons scale, take any colour and animate cleanly.</p>
+        <p class="dsd-cat-desc">Six icons. The chevrons and Home are drawn from the chevron in the middle of the MA logo; Settings is a six-tooth gear with a centre dot. Each is a single line on a 24px grid with the same 3.5 stroke, so the icons scale, take any colour and animate cleanly.</p>
         <div class="dsd-cat-body">
-          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.icon.{chevron.up | chevron.down | chevron.left | chevron.right | home}</code></div>
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.icon.{chevron.up | chevron.down | chevron.left | chevron.right | home | settings}</code></div>
 
           <div class="dsd-toolbar" role="group" aria-label="Icon colour">
             <span class="dsd-label">Colour</span>
@@ -1860,6 +1879,7 @@ html { scroll-behavior: smooth; }
                   <tr><td><span class="dsd-tok">Chevron angle</span></td><td>7 : 5 run to rise, the slope of the M in the logo</td></tr>
                   <tr><td><span class="dsd-tok">Chevron bounds</span></td><td>17.5 × 8.5, centred</td></tr>
                   <tr><td><span class="dsd-tok">Home bounds</span></td><td>17.5 × 18.5, centred, closed with a floor</td></tr>
+                  <tr><td><span class="dsd-tok">Settings bounds</span></td><td>17.6 × 18.3, centred. Six teeth (tips at radius 7.5), body arcs at radius 5.6, and a 3.5 centre dot drawn as a zero-length round-capped line</td></tr>
                   <tr><td><span class="dsd-tok">Colour</span></td><td>Follows the text colour (currentColor), so any mads.color works</td></tr>
                 </tbody>
               </table>
@@ -1967,7 +1987,7 @@ html { scroll-behavior: smooth; }
             <pre role="tabpanel" id="button-code-xml" aria-labelledby="button-tab-xml" hidden><code></code></pre>
           </div>
 
-          <h3 class="dsd-subhead">Secondary, ghost and icon buttons</h3>
+          <h3 class="dsd-subhead">Secondary, ghost, icon and round buttons</h3>
           <p class="dsd-stage-note">Paired with the primary button and built from the theme roles, so they work in light and dark mode.</p>
           <div class="dsd-theme-stage">
             <button type="button" class="mads-button">Lorem ipsum</button>
@@ -1976,6 +1996,8 @@ html { scroll-behavior: smooth; }
             <button type="button" class="mads-button-ghost" aria-current="page">Current</button>
             <button type="button" class="mads-button-icon" data-dir="prev" aria-label="Previous"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 9.5 12 14.5 19"/></svg></button>
             <button type="button" class="mads-button-icon" data-dir="next" aria-label="Next"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 14.5 12 9.5 19"/></svg></button>
+            <button type="button" class="mads-button-round" aria-label="Settings"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button>
+            <button type="button" class="mads-button-round" aria-label="Home"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19.5V9.5L12 4.5 5 9.5V19.5Z"/></svg></button>
           </div>
           <div class="dsd-states" aria-label="Secondary button states">
             <div class="dsd-state"><span class="dsd-label">Default</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary" tabindex="-1">Lorem ipsum</button></span><p>Soft fill with a thin line.</p></div>
@@ -1983,6 +2005,13 @@ html { scroll-behavior: smooth; }
             <div class="dsd-state"><span class="dsd-label">Pressed</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary is-pressed" tabindex="-1">Lorem ipsum</button></span><p>Shrinks to 98%, like the primary.</p></div>
             <div class="dsd-state"><span class="dsd-label">Focus</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary is-focus" tabindex="-1">Lorem ipsum</button></span><p>Same NeonPink ring as the primary.</p></div>
             <div class="dsd-state"><span class="dsd-label">Disabled</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary" disabled>Lorem ipsum</button></span><p>40% opacity.</p></div>
+          </div>
+          <div class="dsd-states" aria-label="Round button states">
+            <div class="dsd-state"><span class="dsd-label">Default</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Secondary fill and line, as a circle.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Hover</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round is-hover" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Fill and line get slightly stronger.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Pressed</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round is-pressed" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Shrinks to 98%.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Focus</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round is-focus" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Same NeonPink ring.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Disabled</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round" aria-label="Settings" disabled><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>40% opacity.</p></div>
           </div>
           <div class="dsd-table-wrap">
             <table class="dsd-table dsd-wrap-last">
@@ -2002,6 +2031,10 @@ html { scroll-behavior: smooth; }
             <div class="dsd-rule">
               <p class="dsd-label">Icon</p>
               <p>A 40 circle holding a 20px MADS icon, for previous/next and other icon-only actions. Always give it an accessible name.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Round</p>
+              <p>The secondary button as a 44 circle with a 20px MADS icon and no text, for actions such as Settings next to other secondary buttons. Same fill, line, hover, press and focus as the secondary. Always give it an accessible name.</p>
             </div>
           </div>
           <div class="dsd-code" data-tabs>
@@ -2790,13 +2823,14 @@ const MADSX = (() => {
   });
 })();
 
-/* ===== mads.button.secondary / ghost / icon ===== */
+/* ===== mads.button.secondary / ghost / icon / round ===== */
 (() => {
   const { esc, cm, fill, rows, v } = MADSX;
   rows('button-more-rows', [
     ['mads.button.secondary', v('fill-soft · line · text'), 'Same size, text and pill shape as the primary. Hover: fill-ghost and a text-faint line.'],
     ['mads.button.ghost', v('transparent · text-muted'), 'Mono at 13, padding 8 / 12, 36 tall. Hover: text colour and a line.'],
-    ['mads.button.icon', v('40 circle · line'), 'Holds a 20px mads.icon. Hover: surface fill. The chevron nudges 3px when pressed.']
+    ['mads.button.icon', v('40 circle · line'), 'Holds a 20px mads.icon. Hover: surface fill. The chevron nudges 3px when pressed.'],
+    ['mads.button.round', v('44 circle · fill-soft · line'), 'Icon only. The secondary button as a circle, holding a 20px mads.icon. Hover: fill-ghost and a text-faint line. Pressed: 98%.']
   ]);
   fill('button-more', {
     css: [
@@ -2829,7 +2863,22 @@ const MADSX = (() => {
       '.mads-button-icon:hover { background: var(--mads-theme-surface); }',
       '.mads-button-icon[data-dir="next"]:active svg { transform: translateX(3px); }',
       '',
-      cm('<!-- <button class="mads-button-icon" data-dir="next" aria-label="Next"><svg class="mads-icon">…</svg></button> -->')
+      cm('<!-- <button class="mads-button-icon" data-dir="next" aria-label="Next"><svg class="mads-icon">…</svg></button> -->'),
+      '',
+      cm('/* mads.button.round: the secondary button as a 44 circle, icon only */'),
+      '.mads-button-round {',
+      '  display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0;',
+      '  border: 1px solid var(--mads-theme-line); border-radius: 50%;',
+      '  background: var(--mads-theme-fill-soft); color: var(--mads-theme-text);',
+      '  transition: background-color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard),',
+      '              border-color var(--mads-motion-duration-fast), transform var(--mads-motion-duration-fast);',
+      '}',
+      '.mads-button-round svg { width: 1.25rem; height: 1.25rem; }',
+      '.mads-button-round:hover { background: var(--mads-theme-fill-ghost); border-color: var(--mads-theme-text-faint); }',
+      '.mads-button-round:active { transform: scale(.98); }',
+      '.mads-button-round:focus-visible { outline: 2px solid var(--mads-color-neon-pink); outline-offset: 3px; }',
+      '.mads-button-round:disabled { opacity: .4; cursor: not-allowed; transform: none; }',
+      cm('<!-- <button class="mads-button-round" aria-label="Settings"><svg class="mads-icon">…</svg></button> -->')
     ],
     swift: [
       'import SwiftUI',
@@ -2879,7 +2928,26 @@ const MADSX = (() => {
       '    }',
       '}',
       '',
-      'public extension ButtonStyle where Self == MadsSecondaryButtonStyle { static var madsSecondary: Self { .init() } }'
+      'public extension ButtonStyle where Self == MadsSecondaryButtonStyle { static var madsSecondary: Self { .init() } }',
+      '',
+      cm('/// mads.button.round — the secondary button as a 44 circle, icon only'),
+      'public struct MadsRoundButtonStyle: ButtonStyle {',
+      '    public func makeBody(configuration: Configuration) -> some View {',
+      '        configuration.label',
+      '            .frame(width: 20, height: 20)',
+      '            .foregroundStyle(MadsTheme.text)',
+      '            .frame(width: 44, height: 44)',
+      '            .background(configuration.isPressed ? MadsTheme.fillGhost : MadsTheme.fillSoft, in: Circle())',
+      '            .overlay(Circle().strokeBorder(MadsTheme.line, lineWidth: 1))',
+      '            .contentShape(Circle())',
+      '            .scaleEffect(configuration.isPressed ? 0.98 : 1)',
+      '            .animation(MadsMotion.standard(MadsMotion.fast), value: configuration.isPressed)',
+      '    }',
+      '}',
+      'public extension ButtonStyle where Self == MadsRoundButtonStyle { static var madsRound: Self { .init() } }',
+      '',
+      cm('// Button(action: openSettings) { MadsIcon(.settings, size: 20) }'),
+      cm('//     .buttonStyle(.madsRound).accessibilityLabel("Settings")')
     ],
     compose: [
       cm('/** mads.button.secondary — same size as MadsButton, theme colours */'),
@@ -2926,7 +2994,27 @@ const MADSX = (() => {
       '            .clickable(role = Role.Button, onClickLabel = label, onClick = onClick),',
       '        contentAlignment = Alignment.Center',
       '    ) { Icon(icon, contentDescription = label, tint = c.text, modifier = Modifier.size(20.dp)) }',
-      '}'
+      '}',
+      '',
+      cm('/** mads.button.round — the secondary button as a 44 circle, icon only */'),
+      '@Composable',
+      'fun MadsRoundButton(icon: ImageVector, label: String, onClick: () -> Unit, enabled: Boolean = true) {',
+      '    val c = MadsTheme.colors',
+      '    val interaction = remember { MutableInteractionSource() }',
+      '    val pressed by interaction.collectIsPressedAsState()',
+      '    val scale by animateFloatAsState(if (pressed) 0.98f else 1f, tween(80), label = "press")',
+      '    Box(',
+      '        Modifier.size(44.dp)',
+      '            .graphicsLayer { scaleX = scale; scaleY = scale; alpha = if (enabled) 1f else 0.4f }',
+      '            .clip(CircleShape)',
+      '            .background(if (pressed) c.fillGhost else c.fillSoft)',
+      '            .border(1.dp, if (pressed) c.textFaint else c.line, CircleShape)',
+      '            .clickable(interaction, indication = null, enabled = enabled, role = Role.Button, onClickLabel = label, onClick = onClick),',
+      '        contentAlignment = Alignment.Center',
+      '    ) { Icon(icon, contentDescription = label, tint = c.text, modifier = Modifier.size(20.dp)) }',
+      '}',
+      '',
+      cm('// MadsRoundButton(MadsIcons.settings, label = "Settings", onClick = { … })')
     ],
     xml: [
       cm('<!-- res/drawable/mads_button_secondary_bg.xml -->'),
@@ -2955,7 +3043,29 @@ const MADSX = (() => {
       esc('</resources>'),
       '',
       cm('<!-- Icon button: an ImageButton 40dp × 40dp with an oval stroke background and'),
-      cm('     app:srcCompat="@drawable/mads_icon_chevron_right", app:tint="@color/mads_theme_text" -->')
+      cm('     app:srcCompat="@drawable/mads_icon_chevron_right", app:tint="@color/mads_theme_text" -->'),
+      '',
+      cm('<!-- res/drawable/mads_button_round_bg.xml — mads.button.round -->'),
+      esc('<selector xmlns:android="http://schemas.android.com/apk/res/android">'),
+      esc('    <item android:state_pressed="true"><shape android:shape="oval">'),
+      esc('        <solid android:color="@color/mads_theme_fill_ghost" /><stroke android:width="1dp" android:color="@color/mads_theme_text_faint" /></shape></item>'),
+      esc('    <item><shape android:shape="oval">'),
+      esc('        <solid android:color="@color/mads_theme_fill_soft" /><stroke android:width="1dp" android:color="@color/mads_theme_line" /></shape></item>'),
+      esc('</selector>'),
+      '',
+      cm('<!-- res/values/mads_button_variants.xml (add inside the resources above) -->'),
+      esc('<style name="Widget.Mads.Button.Round" parent="">'),
+      esc('    <item name="android:layout_width">44dp</item>'),
+      esc('    <item name="android:layout_height">44dp</item>'),
+      esc('    <item name="android:padding">12dp</item>'),
+      esc('    <item name="android:scaleType">fitCenter</item>'),
+      esc('    <item name="android:background">@drawable/mads_button_round_bg</item>'),
+      esc('    <item name="tint">@color/mads_theme_text</item>'),
+      esc('</style>'),
+      '',
+      esc('<ImageButton style="@style/Widget.Mads.Button.Round"'),
+      esc('    app:srcCompat="@drawable/mads_icon_settings"'),
+      esc('    android:contentDescription="Settings" />')
     ]
   });
 })();
@@ -3680,7 +3790,8 @@ const MADSX = (() => {
     { k: 'down',  name: 'Chevron down',  token: 'mads.icon.chevron.down',  file: 'mads-icon-chevron-down.svg',  d: 'M5 9.5 12 14.5 19 9.5' },
     { k: 'left',  name: 'Chevron left',  token: 'mads.icon.chevron.left',  file: 'mads-icon-chevron-left.svg',  d: 'M14.5 5 9.5 12 14.5 19' },
     { k: 'right', name: 'Chevron right', token: 'mads.icon.chevron.right', file: 'mads-icon-chevron-right.svg', d: 'M9.5 5 14.5 12 9.5 19' },
-    { k: 'home',  name: 'Home',          token: 'mads.icon.home',          file: 'mads-icon-home.svg',          d: 'M19 19.5V9.5L12 4.5 5 9.5V19.5Z' }
+    { k: 'home',  name: 'Home',          token: 'mads.icon.home',          file: 'mads-icon-home.svg',          d: 'M19 19.5V9.5L12 4.5 5 9.5V19.5Z' },
+    { k: 'settings', name: 'Settings',   token: 'mads.icon.settings',      file: 'mads-icon-settings.svg',      d: 'M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01' }
   ];
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const cm = s => `<span class="dsd-cm">${esc(s)}</span>`;
@@ -3783,11 +3894,13 @@ const MADSX = (() => {
       '  stroke-linecap: round; stroke-linejoin: round; overflow: visible;',
       '}',
       '',
-      cm('/* Motion: chevrons nudge the way they point, Home draws itself on */'),
+      cm('/* Motion: chevrons nudge the way they point, Home draws itself on, Settings turns one tooth */'),
       '@keyframes mads-icon-nudge-down { 50% { transform: translateY(6px); } }',
       '@keyframes mads-icon-draw { from { stroke-dashoffset: 1.01; } to { stroke-dashoffset: 0; } }',
       '.mads-icon.is-nudge-down { animation: mads-icon-nudge-down .5s cubic-bezier(.34, 1.56, .64, 1); }',
       '.mads-icon.is-draw path { stroke-dasharray: 1 1.02; animation: mads-icon-draw .9s cubic-bezier(.2, .7, .2, 1); }',
+      '@keyframes mads-icon-turn { to { transform: rotate(60deg); } }',
+      '.mads-icon.is-turn { animation: mads-icon-turn .6s cubic-bezier(.34, 1.56, .64, 1); }',
       cm('/* is-draw needs pathLength="1" on the <path> */'),
       '@media (prefers-reduced-motion: reduce) { .mads-icon, .mads-icon path { animation: none; } }'
     ],
@@ -3796,7 +3909,7 @@ const MADSX = (() => {
       '',
       cm('/// mads.icon — one stroked line on a 24 grid, stroke 3.5, round caps and joins.'),
       'public enum MadsIconName: CaseIterable {',
-      '    case chevronUp, chevronDown, chevronLeft, chevronRight, home',
+      '    case chevronUp, chevronDown, chevronLeft, chevronRight, home, settings',
       '',
       '    ' + cm('/// Points on the 24 × 24 grid'),
       '    var points: [CGPoint] {',
@@ -3807,6 +3920,7 @@ const MADSX = (() => {
       '        case .chevronRight: [.init(x: 9.5, y: 5), .init(x: 14.5, y: 12), .init(x: 9.5, y: 19)]',
       '        case .home:         [.init(x: 19, y: 19.5), .init(x: 19, y: 9.5), .init(x: 12, y: 4.5),',
       '                             .init(x: 5, y: 9.5), .init(x: 5, y: 19.5)]',
+      '        case .settings:     []  ' + cm('// built with arcs in MadsIconShape.gear'),
       '        }',
       '    }',
       '    var closed: Bool { self == .home }',
@@ -3816,9 +3930,31 @@ const MADSX = (() => {
       '    let name: MadsIconName',
       '    public func path(in rect: CGRect) -> Path {',
       '        let s = min(rect.width, rect.height) / 24',
+      '        if name == .settings { return Self.gear(scale: s, origin: rect.origin) }',
       '        var p = Path()',
       '        p.addLines(name.points.map { CGPoint(x: rect.minX + $0.x * s, y: rect.minY + $0.y * s) })',
       '        if name.closed { p.closeSubpath() }',
+      '        return p',
+      '    }',
+      '',
+      '    ' + cm('/// mads.icon.settings: six teeth (tips r 7.5 at ±10.2°), body arcs r 5.6 (±19°), centre dot'),
+      '    static func gear(scale s: CGFloat, origin o: CGPoint) -> Path {',
+      '        func pt(_ r: CGFloat, _ deg: CGFloat) -> CGPoint {',
+      '            let a = deg * .pi / 180',
+      '            return CGPoint(x: o.x + (12 + r * sin(a)) * s, y: o.y + (12 - r * cos(a)) * s)',
+      '        }',
+      '        let c = CGPoint(x: o.x + 12 * s, y: o.y + 12 * s)',
+      '        var p = Path()',
+      '        for i in 0..<6 {',
+      '            let t = CGFloat(i) * 60',
+      '            if i == 0 { p.move(to: pt(7.5, t - 10.2)) } else { p.addLine(to: pt(7.5, t - 10.2)) }',
+      '            p.addLine(to: pt(7.5, t + 10.2))',
+      '            p.addLine(to: pt(5.6, t + 19))',
+      '            p.addArc(center: c, radius: 5.6 * s, startAngle: .degrees(Double(t) - 71),',
+      '                     endAngle: .degrees(Double(t) - 49), clockwise: false)',
+      '        }',
+      '        p.closeSubpath()',
+      '        p.move(to: c); p.addLine(to: CGPoint(x: c.x + 0.01 * s, y: c.y))  ' + cm('// centre dot'),
       '        return p',
       '    }',
       '}',

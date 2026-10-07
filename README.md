@@ -11,12 +11,13 @@ deliverable/
 │   └── mads.css             All tokens and component styles, ready to use in a web project
 ├── tokens/
 │   └── mads-tokens.json     Every token and its value, with light and dark values for theme roles
-├── icons/                   The five MADS icons as clean SVG files
+├── icons/                   The six MADS icons as clean SVG files
 │   ├── mads-icon-chevron-up.svg
 │   ├── mads-icon-chevron-down.svg
 │   ├── mads-icon-chevron-left.svg
 │   ├── mads-icon-chevron-right.svg
-│   └── mads-icon-home.svg
+│   ├── mads-icon-home.svg
+│   └── mads-icon-settings.svg
 └── README.md                This file
 ```
 
@@ -66,7 +67,7 @@ To make the fonts work offline too, download the three families from [fonts.goog
 
 **Dark mode** follows the device. To let people choose, set `data-theme="dark"` or `data-theme="light"` on the `<html>` element. The Toggles section of `index.html` has the switch and the few lines of script it needs.
 
-**Components in `mads.css`:** primary, secondary, ghost and icon buttons; the theme toggle; cards, compact cards, selectable cards and stats; chips, location chips and tags; progress bars; the diamond list and quote; gradient text, gradient frames and the ambient glow; the icon style; and the scroll reveal.
+**Components in `mads.css`:** primary, secondary, ghost, icon and round buttons; the theme toggle; cards, compact cards, selectable cards and stats; chips, location chips and tags; progress bars; the diamond list and quote; gradient text, gradient frames and the ambient glow; the icon style; and the scroll reveal.
 
 ## Use MADS on iOS and Android
 
