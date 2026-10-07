@@ -11,13 +11,14 @@ deliverable/
 │   └── mads.css             All tokens and component styles, ready to use in a web project
 ├── tokens/
 │   └── mads-tokens.json     Every token and its value, with light and dark values for theme roles
-├── icons/                   The six MADS icons as clean SVG files
+├── icons/                   The seven MADS icons as clean SVG files
 │   ├── mads-icon-chevron-up.svg
 │   ├── mads-icon-chevron-down.svg
 │   ├── mads-icon-chevron-left.svg
 │   ├── mads-icon-chevron-right.svg
 │   ├── mads-icon-home.svg
-│   └── mads-icon-settings.svg
+│   ├── mads-icon-settings.svg
+│   └── mads-icon-ideas.svg
 └── README.md                This file
 ```
 
