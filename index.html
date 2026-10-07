@@ -574,8 +574,8 @@ body { background: var(--dsd-bg); color: var(--dsd-ink); }
 /* Settings turns one tooth (60°) with the spring, so it lands looking unchanged */
 .dsd-icon-tile:hover .dsd-icon-big[data-k="settings"], .dsd-icon-tile.is-go .dsd-icon-big[data-k="settings"] { animation: dsd-turn .6s var(--dsd-spring); }
 @keyframes dsd-turn { to { transform: rotate(60deg); } }
-/* Ideas glows: an AmberGold radial glow grows from the centre of the bulb, then fades out */
-.mads-icon-glow { fill: url(#mads-icon-glow-gradient); stroke: none !important; opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
+/* Ideas glows: a solid AmberGold circle at 50% alpha grows from the centre of the bulb, then fades out */
+.mads-icon-glow { fill: var(--mads-color-amber-gold); fill-opacity: .5; stroke: none !important; opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
 .mads-icon.is-glow .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }
 .dsd-icon-tile:hover .dsd-icon-big[data-k="ideas"] .mads-icon-glow, .dsd-icon-tile.is-go .dsd-icon-big[data-k="ideas"] .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }
 @keyframes mads-icon-glow { 0% { transform: scale(.1); opacity: 1; } 55% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
@@ -1112,7 +1112,7 @@ html { scroll-behavior: smooth; }
 try{var t=localStorage.getItem('ma-theme')||localStorage.getItem('mads-doc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="mads-icon-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FB5607"/><stop offset=".55" stop-color="#FF006E"/><stop offset="1" stop-color="#FFBE0B"/></linearGradient><radialGradient id="mads-icon-glow-gradient"><stop offset="0" stop-color="#FFBE0B"/><stop offset=".45" stop-color="#FFBE0B" stop-opacity=".55"/><stop offset="1" stop-color="#FFBE0B" stop-opacity="0"/></radialGradient><linearGradient id="mads-grad-mark" x1="0" y1="4" x2="0" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFBE0B"/><stop offset="1" stop-color="#FF006E"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="mads-icon-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FB5607"/><stop offset=".55" stop-color="#FF006E"/><stop offset="1" stop-color="#FFBE0B"/></linearGradient><linearGradient id="mads-grad-mark" x1="0" y1="4" x2="0" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFBE0B"/><stop offset="1" stop-color="#FF006E"/></linearGradient></defs></svg>
 <header class="ma-nav">
   <div class="ma-nav-inner">
     <a href="#dsd-root" class="ma-nav-home" aria-label="MA Design System, back to top"><svg class="ma-nav-mark" viewBox="36 12 200 116" aria-hidden="true"><defs><linearGradient id="ma-nav-gL" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffbe0b"/><stop offset="1" stop-color="#fb5607"/></linearGradient><linearGradient id="ma-nav-gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff006e"/><stop offset="1" stop-color="#ffbe0b"/></linearGradient><linearGradient id="ma-nav-gA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fb5608"/><stop offset="1" stop-color="#ff006e"/></linearGradient><linearGradient id="ma-nav-gC" gradientUnits="userSpaceOnUse" x1="50.8" y1="44" x2="133.6" y2="44"><stop offset="0" stop-color="#fb5607"/><stop offset="1" stop-color="#ff006e" stop-opacity=".85"/></linearGradient></defs><path fill="url(#ma-nav-gC)" d="m 59.516071,24.012484 a 9,9 0 0 0 -7.024377,3.746541 9,9 0 0 0 2.061889,12.559958 9,9 0 0 0 0.435632,0.293522 l -0.0088,0.0124 31.213082,22.409485 0.0031,0.0026 a 9,9 0 0 0 6.012553,2.268079 9,9 0 0 0 6.027003,-2.27066 l 31.213577,-22.409487 -0.009,-0.01246 a 9,9 0 0 0 0.43511,-0.293522 9,9 0 0 0 2.06189,-12.559959 9,9 0 0 0 -7.02437,-3.746542 9,9 0 0 0 -5.53506,1.684648 9,9 0 0 0 -0.41756,0.318844 l -0.009,-0.01294 -26.736831,19.195727 -26.73687,-19.195728 -0.0093,0.01292 a 9,9 0 0 0 -0.41703,-0.318843 9,9 0 0 0 -5.535579,-1.684651 z"/><path fill="#ffbe0b" d="m 175.63678,24.135913 c -3.6603,-9.8e-5 -6.9043,2.35681 -8.03517,5.837887 l -30.01488,68.92211 c 0,0 -1.28081,3.49822 -1.28093,4.53539 -9e-5,4.66584 3.78255,8.44825 8.44858,8.44807 3.84967,-2.3e-4 6.31551,-2.78748 8.17779,-6.32933 l 23.15259,-52.876881 25.48785,53.289261 c 1.87052,3.42799 4.36956,5.91708 8.06049,5.91695 4.66583,-10e-5 8.44816,-3.78243 8.44807,-8.44807 0,-0.0561 -0.008,-2.46168 -1.32912,-4.548559 l -33.0801,-68.907907 c -1.1305,-3.481486 -4.3746,-5.838873 -8.03517,-5.838921 z"/><rect fill="url(#ma-nav-gL)" x="50.76" y="23.88" width="18" height="88.3" rx="9"/><rect fill="url(#ma-nav-gR)" x="115.52" y="24.12" width="18" height="87.8" rx="9"/><rect fill="url(#ma-nav-gA)" x="163.5" y="80.8" width="27" height="18" rx="9"/></svg></a>
@@ -4025,9 +4025,8 @@ const MADSX = (() => {
       '.mads-icon.is-draw path { stroke-dasharray: 1 1.02; animation: mads-icon-draw .9s cubic-bezier(.2, .7, .2, 1); }',
       '@keyframes mads-icon-turn { to { transform: rotate(60deg); } }',
       '.mads-icon.is-turn { animation: mads-icon-turn .6s cubic-bezier(.34, 1.56, .64, 1); }',
-      cm('/* mads.icon.ideas default: an AmberGold radial glow grows from the bulb centre, then fades out */'),
-      esc('<svg width="0" height="0" style="position:absolute"><radialGradient id="mads-icon-glow-gradient"><stop offset="0" stop-color="#FFBE0B"/><stop offset=".45" stop-color="#FFBE0B" stop-opacity=".55"/><stop offset="1" stop-color="#FFBE0B" stop-opacity="0"/></radialGradient></svg>'),
-      '.mads-icon-glow { fill: url(#mads-icon-glow-gradient); stroke: none; opacity: 0; transform-box: fill-box; transform-origin: center; }',
+      cm('/* mads.icon.ideas default: a solid AmberGold circle at 50% alpha grows from the bulb centre, then fades out */'),
+      '.mads-icon-glow { fill: var(--mads-color-amber-gold); fill-opacity: .5; stroke: none; opacity: 0; transform-box: fill-box; transform-origin: center; }',
       '@keyframes mads-icon-glow { 0% { transform: scale(.1); opacity: 1; } 55% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }',
       '.mads-icon.is-glow .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }',
       cm('/* is-draw needs pathLength="1" on the <path> */'),
@@ -4126,7 +4125,7 @@ const MADSX = (() => {
       '',
       cm('// Draw on: MadsIconShape(name: .home).trim(from: 0, to: progress).stroke(…)'),
       '',
-      cm('/// mads.icon.ideas default motion: an AmberGold glow grows from the bulb centre, then fades out'),
+      cm('/// mads.icon.ideas default motion: a solid AmberGold circle at 50% alpha grows from the bulb centre, then fades out'),
       'public struct MadsIdeasIcon: View {',
       '    var size: CGFloat = 24',
       '    @Binding var trigger: Int',
@@ -4135,8 +4134,7 @@ const MADSX = (() => {
       '    public var body: some View {',
       '        ZStack {',
       '            Circle()',
-      '                .fill(RadialGradient(colors: [MadsColor.amberGold, MadsColor.amberGold.opacity(0.55), MadsColor.amberGold.opacity(0)],',
-      '                                     center: .center, startRadius: 0, endRadius: size * 10 / 24))',
+      '                .fill(MadsColor.amberGold.opacity(0.5))',
       '                .frame(width: size * 20 / 24, height: size * 20 / 24)',
       '                .scaleEffect(scale).opacity(glow)',
       '                .offset(y: size * (9.19 - 12) / 24)',
@@ -4177,7 +4175,7 @@ const MADSX = (() => {
       '',
       cm('// Icon(MadsIcons.home, contentDescription = null, tint = MadsColor.dark)'),
       '',
-      cm('/** mads.icon.ideas default motion: an AmberGold glow grows from the bulb centre, then fades out */'),
+      cm('/** mads.icon.ideas default motion: a solid AmberGold circle at 50% alpha grows from the bulb centre, then fades out */'),
       '@Composable',
       'fun MadsIdeasIcon(trigger: Int, size: Dp = 24.dp, tint: Color = MadsColor.dark) {',
       '    val scale = remember { Animatable(0.1f) }',
@@ -4192,8 +4190,7 @@ const MADSX = (() => {
       '        val u = this.size.minDimension / 24f',
       '        val c = Offset(12f * u, 9.19f * u)',
       '        val r = 10f * u * scale.value',
-      '        drawCircle(Brush.radialGradient(listOf(MadsColor.amberGold, MadsColor.amberGold.copy(alpha = .55f), Color.Transparent), c, r),',
-      '                   radius = r, center = c, alpha = glow.value)',
+      '        drawCircle(MadsColor.amberGold.copy(alpha = .5f), radius = r, center = c, alpha = glow.value)',
       '    }) { Icon(MadsIcons.ideas, contentDescription = null, tint = tint) }',
       '}'
     ],
