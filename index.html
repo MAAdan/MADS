@@ -1036,10 +1036,113 @@ html { scroll-behavior: smooth; }
   .dsd-ns { justify-self: start; }
   .dsd-text-row { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ===== Site header (ma-nav): the same header as miguel-adan.com, to move between MADS and the main site.
+   MA logo (back to top), LinkedIn, Ideas (links to the home page and the book gallery) and Settings (theme; language comes later).
+   Built from MADS tokens and components: mads.button.round, mads.icon.ideas, mads.icon.settings, mads.card, mads.toggle.theme. ===== */
+:root { --ma-nav-h: 4rem; } /* 64px */
+.ma-nav { position: sticky; top: 0; z-index: 30; padding-top: env(safe-area-inset-top, 0px); margin-top: calc(-1 * env(safe-area-inset-top, 0px)); }
+.ma-nav, .ma-nav *, .ma-nav *::before, .ma-nav *::after { box-sizing: border-box; }
+.ma-nav::before { content: ""; position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--dsd-bg) 94%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--mads-theme-line); }
+.ma-nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--ma-nav-h); padding-inline: clamp(16px, 4vw, 56px); }
+.ma-nav :focus-visible { outline: 2px solid var(--mads-theme-focus); outline-offset: 3px; border-radius: 6px; }
+.ma-nav-home { display: block; border-radius: 6px; }
+.ma-nav-mark { width: 58px; display: block; transition: transform var(--mads-motion-duration-base) var(--mads-motion-easing-spring); }
+.ma-nav-home:hover .ma-nav-mark { transform: scale(1.06); }
+.ma-nav-right { display: flex; align-items: center; gap: 14px; }
+
+/* LinkedIn: round, icon only (the site's LinkedIn pill at its compact size) */
+.ma-nav-li { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex: none; border-radius: var(--mads-radius-full); border: 1px solid var(--mads-theme-line); color: var(--mads-theme-text); text-decoration: none;
+  transition: color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard), border-color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.ma-nav-li:hover { border-color: var(--mads-theme-text-azure-blue); color: var(--mads-theme-text-azure-blue); }
+.ma-nav-li svg { width: 15px; height: 15px; flex: none; }
+
+/* Settings and Ideas: a mads.button.round that opens a floating mads.card.
+   The card grows out of the button as a circle (clip-path) while it settles into place, then its rows slide in one after the other. */
+.ma-pop { position: relative; display: flex; }
+.ma-settings-btn svg { transition: transform var(--mads-motion-duration-slow) var(--mads-motion-easing-spring); }
+.ma-settings-btn[aria-expanded="true"] { background: var(--mads-theme-fill-ghost); border-color: var(--mads-theme-text-faint); }
+.ma-settings-btn[aria-expanded="true"] svg { transform: rotate(120deg); }
+.ma-pop-card { --ox: calc(100% - 22px); --oy: -34px; position: absolute; top: calc(100% + 12px); right: 0; width: min(330px, calc(100vw - 2 * clamp(16px, 4vw, 56px))); gap: 0; padding: 4px 18px; box-shadow: var(--mads-shadow-raised);
+  clip-path: circle(0 at var(--ox) var(--oy)); transform: translateY(-8px) scale(.94); transform-origin: var(--ox) 0; opacity: 0; visibility: hidden;
+  transition: clip-path var(--mads-motion-duration-base) var(--mads-motion-easing-standard), transform var(--mads-motion-duration-base) var(--mads-motion-easing-standard), opacity var(--mads-motion-duration-base) var(--mads-motion-easing-standard), visibility 0s linear var(--mads-motion-duration-base); }
+.ma-pop-card.is-open { clip-path: circle(200% at var(--ox) var(--oy)); transform: none; opacity: 1; visibility: visible;
+  transition: clip-path var(--mads-motion-duration-slow) var(--mads-motion-easing-standard), transform var(--mads-motion-duration-slow) var(--mads-motion-easing-entrance), opacity var(--mads-motion-duration-fast) var(--mads-motion-easing-standard), visibility 0s; }
+.ma-pop-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; opacity: 0; transform: translateY(10px);
+  transition: opacity var(--mads-motion-duration-fast) var(--mads-motion-easing-standard), transform var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.ma-pop-row + .ma-pop-row { border-top: 1px solid var(--mads-theme-line); }
+.ma-pop-card.is-open .ma-pop-row { opacity: 1; transform: none; transition-duration: var(--mads-motion-duration-base); transition-timing-function: var(--mads-motion-easing-entrance); }
+.ma-pop-card.is-open .ma-pop-row:nth-child(1) { transition-delay: 110ms; }
+.ma-pop-card.is-open .ma-pop-row:nth-child(2) { transition-delay: 190ms; }
+.ma-pop-label { font: var(--mads-text-default); color: var(--mads-theme-text); }
+.ma-pop-label small { display: block; font: var(--mads-text-small); color: var(--mads-theme-text-faint); }
+
+/* Language: shown but disabled until MADS is translated */
+.ma-lang { display: inline-flex; align-items: center; gap: 8px; flex: none; height: 36px; padding: 0 14px 0 10px; border-radius: var(--mads-radius-full); border: 1px solid var(--mads-theme-line); background: transparent;
+  font: 500 var(--mads-text-default-size)/1 var(--mads-font-mono); white-space: nowrap; color: var(--mads-theme-text); }
+.ma-lang[aria-disabled="true"] { opacity: .45; cursor: not-allowed; filter: grayscale(.6); }
+.ma-lang .flag { width: 16px; height: 16px; border-radius: 50%; overflow: hidden; flex: none; display: block; box-shadow: 0 0 0 1px var(--mads-theme-line); }
+.ma-lang .flag svg { width: 16px; height: 16px; display: block; }
+
+/* Ideas: the bulb lights up AmberGold while its card is open; one link per row */
+.ma-ideas-btn[aria-expanded="true"] { background: var(--mads-theme-fill-ghost); border-color: var(--mads-theme-text-faint); color: var(--mads-theme-text-amber-gold); }
+.ma-ideas-btn[aria-expanded="true"] svg { animation: ma-ideas-spark .7s var(--mads-motion-easing-spring); filter: drop-shadow(0 0 5px color-mix(in srgb, var(--mads-theme-text-amber-gold) 55%, transparent)); }
+@keyframes ma-ideas-spark { 40% { transform: scale(1.12); } }
+.ma-ideas-card { width: min(300px, calc(100vw - 2 * clamp(16px, 4vw, 56px))); }
+.ma-ideas-card .ma-pop-row { padding: 0; }
+.ma-ideas-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; font: var(--mads-text-default); text-decoration: none; color: var(--mads-theme-text); transition: color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.ma-ideas-link svg { width: 16px; height: 16px; flex: none; color: var(--mads-theme-text-muted); transition: transform var(--mads-motion-duration-fast) var(--mads-motion-easing-spring), color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.ma-ideas-link:hover { color: var(--mads-theme-text-azure-blue); }
+.ma-ideas-link:hover svg { color: currentColor; transform: translateX(3px); }
+
+/* The page's sticky category index and section anchors sit below the header */
+.dsd-index { top: calc(env(safe-area-inset-top, 0px) + var(--ma-nav-h) + 1.5rem); }
+.dsd-cat { scroll-margin-top: calc(var(--ma-nav-h) + 1.5rem); }
+@media (max-width: 52rem) {
+  .dsd-index { top: calc(env(safe-area-inset-top, 0px) + var(--ma-nav-h)); }
+  .dsd-cat { scroll-margin-top: calc(var(--ma-nav-h) + 4rem); }
+}
+@media (max-width: 620px) {
+  .ma-nav-right { gap: 6px; }
+  .ma-ideas-card { right: -50px; --ox: calc(100% - 72px); } /* line the card up with the settings card's right edge (44px button + 6px gap) */
+}
+@media (prefers-reduced-motion: reduce) {
+  .ma-nav *, .ma-nav *::before, .ma-nav *::after { animation: none !important; transition: none !important; }
+}
 </style>
+<script>/* apply the saved theme before the page paints (shared with miguel-adan.com) */
+try{var t=localStorage.getItem('ma-theme')||localStorage.getItem('mads-doc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="mads-icon-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FB5607"/><stop offset=".55" stop-color="#FF006E"/><stop offset="1" stop-color="#FFBE0B"/></linearGradient><radialGradient id="mads-icon-glow-gradient"><stop offset="0" stop-color="#FFBE0B"/><stop offset=".45" stop-color="#FFBE0B" stop-opacity=".55"/><stop offset="1" stop-color="#FFBE0B" stop-opacity="0"/></radialGradient><linearGradient id="mads-grad-mark" x1="0" y1="4" x2="0" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFBE0B"/><stop offset="1" stop-color="#FF006E"/></linearGradient></defs></svg>
+<header class="ma-nav">
+  <div class="ma-nav-inner">
+    <a href="#dsd-root" class="ma-nav-home" aria-label="MA Design System, back to top"><svg class="ma-nav-mark" viewBox="36 12 200 116" aria-hidden="true"><defs><linearGradient id="ma-nav-gL" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffbe0b"/><stop offset="1" stop-color="#fb5607"/></linearGradient><linearGradient id="ma-nav-gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff006e"/><stop offset="1" stop-color="#ffbe0b"/></linearGradient><linearGradient id="ma-nav-gA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fb5608"/><stop offset="1" stop-color="#ff006e"/></linearGradient><linearGradient id="ma-nav-gC" gradientUnits="userSpaceOnUse" x1="50.8" y1="44" x2="133.6" y2="44"><stop offset="0" stop-color="#fb5607"/><stop offset="1" stop-color="#ff006e" stop-opacity=".85"/></linearGradient></defs><path fill="url(#ma-nav-gC)" d="m 59.516071,24.012484 a 9,9 0 0 0 -7.024377,3.746541 9,9 0 0 0 2.061889,12.559958 9,9 0 0 0 0.435632,0.293522 l -0.0088,0.0124 31.213082,22.409485 0.0031,0.0026 a 9,9 0 0 0 6.012553,2.268079 9,9 0 0 0 6.027003,-2.27066 l 31.213577,-22.409487 -0.009,-0.01246 a 9,9 0 0 0 0.43511,-0.293522 9,9 0 0 0 2.06189,-12.559959 9,9 0 0 0 -7.02437,-3.746542 9,9 0 0 0 -5.53506,1.684648 9,9 0 0 0 -0.41756,0.318844 l -0.009,-0.01294 -26.736831,19.195727 -26.73687,-19.195728 -0.0093,0.01292 a 9,9 0 0 0 -0.41703,-0.318843 9,9 0 0 0 -5.535579,-1.684651 z"/><path fill="#ffbe0b" d="m 175.63678,24.135913 c -3.6603,-9.8e-5 -6.9043,2.35681 -8.03517,5.837887 l -30.01488,68.92211 c 0,0 -1.28081,3.49822 -1.28093,4.53539 -9e-5,4.66584 3.78255,8.44825 8.44858,8.44807 3.84967,-2.3e-4 6.31551,-2.78748 8.17779,-6.32933 l 23.15259,-52.876881 25.48785,53.289261 c 1.87052,3.42799 4.36956,5.91708 8.06049,5.91695 4.66583,-10e-5 8.44816,-3.78243 8.44807,-8.44807 0,-0.0561 -0.008,-2.46168 -1.32912,-4.548559 l -33.0801,-68.907907 c -1.1305,-3.481486 -4.3746,-5.838873 -8.03517,-5.838921 z"/><rect fill="url(#ma-nav-gL)" x="50.76" y="23.88" width="18" height="88.3" rx="9"/><rect fill="url(#ma-nav-gR)" x="115.52" y="24.12" width="18" height="87.8" rx="9"/><rect fill="url(#ma-nav-gA)" x="163.5" y="80.8" width="27" height="18" rx="9"/></svg></a>
+    <div class="ma-nav-right">
+      <a href="https://www.linkedin.com/in/miguel-angel-adan/" class="ma-nav-li" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4.5" fill="currentColor"/><text x="12" y="17.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="12.5" style="fill:var(--mads-theme-background)">in</text></svg></a>
+      <div class="ma-pop" id="maIdeas">
+        <button type="button" class="mads-button-round ma-ideas-btn" id="maIdeasBtn" aria-expanded="false" aria-controls="maIdeasCard" aria-label="Ideas"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M 11.999998,4.4277091 c -2.6312483,-3.85e-4 -4.764393,2.1327595 -4.7640085,4.764008 2.151e-4,1.6913069 0.8972603,3.2556649 2.3568545,4.1101249 -0.00774,0.05709 -0.014348,0.113205 -0.014348,0.172452 v 0.522255 c 0,0.716134 0.57726,1.293397 1.293395,1.293397 h 2.24907 c 0.716135,0 1.293399,-0.577263 1.293399,-1.293397 v -0.522255 c 0,-0.05925 -0.0067,-0.115366 -0.01434,-0.172452 1.462339,-0.852662 2.362293,-2.417357 2.363991,-4.1101249 3.84e-4,-2.6312483 -2.13276,-4.7643926 -4.764008,-4.764008 z M 10.196431,19.572291 h 3.599948"/></svg></button>
+        <div class="mads-card ma-pop-card ma-ideas-card" id="maIdeasCard" role="group" aria-label="Ideas">
+          <div class="ma-pop-row"><a class="ma-ideas-link" href="https://www.miguel-adan.com/index.html"><span>Home</span><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 14.5 12 9.5 19"/></svg></a></div>
+          <div class="ma-pop-row"><a class="ma-ideas-link" href="https://www.miguel-adan.com/book-gallery/index.html"><span>Book gallery</span><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 14.5 12 9.5 19"/></svg></a></div>
+        </div>
+      </div>
+      <div class="ma-pop" id="maSettings">
+        <button type="button" class="mads-button-round ma-settings-btn" id="maSettingsBtn" aria-expanded="false" aria-controls="maSettingsCard" aria-label="Settings"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button>
+        <div class="mads-card ma-pop-card" id="maSettingsCard" role="group" aria-label="Settings">
+          <div class="ma-pop-row">
+            <span class="ma-pop-label">Toggle to dark or light mode</span>
+            <button type="button" class="mads-toggle-theme" id="maThemeToggle" role="switch" aria-checked="false" aria-label="Dark mode" data-theme-toggle><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button>
+          </div>
+          <div class="ma-pop-row">
+            <span class="ma-pop-label" id="maLangLabel">Change language<small>Coming soon: MADS is in English only</small></span>
+            <button type="button" class="ma-lang" aria-disabled="true" aria-describedby="maLangLabel" lang="es"><span class="flag"><svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" fill="#AA151B"/><rect y="7.5" width="30" height="15" fill="#F1BF00"/></svg></span><span>Español</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 <div class="dsd" id="dsd-root">
 
   <header class="dsd-masthead">
@@ -2517,10 +2620,10 @@ const MADSX = (() => {
 
 /* ===== Page theme: the MADS theme toggle drives data-theme on this page ===== */
 (() => {
-  const KEY = 'mads-doc-theme';
+  const KEY = 'ma-theme'; /* same key as miguel-adan.com, so the choice carries between the two pages */
   const root = document.documentElement;
   const mq = matchMedia('(prefers-color-scheme: dark)');
-  try { const t = localStorage.getItem(KEY); if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t); } catch (e) {}
+  try { const t = localStorage.getItem(KEY) || localStorage.getItem('mads-doc-theme'); if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t); } catch (e) {}
   const effective = () => root.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light');
   const sync = () => document.querySelectorAll('[data-theme-toggle]').forEach(b => {
     const dark = effective() === 'dark';
@@ -2535,6 +2638,22 @@ const MADSX = (() => {
   }));
   mq.addEventListener?.('change', sync);
   sync();
+})();
+
+/* ===== Site header: Ideas and Settings each show and hide a floating card; only one is open at a time ===== */
+(() => {
+  const pops = [['maSettings', 'maSettingsBtn', 'maSettingsCard'], ['maIdeas', 'maIdeasBtn', 'maIdeasCard']]
+    .map(([w, b, c]) => ({ wrap: document.getElementById(w), btn: document.getElementById(b), card: document.getElementById(c) }))
+    .filter(p => p.wrap && p.btn && p.card);
+  const isOpen = p => p.card.classList.contains('is-open');
+  const set = (p, open) => { p.card.classList.toggle('is-open', open); p.btn.setAttribute('aria-expanded', open); };
+  pops.forEach(p => {
+    p.btn.addEventListener('click', () => { const open = !isOpen(p); pops.forEach(o => { if (o !== p) set(o, false); }); set(p, open); });
+    p.wrap.addEventListener('focusout', e => { if (isOpen(p) && e.relatedTarget && !p.wrap.contains(e.relatedTarget)) set(p, false); });
+  });
+  document.addEventListener('pointerdown', e => pops.forEach(p => { if (isOpen(p) && !p.wrap.contains(e.target)) set(p, false); }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') pops.forEach(p => { if (isOpen(p)) { set(p, false); p.btn.focus(); } }); });
+  addEventListener('pageshow', e => { if (e.persisted) pops.forEach(p => set(p, false)); });
 })();
 
 /* ===== mads.theme ===== */
