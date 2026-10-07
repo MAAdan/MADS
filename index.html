@@ -706,7 +706,6 @@ body { background: var(--dsd-bg); color: var(--dsd-ink); }
 .dsd-index-group { font: var(--mads-label-xsmall); text-transform: uppercase; color: var(--dsd-ink-soft); opacity: .8; padding: 1rem .75rem .25rem; list-style: none; }
 .dsd-index-group:first-child { padding-top: 0; }
 @media (max-width: 52rem) { .dsd-index-group { display: none; } }
-.dsd-meta-toggle { display: inline-flex; align-items: center; gap: .625rem; }
 
 /* A preview area that always uses the MADS theme roles */
 .dsd-theme-stage {
@@ -1084,10 +1083,9 @@ html { scroll-behavior: smooth; }
 .ma-lang .flag { width: 16px; height: 16px; border-radius: 50%; overflow: hidden; flex: none; display: block; box-shadow: 0 0 0 1px var(--mads-theme-line); }
 .ma-lang .flag svg { width: 16px; height: 16px; display: block; }
 
-/* Ideas: the bulb lights up AmberGold while its card is open; one link per row */
+/* Ideas: the bulb turns AmberGold and glows (mads.icon.ideas) when its card opens; one link per row */
 .ma-ideas-btn[aria-expanded="true"] { background: var(--mads-theme-fill-ghost); border-color: var(--mads-theme-text-faint); color: var(--mads-theme-text-amber-gold); }
-.ma-ideas-btn[aria-expanded="true"] svg { animation: ma-ideas-spark .7s var(--mads-motion-easing-spring); filter: drop-shadow(0 0 5px color-mix(in srgb, var(--mads-theme-text-amber-gold) 55%, transparent)); }
-@keyframes ma-ideas-spark { 40% { transform: scale(1.12); } }
+.ma-ideas-btn[aria-expanded="true"] .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); } /* the mads.icon.ideas glow */
 .ma-ideas-card { width: min(300px, calc(100vw - 2 * clamp(16px, 4vw, 56px))); }
 .ma-ideas-card .ma-pop-row { padding: 0; }
 .ma-ideas-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; font: var(--mads-text-default); text-decoration: none; color: var(--mads-theme-text); transition: color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
@@ -1121,7 +1119,7 @@ try{var t=localStorage.getItem('ma-theme')||localStorage.getItem('mads-doc-theme
     <div class="ma-nav-right">
       <a href="https://www.linkedin.com/in/miguel-angel-adan/" class="ma-nav-li" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4.5" fill="currentColor"/><text x="12" y="17.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="12.5" style="fill:var(--mads-theme-background)">in</text></svg></a>
       <div class="ma-pop" id="maIdeas">
-        <button type="button" class="mads-button-round ma-ideas-btn" id="maIdeasBtn" aria-expanded="false" aria-controls="maIdeasCard" aria-label="Ideas"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M 11.999998,4.4277091 c -2.6312483,-3.85e-4 -4.764393,2.1327595 -4.7640085,4.764008 2.151e-4,1.6913069 0.8972603,3.2556649 2.3568545,4.1101249 -0.00774,0.05709 -0.014348,0.113205 -0.014348,0.172452 v 0.522255 c 0,0.716134 0.57726,1.293397 1.293395,1.293397 h 2.24907 c 0.716135,0 1.293399,-0.577263 1.293399,-1.293397 v -0.522255 c 0,-0.05925 -0.0067,-0.115366 -0.01434,-0.172452 1.462339,-0.852662 2.362293,-2.417357 2.363991,-4.1101249 3.84e-4,-2.6312483 -2.13276,-4.7643926 -4.764008,-4.764008 z M 10.196431,19.572291 h 3.599948"/></svg></button>
+        <button type="button" class="mads-button-round ma-ideas-btn" id="maIdeasBtn" aria-expanded="false" aria-controls="maIdeasCard" aria-label="Ideas"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><circle class="mads-icon-glow" cx="12" cy="9.19" r="10"/><path d="M 11.999998,4.4277091 c -2.6312483,-3.85e-4 -4.764393,2.1327595 -4.7640085,4.764008 2.151e-4,1.6913069 0.8972603,3.2556649 2.3568545,4.1101249 -0.00774,0.05709 -0.014348,0.113205 -0.014348,0.172452 v 0.522255 c 0,0.716134 0.57726,1.293397 1.293395,1.293397 h 2.24907 c 0.716135,0 1.293399,-0.577263 1.293399,-1.293397 v -0.522255 c 0,-0.05925 -0.0067,-0.115366 -0.01434,-0.172452 1.462339,-0.852662 2.362293,-2.417357 2.363991,-4.1101249 3.84e-4,-2.6312483 -2.13276,-4.7643926 -4.764008,-4.764008 z M 10.196431,19.572291 h 3.599948"/></svg></button>
         <div class="mads-card ma-pop-card ma-ideas-card" id="maIdeasCard" role="group" aria-label="Ideas">
           <div class="ma-pop-row"><a class="ma-ideas-link" href="https://www.miguel-adan.com/index.html"><span>Home</span><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 14.5 12 9.5 19"/></svg></a></div>
           <div class="ma-pop-row"><a class="ma-ideas-link" href="https://www.miguel-adan.com/book-gallery/index.html"><span>Book gallery</span><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 14.5 12 9.5 19"/></svg></a></div>
@@ -1153,7 +1151,6 @@ try{var t=localStorage.getItem('ma-theme')||localStorage.getItem('mads-doc-theme
       <li>Prefix <b>mads</b></li>
       <li>Pattern <b>mads.{category}.{name}</b></li>
       <li>Categories <b>17</b></li>
-      <li class="dsd-meta-toggle">Dark mode <button type="button" class="mads-toggle-theme" id="page-theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode" data-theme-toggle><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></li>
     </ul>
   </header>
 
