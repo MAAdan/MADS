@@ -574,9 +574,11 @@ body { background: var(--dsd-bg); color: var(--dsd-ink); }
 /* Settings turns one tooth (60°) with the spring, so it lands looking unchanged */
 .dsd-icon-tile:hover .dsd-icon-big[data-k="settings"], .dsd-icon-tile.is-go .dsd-icon-big[data-k="settings"] { animation: dsd-turn .6s var(--dsd-spring); }
 @keyframes dsd-turn { to { transform: rotate(60deg); } }
-/* Ideas lights up: a quick spring pop with an AmberGold glow */
-.dsd-icon-tile:hover .dsd-icon-big[data-k="ideas"], .dsd-icon-tile.is-go .dsd-icon-big[data-k="ideas"] { animation: dsd-spark .7s var(--dsd-spring); }
-@keyframes dsd-spark { 40% { transform: scale(1.12); filter: drop-shadow(0 0 6px var(--mads-color-amber-gold)); } }
+/* Ideas glows: an AmberGold radial glow grows from the centre of the bulb, then fades out */
+.mads-icon-glow { fill: url(#mads-icon-glow-gradient); stroke: none !important; opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
+.mads-icon.is-glow .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }
+.dsd-icon-tile:hover .dsd-icon-big[data-k="ideas"] .mads-icon-glow, .dsd-icon-tile.is-go .dsd-icon-big[data-k="ideas"] .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }
+@keyframes mads-icon-glow { 0% { transform: scale(.1); opacity: 1; } 55% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
 @keyframes dsd-nudge-up { 50% { transform: translateY(-6px); } }
 @keyframes dsd-nudge-down { 50% { transform: translateY(6px); } }
 @keyframes dsd-nudge-left { 50% { transform: translateX(-6px); } }
@@ -634,7 +636,7 @@ body { background: var(--dsd-bg); color: var(--dsd-ink); }
 @media (max-width: 40rem) { .dsd-icon-spec { grid-template-columns: minmax(0, 1fr); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .dsd-icon-tile .dsd-icon-big, .dsd-icon-tile .dsd-icon-big path, .dsd-draw-row path { animation: none !important; }
+  .dsd-icon-tile .dsd-icon-big, .dsd-icon-tile .dsd-icon-big path, .dsd-icon-tile .mads-icon-glow, .mads-icon-glow, .dsd-draw-row path { animation: none !important; }
 }
 
 /* ======================================================================
@@ -1037,7 +1039,7 @@ html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="mads-icon-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FB5607"/><stop offset=".55" stop-color="#FF006E"/><stop offset="1" stop-color="#FFBE0B"/></linearGradient><linearGradient id="mads-grad-mark" x1="0" y1="4" x2="0" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFBE0B"/><stop offset="1" stop-color="#FF006E"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="mads-icon-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FB5607"/><stop offset=".55" stop-color="#FF006E"/><stop offset="1" stop-color="#FFBE0B"/></linearGradient><radialGradient id="mads-icon-glow-gradient"><stop offset="0" stop-color="#FFBE0B"/><stop offset=".45" stop-color="#FFBE0B" stop-opacity=".55"/><stop offset="1" stop-color="#FFBE0B" stop-opacity="0"/></radialGradient><linearGradient id="mads-grad-mark" x1="0" y1="4" x2="0" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFBE0B"/><stop offset="1" stop-color="#FF006E"/></linearGradient></defs></svg>
 <div class="dsd" id="dsd-root">
 
   <header class="dsd-masthead">
@@ -3796,13 +3798,14 @@ const MADSX = (() => {
     { k: 'right', name: 'Chevron right', token: 'mads.icon.chevron.right', file: 'mads-icon-chevron-right.svg', d: 'M9.5 5 14.5 12 9.5 19' },
     { k: 'home',  name: 'Home',          token: 'mads.icon.home',          file: 'mads-icon-home.svg',          d: 'M19 19.5V9.5L12 4.5 5 9.5V19.5Z' },
     { k: 'settings', name: 'Settings',   token: 'mads.icon.settings',      file: 'mads-icon-settings.svg',      d: 'M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01' },
-    { k: 'ideas',    name: 'Ideas',      token: 'mads.icon.ideas',         file: 'mads-icon-ideas.svg',         d: 'm 11.999998,4.4277091 c -2.6312483,-3.85e-4 -4.764393,2.1327595 -4.7640085,4.764008 2.151e-4,1.6913069 0.8972603,3.2556649 2.3568545,4.1101249 -0.00774,0.05709 -0.014348,0.113205 -0.014348,0.172452 v 0.522255 c 0,0.716134 0.57726,1.293397 1.293395,1.293397 h 2.24907 c 0.716135,0 1.293399,-0.577263 1.293399,-1.293397 v -0.522255 c 0,-0.05925 -0.0067,-0.115366 -0.01434,-0.172452 1.462339,-0.852662 2.362293,-2.417357 2.363991,-4.1101249 3.84e-4,-2.6312483 -2.13276,-4.7643926 -4.764008,-4.764008 z M 10.196431,19.572291 h 3.599948 z' }
+    { k: 'ideas',    name: 'Ideas',      token: 'mads.icon.ideas',         file: 'mads-icon-ideas.svg', glow: true,         d: 'm 11.999998,4.4277091 c -2.6312483,-3.85e-4 -4.764393,2.1327595 -4.7640085,4.764008 2.151e-4,1.6913069 0.8972603,3.2556649 2.3568545,4.1101249 -0.00774,0.05709 -0.014348,0.113205 -0.014348,0.172452 v 0.522255 c 0,0.716134 0.57726,1.293397 1.293395,1.293397 h 2.24907 c 0.716135,0 1.293399,-0.577263 1.293399,-1.293397 v -0.522255 c 0,-0.05925 -0.0067,-0.115366 -0.01434,-0.172452 1.462339,-0.852662 2.362293,-2.417357 2.363991,-4.1101249 3.84e-4,-2.6312483 -2.13276,-4.7643926 -4.764008,-4.764008 z M 10.196431,19.572291 h 3.599948 z' }
   ];
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const cm = s => `<span class="dsd-cm">${esc(s)}</span>`;
   const camel = t => t.replace('mads.icon.', '').replace(/\.(\w)/g, (_, c) => c.toUpperCase());
   const snake = t => t.replace(/\./g, '_');
-  const svg = (d, size) => `<svg class="mads-icon" viewBox="0 0 24 24" width="${size}" height="${size}" aria-hidden="true"><path pathLength="1" d="${d}"/></svg>`;
+  const GLOW = '<circle class="mads-icon-glow" cx="12" cy="9.19" r="10"/>';
+  const svg = (d, size, glow) => `<svg class="mads-icon" viewBox="0 0 24 24" width="${size}" height="${size}" aria-hidden="true">${glow ? GLOW : ''}<path pathLength="1" d="${d}"/></svg>`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const section = document.getElementById('icons');
@@ -3812,7 +3815,7 @@ const MADSX = (() => {
   /* Grid */
   grid.innerHTML = ICONS.map(i => `
     <button type="button" class="dsd-icon-tile" aria-label="${i.name}, play its motion">
-      <span class="dsd-icon-big" data-k="${i.k}">${svg(i.d, 64)}</span>
+      <span class="dsd-icon-big" data-k="${i.k}">${svg(i.d, 64, i.glow)}</span>
       <span class="dsd-icon-sizes">${svg(i.d, 16)}${svg(i.d, 24)}${svg(i.d, 32)}</span>
       <span class="dsd-icon-meta"><b>${i.name}</b><span class="dsd-tok">${i.token}</span></span>
     </button>`).join('');
@@ -3890,7 +3893,7 @@ const MADSX = (() => {
   const code = {
     css: [
       cm('<!-- Inline SVG. The icon takes the text colour, so set color to any mads.color -->'),
-      ...ICONS.map(i => esc(`<svg class="mads-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="${i.d}"/></svg>`) + '  ' + cm(`<!-- ${i.token} -->`)),
+      ...ICONS.map(i => esc(`<svg class="mads-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">${i.glow ? '<circle class="mads-icon-glow" cx="12" cy="9.19" r="10"/>' : ''}<path d="${i.d}"/></svg>`) + '  ' + cm(`<!-- ${i.token} -->`)),
       '',
       cm('/* mads.icon */'),
       ':root { --mads-icon-stroke: 3.5; }',
@@ -3899,17 +3902,20 @@ const MADSX = (() => {
       '  stroke-linecap: round; stroke-linejoin: round; overflow: visible;',
       '}',
       '',
-      cm('/* Motion: chevrons nudge the way they point, Home draws itself on, Settings turns one tooth, Ideas lights up */'),
+      cm('/* Motion: chevrons nudge the way they point, Home draws itself on, Settings turns one tooth, Ideas glows */'),
       '@keyframes mads-icon-nudge-down { 50% { transform: translateY(6px); } }',
       '@keyframes mads-icon-draw { from { stroke-dashoffset: 1.01; } to { stroke-dashoffset: 0; } }',
       '.mads-icon.is-nudge-down { animation: mads-icon-nudge-down .5s cubic-bezier(.34, 1.56, .64, 1); }',
       '.mads-icon.is-draw path { stroke-dasharray: 1 1.02; animation: mads-icon-draw .9s cubic-bezier(.2, .7, .2, 1); }',
       '@keyframes mads-icon-turn { to { transform: rotate(60deg); } }',
       '.mads-icon.is-turn { animation: mads-icon-turn .6s cubic-bezier(.34, 1.56, .64, 1); }',
-      '@keyframes mads-icon-spark { 40% { transform: scale(1.12); filter: drop-shadow(0 0 6px var(--mads-color-amber-gold)); } }',
-      '.mads-icon.is-spark { animation: mads-icon-spark .7s cubic-bezier(.34, 1.56, .64, 1); }',
+      cm('/* mads.icon.ideas default: an AmberGold radial glow grows from the bulb centre, then fades out */'),
+      esc('<svg width="0" height="0" style="position:absolute"><radialGradient id="mads-icon-glow-gradient"><stop offset="0" stop-color="#FFBE0B"/><stop offset=".45" stop-color="#FFBE0B" stop-opacity=".55"/><stop offset="1" stop-color="#FFBE0B" stop-opacity="0"/></radialGradient></svg>'),
+      '.mads-icon-glow { fill: url(#mads-icon-glow-gradient); stroke: none; opacity: 0; transform-box: fill-box; transform-origin: center; }',
+      '@keyframes mads-icon-glow { 0% { transform: scale(.1); opacity: 1; } 55% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }',
+      '.mads-icon.is-glow .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }',
       cm('/* is-draw needs pathLength="1" on the <path> */'),
-      '@media (prefers-reduced-motion: reduce) { .mads-icon, .mads-icon path { animation: none; } }'
+      '@media (prefers-reduced-motion: reduce) { .mads-icon, .mads-icon path, .mads-icon-glow { animation: none; } }'
     ],
     swift: [
       'import SwiftUI',
@@ -4002,7 +4008,31 @@ const MADSX = (() => {
       '    }',
       '}',
       '',
-      cm('// Draw on: MadsIconShape(name: .home).trim(from: 0, to: progress).stroke(…)')
+      cm('// Draw on: MadsIconShape(name: .home).trim(from: 0, to: progress).stroke(…)'),
+      '',
+      cm('/// mads.icon.ideas default motion: an AmberGold glow grows from the bulb centre, then fades out'),
+      'public struct MadsIdeasIcon: View {',
+      '    var size: CGFloat = 24',
+      '    @Binding var trigger: Int',
+      '    @State private var scale: CGFloat = 0.1',
+      '    @State private var glow: Double = 0',
+      '    public var body: some View {',
+      '        ZStack {',
+      '            Circle()',
+      '                .fill(RadialGradient(colors: [MadsColor.amberGold, MadsColor.amberGold.opacity(0.55), MadsColor.amberGold.opacity(0)],',
+      '                                     center: .center, startRadius: 0, endRadius: size * 10 / 24))',
+      '                .frame(width: size * 20 / 24, height: size * 20 / 24)',
+      '                .scaleEffect(scale).opacity(glow)',
+      '                .offset(y: size * (9.19 - 12) / 24)',
+      '            MadsIcon(.ideas, size: size)',
+      '        }',
+      '        .onChange(of: trigger) {',
+      '            scale = 0.1; glow = 1',
+      '            withAnimation(.timingCurve(0.22, 0.61, 0.36, 1, duration: 0.88)) { scale = 1 }',
+      '            withAnimation(.easeOut(duration: 0.72).delay(0.88)) { glow = 0 }',
+      '        }',
+      '    }',
+      '}'
     ],
     compose: [
       'import androidx.compose.ui.graphics.SolidColor',
@@ -4029,7 +4059,27 @@ const MADSX = (() => {
       ...ICONS.map(i => `    val ${camel(i.token).padEnd(12)} = madsIcon("${i.token}", "${i.d}")`),
       '}',
       '',
-      cm('// Icon(MadsIcons.home, contentDescription = null, tint = MadsColor.dark)')
+      cm('// Icon(MadsIcons.home, contentDescription = null, tint = MadsColor.dark)'),
+      '',
+      cm('/** mads.icon.ideas default motion: an AmberGold glow grows from the bulb centre, then fades out */'),
+      '@Composable',
+      'fun MadsIdeasIcon(trigger: Int, size: Dp = 24.dp, tint: Color = MadsColor.dark) {',
+      '    val scale = remember { Animatable(0.1f) }',
+      '    val glow = remember { Animatable(0f) }',
+      '    LaunchedEffect(trigger) {',
+      '        if (trigger == 0) return@LaunchedEffect',
+      '        scale.snapTo(0.1f); glow.snapTo(1f)',
+      '        scale.animateTo(1f, tween(880, easing = CubicBezierEasing(0.22f, 0.61f, 0.36f, 1f)))',
+      '        glow.animateTo(0f, tween(720))',
+      '    }',
+      '    Box(Modifier.size(size).drawBehind {',
+      '        val u = this.size.minDimension / 24f',
+      '        val c = Offset(12f * u, 9.19f * u)',
+      '        val r = 10f * u * scale.value',
+      '        drawCircle(Brush.radialGradient(listOf(MadsColor.amberGold, MadsColor.amberGold.copy(alpha = .55f), Color.Transparent), c, r),',
+      '                   radius = r, center = c, alpha = glow.value)',
+      '    }) { Icon(MadsIcons.ideas, contentDescription = null, tint = tint) }',
+      '}'
     ],
     xml: [
       ...ICONS.flatMap(i => [
