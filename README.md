@@ -50,7 +50,7 @@ Then:
 npm run dev
 ```
 
-and open the address it prints (usually <http://localhost:4321>). The page updates as you save changes. `npm run build` writes a static copy to `dist/`.
+and open the address it prints (usually <http://localhost:4321>). The page updates as you save changes. `npm run build:reference` writes a static copy to `dist/`. (It isn't called `build` on purpose: npm would then try to build the package every time a website installs it from GitHub.)
 
 - **Light and dark mode.** The page follows your device setting. The switch in the Settings menu changes it, and the browser remembers your choice.
 - **Code.** Each section has a collapsed Code panel with CSS, Swift, Compose and Android XML tabs and a Copy button.
@@ -101,7 +101,7 @@ To make the fonts work offline too, download the three families from [fonts.goog
 Add the package, pinned to a version (a tag) so the site only changes when you choose:
 
 ```
-npm install github:MAAdan/MADS#v0.4.0
+npm install github:MAAdan/MADS#0.8.0
 ```
 
 Then load the stylesheet once (in a layout) and use the components:
@@ -127,7 +127,7 @@ import Icon from '@maadan/mads/components/Icon.astro';
 
 Each component file starts with a short note on what it does and the options it takes. To show the whole reference on a site, render `@maadan/mads/reference/Reference.astro` on a page of its own, as miguel-adan.com does at `/mads/`.
 
-**Publishing a new version.** Commit and push your changes, bump `version` in `package.json`, and tag the commit with the same number (for example `git tag v0.4.1 && git push --tags`). Websites move to it with `npm install github:MAAdan/MADS#v0.4.1`.
+**Publishing a new version.** Commit and push your changes, bump `version` in `package.json`, and tag the commit with the same number, without a "v" like the earlier versions (for example `git tag 0.8.1 && git push origin main 0.8.1`). Websites move to it with `npm install github:MAAdan/MADS#0.8.1`.
 
 **Icons.** Change an icon's shape in `components/icons.js`, then update its SVG file in `icons/` to match. `npm run check:icons` lists any file that no longer matches.
 
