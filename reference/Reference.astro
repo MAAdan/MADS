@@ -17,6 +17,7 @@ import LanguageSwitch from '../components/LanguageSwitch.astro';
 import { icons } from '../components/icons.js';
 import body from './body.html?raw';
 import script from './reference.js?raw';
+import { inlineScript } from './inline-script.js';
 
 interface Props {
   /* The Ideas menu's links. The default suits the reference published on miguel-adan.com. */
@@ -34,7 +35,7 @@ const home = icons.home;
 const favicon = 'data:image/svg+xml,' + encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="${home.d}"/></svg>`);
 // reference.js draws the icon showcase from the same shapes as Icon.astro
-const iconData = `<script>window.MADS_ICONS = ${JSON.stringify(icons)};</script>`;
+const iconData = inlineScript(`window.MADS_ICONS = ${JSON.stringify(icons)};`);
 ---
 <!doctype html>
 <html lang="en">
@@ -73,6 +74,6 @@ img { max-width: 100%; }
 </header>
 <Fragment set:html={body} />
 <Fragment set:html={iconData} />
-<Fragment set:html={`<script>\n${script}</script>`} />
+<Fragment set:html={inlineScript(script)} />
 </body>
 </html>
