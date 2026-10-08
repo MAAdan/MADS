@@ -16,6 +16,8 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 import LanguageSwitch from '../components/LanguageSwitch.astro';
 import { icons } from '../components/icons.js';
 import body from './body.html?raw';
+import madsCss from '../css/mads.css?raw';
+import popoverJs from '../components/popover.js?raw';
 import script from './reference.js?raw';
 import { inlineScript } from './inline-script.js';
 
@@ -34,8 +36,17 @@ const {
 const home = icons.home;
 const favicon = 'data:image/svg+xml,' + encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="${home.d}"/></svg>`);
-// reference.js draws the icon showcase from the same shapes as Icon.astro
-const iconData = inlineScript(`window.MADS_ICONS = ${JSON.stringify(icons)};`);
+// The page's sections, cut where the live component samples go (the <!-- MADS:… --> markers in body.html)
+const [beforePopovers, rest] = body.split('<!-- MADS:POPOVER-DEMOS -->');
+const [betweenDemos, afterLanguage] = rest.split('<!-- MADS:LANGUAGE-DEMOS -->');
+// reference.js draws the icon showcase from the same shapes as Icon.astro, and shows the popover's code from
+// css/mads.css and components/popover.js themselves, so the Code panel can't drift from what websites get
+const popoverCss = madsCss.slice(madsCss.lastIndexOf('/* =====', madsCss.indexOf('mads.popover: a mads.button.round'))).trim();
+const iconData = inlineScript(`window.MADS_ICONS = ${JSON.stringify(icons)};\nwindow.MADS_SOURCE = ${JSON.stringify({ popoverCss, popoverJs })};`);
+const demoLinks = [
+  { href: '#icons', text: 'Icons' },
+  { href: '#buttons', text: 'Buttons' },
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -72,7 +83,20 @@ img { max-width: 100%; }
     </div>
   </div>
 </header>
-<Fragment set:html={body} />
+<Fragment set:html={beforePopovers} />
+            <span class="dsd-label">Try it: the Ideas and Settings menus from the header</span>
+            <div class="dsd-popover-bar">
+              <IdeasMenu id="demoIdeas" links={demoLinks} shift={50} />
+              <SettingsMenu id="demoSettings">
+                <PopoverRow label="Toggle to dark or light mode"><ThemeToggle /></PopoverRow>
+                <PopoverRow label="Change language" hint="Coming soon: MADS is in English only" labelId="demoLangLabel"><LanguageSwitch lang="es" text="Español" disabled describedby="demoLangLabel" /></PopoverRow>
+              </SettingsMenu>
+            </div>
+<Fragment set:html={betweenDemos} />
+            <div class="dsd-state"><span class="dsd-label">Link</span><LanguageSwitch lang="es" text="Español" href="#popovers" label="Example: see this page in Spanish" /></div>
+            <div class="dsd-state"><span class="dsd-label">Link, English</span><LanguageSwitch lang="en" text="English" href="#popovers" label="Example: see this page in English" /></div>
+            <div class="dsd-state"><span class="dsd-label">Not translated yet</span><LanguageSwitch lang="es" text="Español" disabled /></div>
+<Fragment set:html={afterLanguage} />
 <Fragment set:html={iconData} />
 <Fragment set:html={inlineScript(script)} />
 </body>

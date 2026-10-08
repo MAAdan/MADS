@@ -152,4 +152,4 @@ Units are the same number on every platform: **1 web px = 1 iOS pt = 1 Android d
 
 **Foundations:** Spacing, Fonts, Text, Headings, Labels, Colours, Themes, Shape and depth, Gradients, Motion, Icons.
 
-**Components:** Buttons, Toggles, Cards, Chips and tags, Progress, Lists and quotes.
+**Components:** Buttons, Toggles, Popovers (the Ideas and Settings menus, and the language switch), Cards, Chips and tags, Progress, Lists and quotes.

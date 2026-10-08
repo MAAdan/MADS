@@ -7,7 +7,7 @@
     <ul class="dsd-meta">
       <li>Prefix <b>mads</b></li>
       <li>Pattern <b>mads.{category}.{name}</b></li>
-      <li>Categories <b>17</b></li>
+      <li>Categories <b>18</b></li>
     </ul>
   </header>
 
@@ -30,6 +30,7 @@
         <li class="dsd-index-group" aria-hidden="true">Components</li>
         <li><a href="#buttons"><span>Buttons</span><code>mads.button</code></a></li>
         <li><a href="#toggles"><span>Toggles</span><code>mads.toggle</code></a></li>
+        <li><a href="#popovers"><span>Popovers</span><code>mads.popover</code></a></li>
         <li><a href="#cards"><span>Cards</span><code>mads.card</code></a></li>
         <li><a href="#chips"><span>Chips and tags</span><code>mads.chip</code></a></li>
         <li><a href="#progress"><span>Progress</span><code>mads.progress</code></a></li>
@@ -1061,6 +1062,56 @@
             <pre role="tabpanel" id="toggle-code-swift" aria-labelledby="toggle-tab-swift" hidden><code></code></pre>
             <pre role="tabpanel" id="toggle-code-compose" aria-labelledby="toggle-tab-compose" hidden><code></code></pre>
             <pre role="tabpanel" id="toggle-code-xml" aria-labelledby="toggle-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="popovers" aria-labelledby="popovers-title">
+        <div class="dsd-cat-head">
+          <h2 id="popovers-title">Popovers</h2>
+          <span class="dsd-ns">mads.popover</span>
+        </div>
+        <p class="dsd-cat-desc">A round button that opens a floating card: the Ideas and Settings menus in the header of this page and of miguel-adan.com. The card grows out of its button, its rows slide in one after the other, and only one card is open at a time. The samples below are the same components the header uses.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.popover · mads.popover.{row | link} · mads.language.switch</code></div>
+          <div class="dsd-theme-stage dsd-popover-stage">
+<!-- MADS:POPOVER-DEMOS -->
+          </div>
+          <div class="dsd-theme-stage" style="padding-block:2rem;gap:2rem">
+<!-- MADS:LANGUAGE-DEMOS -->
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
+              <tbody id="popover-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Behaviour</p>
+              <p>Pressing the button opens its card and closes any other. A second press, a tap or click outside the card, Esc or moving the focus out of it closes it again; Esc puts the focus back on the button.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Motion</p>
+              <p>The card grows out of the button as a circle while it settles 8 down into place (slow, entrance), then its rows slide in 10 up, 80ms apart. Settings turns 120° with the spring; Ideas turns AmberGold and plays its glow.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Accessibility</p>
+              <p>The button carries aria-expanded and aria-controls; the card is a labelled group. With reduced motion the card simply appears. The language switch is a link with hreflang, or greyed out with aria-disabled when a page has one language.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Popover code by platform">
+              <button type="button" role="tab" id="popover-tab-css" aria-selected="true" aria-controls="popover-code-css">CSS</button>
+              <button type="button" role="tab" id="popover-tab-swift" aria-selected="false" aria-controls="popover-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="popover-tab-compose" aria-selected="false" aria-controls="popover-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="popover-tab-xml" aria-selected="false" aria-controls="popover-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="popover-code-css" aria-labelledby="popover-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="popover-code-swift" aria-labelledby="popover-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="popover-code-compose" aria-labelledby="popover-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="popover-code-xml" aria-labelledby="popover-tab-xml" hidden><code></code></pre>
           </div>
         </div>
       </section>

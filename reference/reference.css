@@ -664,3 +664,8 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   .ma-nav *, .ma-nav *::before, .ma-nav *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- Popover samples: a header-like bar so the cards open as they do in the header ---------- */
+.dsd-popover-stage { align-items: flex-start; align-content: flex-start; justify-content: space-between; min-height: 18rem; padding-block: 1.5rem; }
+.dsd-popover-bar { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+@media (max-width: 620px) { .dsd-popover-stage { min-height: 22rem; } .dsd-popover-bar { gap: 6px; } }
