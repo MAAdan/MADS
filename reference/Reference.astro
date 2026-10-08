@@ -1,0 +1,78 @@
+---
+/* The MADS reference: the whole design system on one page, with live samples and code for web, iOS and Android.
+   It's built from the same files a website gets from this package: css/mads.css for every token and component,
+   components/ for the header (Ideas, Settings, theme toggle, language) and components/icons.js for the icons.
+   So whatever this page shows is exactly what miguel-adan.com gets.
+
+   Used by src/pages/index.astro here, and by miguel-adan.com at /mads/.
+   The page's own parts: reference.css (layout and showcases), body.html (the sections) and reference.js (samples and code panels). */
+import '../css/mads.css';
+import './reference.css';
+import ThemeInit from '../components/ThemeInit.astro';
+import IdeasMenu from '../components/IdeasMenu.astro';
+import SettingsMenu from '../components/SettingsMenu.astro';
+import PopoverRow from '../components/PopoverRow.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
+import { icons } from '../components/icons.js';
+import body from './body.html?raw';
+import script from './reference.js?raw';
+
+interface Props {
+  /* The Ideas menu's links. The default suits the reference published on miguel-adan.com. */
+  ideas?: { href: string; text: string }[];
+}
+
+const {
+  ideas = [
+    { href: 'https://www.miguel-adan.com/index.html', text: 'Home' },
+    { href: 'https://www.miguel-adan.com/book-gallery/index.html', text: 'Book gallery' },
+  ],
+} = Astro.props;
+
+const home = icons.home;
+const favicon = 'data:image/svg+xml,' + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="${home.d}"/></svg>`);
+// reference.js draws the icon showcase from the same shapes as Icon.astro
+const iconData = `<script>window.MADS_ICONS = ${JSON.stringify(icons)};</script>`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MA Design System (MADS): tokens, components and code for web, iOS and Android.">
+<link rel="icon" href={favicon} type="image/svg+xml">
+<style is:global>
+/* Base reset (the hosted version gets this from its page shell) */
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<title>MA Design System (MADS)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Onest:wght@100..900&family=Unbounded:wght@200..900&display=swap">
+<ThemeInit />
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="mads-icon-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FB5607"/><stop offset=".55" stop-color="#FF006E"/><stop offset="1" stop-color="#FFBE0B"/></linearGradient><linearGradient id="mads-grad-mark" x1="0" y1="4" x2="0" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFBE0B"/><stop offset="1" stop-color="#FF006E"/></linearGradient></defs></svg>
+<header class="ma-nav">
+  <div class="ma-nav-inner">
+    <a href="#dsd-root" class="ma-nav-home" aria-label="MA Design System, back to top"><svg class="ma-nav-mark" viewBox="36 12 200 116" aria-hidden="true"><defs><linearGradient id="ma-nav-gL" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffbe0b"/><stop offset="1" stop-color="#fb5607"/></linearGradient><linearGradient id="ma-nav-gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff006e"/><stop offset="1" stop-color="#ffbe0b"/></linearGradient><linearGradient id="ma-nav-gA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fb5608"/><stop offset="1" stop-color="#ff006e"/></linearGradient><linearGradient id="ma-nav-gC" gradientUnits="userSpaceOnUse" x1="50.8" y1="44" x2="133.6" y2="44"><stop offset="0" stop-color="#fb5607"/><stop offset="1" stop-color="#ff006e" stop-opacity=".85"/></linearGradient></defs><path fill="url(#ma-nav-gC)" d="m 59.516071,24.012484 a 9,9 0 0 0 -7.024377,3.746541 9,9 0 0 0 2.061889,12.559958 9,9 0 0 0 0.435632,0.293522 l -0.0088,0.0124 31.213082,22.409485 0.0031,0.0026 a 9,9 0 0 0 6.012553,2.268079 9,9 0 0 0 6.027003,-2.27066 l 31.213577,-22.409487 -0.009,-0.01246 a 9,9 0 0 0 0.43511,-0.293522 9,9 0 0 0 2.06189,-12.559959 9,9 0 0 0 -7.02437,-3.746542 9,9 0 0 0 -5.53506,1.684648 9,9 0 0 0 -0.41756,0.318844 l -0.009,-0.01294 -26.736831,19.195727 -26.73687,-19.195728 -0.0093,0.01292 a 9,9 0 0 0 -0.41703,-0.318843 9,9 0 0 0 -5.535579,-1.684651 z"/><path fill="#ffbe0b" d="m 175.63678,24.135913 c -3.6603,-9.8e-5 -6.9043,2.35681 -8.03517,5.837887 l -30.01488,68.92211 c 0,0 -1.28081,3.49822 -1.28093,4.53539 -9e-5,4.66584 3.78255,8.44825 8.44858,8.44807 3.84967,-2.3e-4 6.31551,-2.78748 8.17779,-6.32933 l 23.15259,-52.876881 25.48785,53.289261 c 1.87052,3.42799 4.36956,5.91708 8.06049,5.91695 4.66583,-10e-5 8.44816,-3.78243 8.44807,-8.44807 0,-0.0561 -0.008,-2.46168 -1.32912,-4.548559 l -33.0801,-68.907907 c -1.1305,-3.481486 -4.3746,-5.838873 -8.03517,-5.838921 z"/><rect fill="url(#ma-nav-gL)" x="50.76" y="23.88" width="18" height="88.3" rx="9"/><rect fill="url(#ma-nav-gR)" x="115.52" y="24.12" width="18" height="87.8" rx="9"/><rect fill="url(#ma-nav-gA)" x="163.5" y="80.8" width="27" height="18" rx="9"/></svg></a>
+    <div class="ma-nav-right">
+      <a href="https://www.linkedin.com/in/miguel-angel-adan/" class="ma-nav-li" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4.5" fill="currentColor"/><text x="12" y="17.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="12.5" style="fill:var(--mads-theme-background)">in</text></svg></a>
+      <IdeasMenu links={ideas} shift={50} />
+      <SettingsMenu>
+        <PopoverRow label="Toggle to dark or light mode"><ThemeToggle /></PopoverRow>
+        <PopoverRow label="Change language" hint="Coming soon: MADS is in English only" labelId="maLangLabel"><LanguageSwitch lang="es" text="Español" disabled describedby="maLangLabel" /></PopoverRow>
+      </SettingsMenu>
+    </div>
+  </div>
+</header>
+<Fragment set:html={body} />
+<Fragment set:html={iconData} />
+<Fragment set:html={`<script>\n${script}</script>`} />
+</body>
+</html>

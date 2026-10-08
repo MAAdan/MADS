@@ -1,0 +1,5 @@
+---
+/* Put this in the page's <head>: it applies the saved light or dark choice before the page paints, so there's no flash.
+   'mads-doc-theme' is the key older versions of the MADS reference used. */
+---
+<script is:inline>try{var t=localStorage.getItem('ma-theme')||localStorage.getItem('mads-doc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>

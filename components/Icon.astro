@@ -1,0 +1,20 @@
+---
+/* mads.icon: one of the MADS icons as an inline SVG (shapes in icons.js, style in css/mads.css .mads-icon).
+   <Icon name="ideas" />  ·  <Icon name="chevron-right" size={16} />
+   Ideas includes its glow circle by default (glow={false} leaves it out); the glow plays when an ancestor
+   asks for it, such as an open mads.popover button or .mads-icon.is-glow. */
+import { icons, glow as glowCircle } from './icons.js';
+
+interface Props {
+  name: keyof typeof icons;
+  size?: number;
+  glow?: boolean;
+  class?: string;
+}
+
+const { name, size, class: className } = Astro.props;
+const icon = icons[name];
+if (!icon) throw new Error(`MADS: there is no icon called "${name}". Use one of: ${Object.keys(icons).join(', ')}.`);
+const glow = Astro.props.glow ?? icon.glow === true;
+---
+<svg class:list={['mads-icon', className]} viewBox="0 0 24 24" width={size} height={size} aria-hidden="true">{glow && <circle class="mads-icon-glow" cx={glowCircle.cx} cy={glowCircle.cy} r={glowCircle.r} />}<path d={icon.d} /></svg>

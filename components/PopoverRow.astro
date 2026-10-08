@@ -1,0 +1,15 @@
+---
+/* mads.popover.row: one row of a mads.popover card, a label on the left and a control (the slot) on the right.
+   <PopoverRow label="Toggle to dark or light mode"><ThemeToggle /></PopoverRow> */
+interface Props {
+  label?: string;
+  hint?: string;
+  labelId?: string;
+}
+
+const { label, hint, labelId } = Astro.props;
+---
+<div class="mads-popover-row">
+  {label && <span class="mads-popover-label" id={labelId}><Fragment set:html={label} />{hint && <small set:html={hint} />}</span>}
+  <slot />
+</div>

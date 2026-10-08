@@ -1,0 +1,28 @@
+---
+/* mads.language.switch: a pill with a round flag that links to the page in another language.
+   <LanguageSwitch lang="es" text="Español" href="/es/" label="Ver esta página en español" />
+   Without href (or with disabled) it's shown greyed out, for pages that aren't translated yet.
+
+   lang  the language the switch leads to: 'es' or 'en' (also picks the flag) */
+interface Props {
+  lang: 'es' | 'en';
+  text: string;
+  href?: string;
+  label?: string;
+  id?: string;
+  disabled?: boolean;
+  describedby?: string;
+}
+
+const flags = {
+  es: '<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" fill="#AA151B"/><rect y="7.5" width="30" height="15" fill="#F1BF00"/></svg>',
+  en: '<svg viewBox="15 0 30 30" aria-hidden="true"><defs><clipPath id="mads-flag-uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath></defs><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#mads-flag-uk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>',
+};
+
+const { lang, text, href, label, id, disabled = false, describedby } = Astro.props;
+const flag = flags[lang];
+const live = Boolean(href) && !disabled;
+---
+{live
+  ? <a class="mads-language-switch" id={id} href={href} hreflang={lang} lang={lang} data-lang={lang} aria-label={label} aria-describedby={describedby}><span class="flag" set:html={flag} /><span>{text}</span></a>
+  : <button type="button" class="mads-language-switch" id={id} lang={lang} data-lang={lang} aria-disabled="true" aria-label={label} aria-describedby={describedby}><span class="flag" set:html={flag} /><span>{text}</span></button>}

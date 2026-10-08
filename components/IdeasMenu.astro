@@ -1,0 +1,20 @@
+---
+/* The Ideas menu: a mads.popover with mads.icon.ideas and one link per row.
+   <IdeasMenu label="Ideas" links={[{ href: '/mads/', text: 'MA Design System (MADS)' }]} shift={50} /> */
+import Popover from './Popover.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  links: { href: string; text: string }[];
+  label?: string;
+  id?: string;
+  shift?: number;
+}
+
+const { links, label = 'Ideas', id = 'ideas', shift } = Astro.props;
+---
+<Popover id={id} icon="ideas" label={label} shift={shift} cardClass="mads-popover-card-links">
+  {links.map(link => (
+    <div class="mads-popover-row"><a class="mads-popover-link" href={link.href}><span set:html={link.text} /><Icon name="chevron-right" /></a></div>
+  ))}
+</Popover>

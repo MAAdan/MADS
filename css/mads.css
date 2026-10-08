@@ -110,7 +110,7 @@
 
 /* mads.icon.ideas default motion: a solid AmberGold circle at 50% alpha grows from the bulb centre, then fades out.
    Markup: <circle class="mads-icon-glow" cx="12" cy="9.19" r="10"/> before the bulb path. Add .is-glow to play it. */
-.mads-icon-glow { fill: var(--mads-color-amber-gold); fill-opacity: .5; stroke: none; opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
+.mads-icon-glow { fill: var(--mads-color-amber-gold); fill-opacity: .5; stroke: none !important; opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
 .mads-icon.is-glow .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }
 @keyframes mads-icon-glow { 0% { transform: scale(.1); opacity: 1; } 55% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .mads-icon-glow { animation: none !important; } }
@@ -368,4 +368,62 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mads-ambient { transition: none; }
+}
+
+/* =====================================================================
+   mads.popover: a mads.button.round that opens a floating mads.card (the Ideas and Settings menus).
+   Markup: components/Popover.astro, IdeasMenu.astro, SettingsMenu.astro. Behaviour: components/popover.js.
+   The card grows out of the button as a circle (clip-path) while it settles into place, then its rows slide in one after the other.
+   ===================================================================== */
+.mads-popover { position: relative; display: flex; }
+.mads-popover-button[aria-expanded="true"] { background: var(--mads-theme-fill-ghost); border-color: var(--mads-theme-text-faint); }
+
+/* mads.icon.settings turns while its card is open */
+.mads-popover-button[data-icon="settings"] svg { transition: transform var(--mads-motion-duration-slow) var(--mads-motion-easing-spring); }
+.mads-popover-button[data-icon="settings"][aria-expanded="true"] svg { transform: rotate(120deg); }
+
+/* mads.icon.ideas turns AmberGold and glows (its default motion) when its card opens */
+.mads-popover-button[data-icon="ideas"][aria-expanded="true"] { color: var(--mads-theme-text-amber-gold); }
+.mads-popover-button[aria-expanded="true"] .mads-icon-glow { animation: mads-icon-glow 1.6s cubic-bezier(.22, .61, .36, 1); }
+
+.mads-popover-card { --ox: calc(100% - 22px); --oy: -34px; position: absolute; top: calc(100% + 12px); right: 0; width: min(330px, calc(100vw - 2 * clamp(16px, 4vw, 56px))); gap: 0; padding: 4px 18px; box-shadow: var(--mads-shadow-raised);
+  clip-path: circle(0 at var(--ox) var(--oy)); transform: translateY(-8px) scale(.94); transform-origin: var(--ox) 0; opacity: 0; visibility: hidden;
+  transition: clip-path var(--mads-motion-duration-base) var(--mads-motion-easing-standard), transform var(--mads-motion-duration-base) var(--mads-motion-easing-standard), opacity var(--mads-motion-duration-base) var(--mads-motion-easing-standard), visibility 0s linear var(--mads-motion-duration-base); }
+.mads-popover-card.is-open { clip-path: circle(200% at var(--ox) var(--oy)); transform: none; opacity: 1; visibility: visible;
+  transition: clip-path var(--mads-motion-duration-slow) var(--mads-motion-easing-standard), transform var(--mads-motion-duration-slow) var(--mads-motion-easing-entrance), opacity var(--mads-motion-duration-fast) var(--mads-motion-easing-standard), visibility 0s; }
+.mads-popover-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; opacity: 0; transform: translateY(10px);
+  transition: opacity var(--mads-motion-duration-fast) var(--mads-motion-easing-standard), transform var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.mads-popover-row + .mads-popover-row { border-top: 1px solid var(--mads-theme-line); }
+.mads-popover-card.is-open .mads-popover-row { opacity: 1; transform: none; transition-duration: var(--mads-motion-duration-base); transition-timing-function: var(--mads-motion-easing-entrance); }
+.mads-popover-card.is-open .mads-popover-row:nth-child(1) { transition-delay: 110ms; }
+.mads-popover-card.is-open .mads-popover-row:nth-child(2) { transition-delay: 190ms; }
+.mads-popover-card.is-open .mads-popover-row:nth-child(3) { transition-delay: 270ms; }
+.mads-popover-label { font: var(--mads-text-default); color: var(--mads-theme-text); }
+.mads-popover-label small { display: block; font: var(--mads-text-small); color: var(--mads-theme-text-faint); }
+
+/* A card of links (the Ideas menu): one link per row, with a chevron that nudges on hover */
+.mads-popover-card-links { width: min(300px, calc(100vw - 2 * clamp(16px, 4vw, 56px))); }
+.mads-popover-card-links .mads-popover-row { padding: 0; }
+.mads-popover-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; font: var(--mads-text-default); text-decoration: none; color: var(--mads-theme-text); transition: color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.mads-popover-link svg { width: 16px; height: 16px; flex: none; color: var(--mads-theme-text-muted); transition: transform var(--mads-motion-duration-fast) var(--mads-motion-easing-spring), color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.mads-popover-link:hover { color: var(--mads-theme-text-azure-blue); }
+.mads-popover-link:hover svg { color: currentColor; transform: translateX(3px); }
+
+/* On small screens a card can line up with the right edge of the buttons next to it: set --mads-popover-shift
+   (Popover's shift prop) to the distance from this button's right edge to that edge. */
+@media (max-width: 620px) {
+  .mads-popover-card { right: calc(-1 * var(--mads-popover-shift, 0px)); --ox: calc(100% - 22px - var(--mads-popover-shift, 0px)); }
+}
+
+/* mads.language.switch: a pill with a round flag that changes the page language (aria-disabled while a page has one language only) */
+.mads-language-switch { display: inline-flex; align-items: center; gap: 8px; flex: none; height: 36px; padding: 0 14px 0 10px; border-radius: var(--mads-radius-full); border: 1px solid var(--mads-theme-line); background: transparent;
+  font: 500 var(--mads-text-default-size)/1 var(--mads-font-mono); text-decoration: none; white-space: nowrap; color: var(--mads-theme-text); cursor: pointer;
+  transition: color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard), border-color var(--mads-motion-duration-fast) var(--mads-motion-easing-standard); }
+.mads-language-switch:hover { border-color: var(--mads-theme-text-azure-blue); color: var(--mads-theme-text-azure-blue); }
+.mads-language-switch[aria-disabled="true"] { opacity: .45; cursor: not-allowed; filter: grayscale(.6); border-color: var(--mads-theme-line); color: var(--mads-theme-text); }
+.mads-language-switch .flag { width: 16px; height: 16px; border-radius: 50%; overflow: hidden; flex: none; display: block; box-shadow: 0 0 0 1px var(--mads-theme-line); }
+.mads-language-switch .flag svg { width: 16px; height: 16px; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mads-popover *, .mads-popover *::before, .mads-popover *::after { animation: none !important; transition: none !important; }
 }

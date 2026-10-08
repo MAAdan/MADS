@@ -1,0 +1,16 @@
+---
+/* The Settings menu: a mads.popover with mads.icon.settings. Its rows go inside (PopoverRow.astro).
+   <SettingsMenu label="Settings"><PopoverRow label="Dark mode"><ThemeToggle /></PopoverRow></SettingsMenu> */
+import Popover from './Popover.astro';
+
+interface Props {
+  label?: string;
+  id?: string;
+  shift?: number;
+}
+
+const { label = 'Settings', id = 'settings', shift } = Astro.props;
+---
+<Popover id={id} icon="settings" label={label} shift={shift}>
+  <slot />
+</Popover>

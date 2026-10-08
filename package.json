@@ -1,0 +1,37 @@
+{
+  "name": "@maadan/mads",
+  "version": "0.4.0",
+  "description": "MA Design System (MADS): tokens, components and code for web, iOS and Android, with Astro components for the web.",
+  "type": "module",
+  "keywords": [
+    "astro-component",
+    "design-system"
+  ],
+  "repository": "github:MAAdan/MADS",
+  "files": [
+    "components",
+    "css",
+    "icons",
+    "tokens",
+    "reference"
+  ],
+  "exports": {
+    "./components/*": "./components/*",
+    "./css/*": "./css/*",
+    "./icons/*": "./icons/*",
+    "./tokens/*": "./tokens/*",
+    "./reference/*": "./reference/*"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:icons": "node scripts/check-icons.mjs"
+  },
+  "peerDependencies": {
+    "astro": ">=5.0.0"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0"
+  }
+}

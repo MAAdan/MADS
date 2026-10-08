@@ -1,0 +1,34 @@
+---
+/* mads.popover: a mads.button.round with an icon that opens a floating mads.card.
+   Put mads.popover rows inside it (PopoverRow.astro, or <div class="mads-popover-row">).
+   Only one popover is open at a time; it closes on a second press, a tap or click outside, Esc, or when focus leaves it.
+   Styles: css/mads.css (mads.popover). Behaviour: popover.js, added to the page once however many popovers it has.
+
+   id      the popover's id; the button gets `${id}Btn` and the card `${id}Card`
+   icon    the button's icon (icons.js). Settings turns and Ideas glows while the card is open
+   label   accessible name of the button and the card
+   shift   on screens up to 620px, move the card this many px to the right so it lines up with the buttons beside it */
+import Icon from './Icon.astro';
+import type { icons } from './icons.js';
+
+interface Props {
+  id: string;
+  icon: keyof typeof icons;
+  label: string;
+  shift?: number;
+  class?: string;
+  cardClass?: string;
+}
+
+const { id, icon, label, shift, class: className, cardClass } = Astro.props;
+---
+<div class:list={['mads-popover', className]} id={id} data-mads-popover style={shift ? `--mads-popover-shift: ${shift}px` : undefined}>
+  <button type="button" class="mads-button-round mads-popover-button" id={`${id}Btn`} data-icon={icon} aria-expanded="false" aria-controls={`${id}Card`} aria-label={label}><Icon name={icon} /></button>
+  <div class:list={['mads-card', 'mads-popover-card', cardClass]} id={`${id}Card`} role="group" aria-label={label}>
+    <slot />
+  </div>
+</div>
+
+<script>
+  import './popover.js';
+</script>

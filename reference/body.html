@@ -1,0 +1,1298 @@
+<div class="dsd" id="dsd-root">
+
+  <header class="dsd-masthead">
+    <p class="dsd-eyebrow">Design system · v0.1 draft</p>
+    <h1>MA Design System (MADS)</h1>
+    <p class="dsd-lede">The shared foundation for my projects on web, iOS and Android. Every token has one exact name, so a person or an AI agent can point to it without ambiguity.</p>
+    <ul class="dsd-meta">
+      <li>Prefix <b>mads</b></li>
+      <li>Pattern <b>mads.{category}.{name}</b></li>
+      <li>Categories <b>17</b></li>
+    </ul>
+  </header>
+
+  <div class="dsd-shell">
+
+    <nav class="dsd-index" aria-label="Design system categories">
+      <ol>
+        <li class="dsd-index-group" aria-hidden="true">Foundations</li>
+        <li><a href="#spacing"><span>Spacing</span><code>mads.space</code></a></li>
+        <li><a href="#fonts"><span>Fonts</span><code>mads.font</code></a></li>
+        <li><a href="#text"><span>Text</span><code>mads.text</code></a></li>
+        <li><a href="#headings"><span>Headings</span><code>mads.heading</code></a></li>
+        <li><a href="#labels"><span>Labels</span><code>mads.label</code></a></li>
+        <li><a href="#colours"><span>Colours</span><code>mads.color</code></a></li>
+        <li><a href="#themes"><span>Themes</span><code>mads.theme</code></a></li>
+        <li><a href="#shape"><span>Shape</span><code>mads.radius</code></a></li>
+        <li><a href="#gradients"><span>Gradients</span><code>mads.gradient</code></a></li>
+        <li><a href="#motion"><span>Motion</span><code>mads.motion</code></a></li>
+        <li><a href="#icons"><span>Icons</span><code>mads.icon</code></a></li>
+        <li class="dsd-index-group" aria-hidden="true">Components</li>
+        <li><a href="#buttons"><span>Buttons</span><code>mads.button</code></a></li>
+        <li><a href="#toggles"><span>Toggles</span><code>mads.toggle</code></a></li>
+        <li><a href="#cards"><span>Cards</span><code>mads.card</code></a></li>
+        <li><a href="#chips"><span>Chips and tags</span><code>mads.chip</code></a></li>
+        <li><a href="#progress"><span>Progress</span><code>mads.progress</code></a></li>
+        <li><a href="#content"><span>Lists and quotes</span><code>mads.list</code></a></li>
+      </ol>
+    </nav>
+
+    <main class="dsd-sections">
+
+      <section class="dsd-cat" id="spacing" aria-labelledby="spacing-title">
+        <div class="dsd-cat-head">
+          <h2 id="spacing-title">Spacing</h2>
+          <span class="dsd-ns">mads.space</span>
+        </div>
+        <p class="dsd-cat-desc">The spacing scale used for padding, margins and gaps between elements. It sits on an 8px grid and doubles at each step from 8px upward.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.space.{0–8}</code></div>
+
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Major grid · 8px</p>
+              <p>Always pick a step from the scale first. Steps 2–8 are 8px multiples.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Minor grid · 4px</p>
+              <p>When no step fits, use a multiple of 4px (12, 24, 48…). Use <code>mads.space.1</code> for tight gaps such as icon to label.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Units</p>
+              <p>1 web px = 1 iOS pt = 1 Android dp. Web uses rem at a 16px root, so spacing follows the user's text size.</p>
+            </div>
+          </div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-space-table">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Web</th><th scope="col">iOS</th><th scope="col">Android</th><th scope="col" class="dsd-col-ruler">Scale</th></tr>
+              </thead>
+              <tbody id="dsd-space-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Spacing code by platform">
+              <button type="button" role="tab" id="space-tab-css" aria-selected="true" aria-controls="space-code-css">CSS</button>
+              <button type="button" role="tab" id="space-tab-swift" aria-selected="false" aria-controls="space-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="space-tab-compose" aria-selected="false" aria-controls="space-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="space-tab-xml" aria-selected="false" aria-controls="space-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy" id="space-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="space-code-css" aria-labelledby="space-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="space-code-swift" aria-labelledby="space-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="space-code-compose" aria-labelledby="space-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="space-code-xml" aria-labelledby="space-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="fonts" aria-labelledby="fonts-title">
+        <div class="dsd-cat-head">
+          <h2 id="fonts-title">Fonts</h2>
+          <span class="dsd-ns">mads.font</span>
+        </div>
+        <p class="dsd-cat-desc">Three typefaces from Google Fonts, one per role. If Google Fonts can't load, for example on a network that blocks it, each role falls back to fonts already on the device.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.font.{display | body | mono}</code></div>
+
+          <div class="dsd-toolbar">
+            <button type="button" class="dsd-switch" id="font-fallback-toggle" aria-pressed="false">
+              <span class="dsd-switch-track" aria-hidden="true"><span class="dsd-switch-thumb"></span></span>
+              Preview fallback fonts
+            </button>
+            <span class="dsd-toolbar-note" id="font-fallback-note">Showing Google Fonts</span>
+          </div>
+
+          <div class="dsd-specimens" id="font-specimens">
+
+            <article class="dsd-specimen" data-role="display">
+              <header class="dsd-specimen-head">
+                <span class="dsd-label">Headings</span>
+                <span class="dsd-tok">mads.font.display</span>
+              </header>
+              <p class="dsd-specimen-sample" style="font-weight: 700">Spacing on an 8px grid</p>
+              <div class="dsd-specimen-meta">
+                <p class="dsd-specimen-name"><a href="https://fonts.google.com/specimen/Unbounded" target="_blank" rel="noopener">Unbounded</a></p>
+                <label class="dsd-weight" for="font-weight-display">
+                  <span>Weight <output id="font-weight-display-out" for="font-weight-display">700</output></span>
+                  <input type="range" id="font-weight-display" min="200" max="900" step="100" value="700">
+                </label>
+                <p class="dsd-fallback"><span class="dsd-label">Fallback</span> Arial Rounded → Trebuchet MS → sans-serif</p>
+              </div>
+            </article>
+
+            <article class="dsd-specimen" data-role="body">
+              <header class="dsd-specimen-head">
+                <span class="dsd-label">Text</span>
+                <span class="dsd-tok">mads.font.body</span>
+              </header>
+              <p class="dsd-specimen-sample" style="font-weight: 400">Every token has one exact name, so a person or an agent can point to it.</p>
+              <div class="dsd-specimen-meta">
+                <p class="dsd-specimen-name"><a href="https://fonts.google.com/specimen/Onest" target="_blank" rel="noopener">Onest</a></p>
+                <label class="dsd-weight" for="font-weight-body">
+                  <span>Weight <output id="font-weight-body-out" for="font-weight-body">400</output></span>
+                  <input type="range" id="font-weight-body" min="100" max="900" step="100" value="400">
+                </label>
+                <p class="dsd-fallback"><span class="dsd-label">Fallback</span> Segoe UI → system font</p>
+              </div>
+            </article>
+
+            <article class="dsd-specimen" data-role="mono">
+              <header class="dsd-specimen-head">
+                <span class="dsd-label">Labels</span>
+                <span class="dsd-tok">mads.font.mono</span>
+              </header>
+              <p class="dsd-specimen-sample" style="font-weight: 400">mads.space.4 = 32px</p>
+              <div class="dsd-specimen-meta">
+                <p class="dsd-specimen-name"><a href="https://fonts.google.com/specimen/JetBrains+Mono" target="_blank" rel="noopener">JetBrains Mono</a></p>
+                <label class="dsd-weight" for="font-weight-mono">
+                  <span>Weight <output id="font-weight-mono-out" for="font-weight-mono">400</output></span>
+                  <input type="range" id="font-weight-mono" min="100" max="800" step="100" value="400">
+                </label>
+                <p class="dsd-fallback"><span class="dsd-label">Fallback</span> SF Mono → Menlo → Consolas → monospace</p>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Typeface</th><th scope="col">Weights</th><th scope="col">Web</th><th scope="col">iOS</th><th scope="col">Android</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="dsd-tok">mads.font.display</span><span class="dsd-sub">Headings</span></td>
+                  <td><span class="dsd-val">Unbounded</span><span class="dsd-sub">Fallback: SF Pro Rounded</span></td>
+                  <td><span class="dsd-val">200–900</span></td>
+                  <td><span class="dsd-val">--mads-font-display</span></td>
+                  <td><span class="dsd-val">MadsFont.display()</span></td>
+                  <td><span class="dsd-val">MadsFont.display</span><span class="dsd-sub">@font/mads_display</span></td>
+                </tr>
+                <tr>
+                  <td><span class="dsd-tok">mads.font.body</span><span class="dsd-sub">Text</span></td>
+                  <td><span class="dsd-val">Onest</span><span class="dsd-sub">Fallback: SF Pro</span></td>
+                  <td><span class="dsd-val">100–900</span></td>
+                  <td><span class="dsd-val">--mads-font-body</span></td>
+                  <td><span class="dsd-val">MadsFont.body()</span></td>
+                  <td><span class="dsd-val">MadsFont.body</span><span class="dsd-sub">@font/mads_body</span></td>
+                </tr>
+                <tr>
+                  <td><span class="dsd-tok">mads.font.mono</span><span class="dsd-sub">Labels</span></td>
+                  <td><span class="dsd-val">JetBrains Mono</span><span class="dsd-sub">Fallback: SF Mono</span></td>
+                  <td><span class="dsd-val">100–800</span><span class="dsd-sub">+ italics</span></td>
+                  <td><span class="dsd-val">--mads-font-mono</span></td>
+                  <td><span class="dsd-val">MadsFont.mono()</span></td>
+                  <td><span class="dsd-val">MadsFont.mono</span><span class="dsd-sub">@font/mads_mono</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Web</p>
+              <p>Loaded from Google Fonts with <code>display=swap</code>, so text shows straight away in the fallback font and switches once the font arrives.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">iOS</p>
+              <p>Bundle the font files in the app. If one is missing, the code uses the matching Apple font: SF Pro Rounded, SF Pro or SF Mono.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Android</p>
+              <p>Downloaded through Google Play services. Until they arrive, or if they can't, Android uses its own sans-serif and monospace fonts.</p>
+            </div>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Font code by platform">
+              <button type="button" role="tab" id="font-tab-css" aria-selected="true" aria-controls="font-code-css">CSS</button>
+              <button type="button" role="tab" id="font-tab-swift" aria-selected="false" aria-controls="font-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="font-tab-compose" aria-selected="false" aria-controls="font-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="font-tab-xml" aria-selected="false" aria-controls="font-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="font-code-css" aria-labelledby="font-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="font-code-swift" aria-labelledby="font-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="font-code-compose" aria-labelledby="font-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="font-code-xml" aria-labelledby="font-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="text" aria-labelledby="text-title">
+        <div class="dsd-cat-head">
+          <h2 id="text-title">Text</h2>
+          <span class="dsd-ns">mads.text</span>
+        </div>
+        <p class="dsd-cat-desc">Four sizes for text, labels, captions, footnotes and all other copy that isn't a heading. Each style sets a font size and a line height, and uses <code class="dsd-inline">mads.font.body</code> unless you pair it with another font.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.text.{small | default | large | xlarge}</code></div>
+
+          <div class="dsd-toolbar">
+            <button type="button" class="dsd-switch" id="text-grid-toggle" aria-pressed="false">
+              <span class="dsd-switch-track" aria-hidden="true"><span class="dsd-switch-thumb"></span></span>
+              Show line height
+            </button>
+            <span class="dsd-toolbar-note">Click any sample to type your own text</span>
+          </div>
+
+          <div class="dsd-text-specimens" id="text-specimens"></div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Size / line</th><th scope="col">Web</th><th scope="col">iOS</th><th scope="col">Android</th></tr>
+              </thead>
+              <tbody id="text-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Labels</p>
+              <p>For labels, use the <a href="#labels" class="dsd-link">Labels</a> styles instead. They use <code>mads.font.mono</code> in capitals.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Scaling</p>
+              <p>Sizes follow the user's text size setting: rem on web, Dynamic Type on iOS and sp on Android. Each iOS style scales with the Apple style of the same size.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Units</p>
+              <p>Sizes are given in px. That is pt on iOS and sp on Android, where text uses sp rather than dp.</p>
+            </div>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Text code by platform">
+              <button type="button" role="tab" id="text-tab-css" aria-selected="true" aria-controls="text-code-css">CSS</button>
+              <button type="button" role="tab" id="text-tab-swift" aria-selected="false" aria-controls="text-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="text-tab-compose" aria-selected="false" aria-controls="text-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="text-tab-xml" aria-selected="false" aria-controls="text-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="text-code-css" aria-labelledby="text-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="text-code-swift" aria-labelledby="text-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="text-code-compose" aria-labelledby="text-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="text-code-xml" aria-labelledby="text-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="headings" aria-labelledby="headings-title">
+        <div class="dsd-cat-head">
+          <h2 id="headings-title">Headings</h2>
+          <span class="dsd-ns">mads.heading</span>
+        </div>
+        <p class="dsd-cat-desc">Seven heading sizes, from a hero title down to the smallest section heading. Every heading uses <code class="dsd-inline">mads.font.display</code> (Unbounded) in bold. The hero size grows with the screen width.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.heading.{xsmall | small | default | large | xlarge | xxlarge | hero}</code></div>
+
+          <div class="dsd-toolbar">
+            <button type="button" class="dsd-switch" id="heading-grid-toggle" aria-pressed="false">
+              <span class="dsd-switch-track" aria-hidden="true"><span class="dsd-switch-thumb"></span></span>
+              Show line height
+            </button>
+            <span class="dsd-toolbar-note">Click any sample to type your own text</span>
+          </div>
+
+          <div class="dsd-text-specimens" id="heading-specimens"></div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Size / line</th><th scope="col">HTML</th><th scope="col">Web</th><th scope="col">iOS</th><th scope="col">Android</th></tr>
+              </thead>
+              <tbody id="heading-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Weight</p>
+              <p>All sizes use Bold (700), set once in <code>--mads-heading-weight</code>. Hero is ExtraBold (800) with −0.03em tracking.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">HTML levels</p>
+              <p>The suggested level keeps the page outline in order: <code>xxlarge</code> for h1 down to <code>xsmall</code> for h6. <code>hero</code> is also an h1, used once at the top of a landing page instead of xxlarge. Choose the level by structure and the size by look.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Units</p>
+              <p>Sizes are given in px: rem on web, pt on iOS and sp on Android, so headings follow the user's text size setting.</p>
+            </div>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Heading code by platform">
+              <button type="button" role="tab" id="heading-tab-css" aria-selected="true" aria-controls="heading-code-css">CSS</button>
+              <button type="button" role="tab" id="heading-tab-swift" aria-selected="false" aria-controls="heading-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="heading-tab-compose" aria-selected="false" aria-controls="heading-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="heading-tab-xml" aria-selected="false" aria-controls="heading-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="heading-code-css" aria-labelledby="heading-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="heading-code-swift" aria-labelledby="heading-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="heading-code-compose" aria-labelledby="heading-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="heading-code-xml" aria-labelledby="heading-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="labels" aria-labelledby="labels-title">
+        <div class="dsd-cat-head">
+          <h2 id="labels-title">Labels</h2>
+          <span class="dsd-ns">mads.label</span>
+        </div>
+        <p class="dsd-cat-desc">Labels work as secondary headers or highlights that add context or extra information. They use <code class="dsd-inline">mads.font.mono</code> (JetBrains Mono) and are always bold and in capitals.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.label.{xsmall | small | default}</code></div>
+
+          <div class="dsd-toolbar">
+            <button type="button" class="dsd-switch" id="label-grid-toggle" aria-pressed="false">
+              <span class="dsd-switch-track" aria-hidden="true"><span class="dsd-switch-thumb"></span></span>
+              Show line height
+            </button>
+            <span class="dsd-toolbar-note">Click any sample to type your own text</span>
+          </div>
+
+          <div class="dsd-text-specimens" id="label-specimens"></div>
+
+          <div class="dsd-context" aria-label="Example: labels used with a heading">
+            <p class="dsd-label">In use</p>
+            <p class="dsd-context-eyebrow">Foundations</p>
+            <p class="dsd-context-title">Spacing on an 8px grid</p>
+            <div class="dsd-context-meta">
+              <span class="dsd-context-chip is-new">New</span>
+              <span class="dsd-context-chip">Web</span>
+              <span class="dsd-context-chip">iOS</span>
+              <span class="dsd-context-chip">Android</span>
+            </div>
+          </div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Size / line</th><th scope="col">Web</th><th scope="col">iOS</th><th scope="col">Android</th></tr>
+              </thead>
+              <tbody id="label-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Capitals</p>
+              <p>Write the label in normal case and let the style capitalise it. Screen readers then read words, not letters.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Weight</p>
+              <p>Labels are always Bold (700), at every size. It is set once in <code>--mads-label-weight</code>.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Units</p>
+              <p>Sizes are given in px: rem on web, pt on iOS and sp on Android, so labels follow the user's text size setting.</p>
+            </div>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Label code by platform">
+              <button type="button" role="tab" id="label-tab-css" aria-selected="true" aria-controls="label-code-css">CSS</button>
+              <button type="button" role="tab" id="label-tab-swift" aria-selected="false" aria-controls="label-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="label-tab-compose" aria-selected="false" aria-controls="label-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="label-tab-xml" aria-selected="false" aria-controls="label-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="label-code-css" aria-labelledby="label-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="label-code-swift" aria-labelledby="label-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="label-code-compose" aria-labelledby="label-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="label-code-xml" aria-labelledby="label-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="colours" aria-labelledby="colours-title">
+        <div class="dsd-cat-head">
+          <h2 id="colours-title">Colours</h2>
+          <span class="dsd-ns">mads.color</span>
+        </div>
+        <p class="dsd-cat-desc">Nine colours: four neutrals for text and structure, and five bright accents. Each swatch shows how readable white and Dark text are on top of it. Click a swatch to copy its hex value.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.color.{name}</code></div>
+
+          <div class="dsd-swatch-group">
+            <p class="dsd-label dsd-group-label">Neutrals</p>
+            <div class="dsd-swatches" id="color-neutrals"></div>
+          </div>
+          <div class="dsd-swatch-group">
+            <p class="dsd-label dsd-group-label">Accents</p>
+            <div class="dsd-swatches" id="color-accents"></div>
+          </div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Hex</th><th scope="col">RGB</th><th scope="col">Web</th><th scope="col">iOS</th><th scope="col">Android</th></tr>
+              </thead>
+              <tbody id="color-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Contrast</p>
+              <p>AA means normal text is readable (4.5:1 or more). Large means only text from 24px, or 19px bold, is readable (3:1 or more). Below 3:1, use the colour for fills and shapes, not text.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Same everywhere</p>
+              <p>Hex values are sRGB and identical on web, iOS and Android. They don't change between light and dark mode yet.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Names</p>
+              <p>Tokens use lowercase words joined by hyphens, so AmberGold is <code>mads.color.amber-gold</code>. Swift and Kotlin use <code>amberGold</code>.</p>
+            </div>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Colour code by platform">
+              <button type="button" role="tab" id="color-tab-css" aria-selected="true" aria-controls="color-code-css">CSS</button>
+              <button type="button" role="tab" id="color-tab-swift" aria-selected="false" aria-controls="color-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="color-tab-compose" aria-selected="false" aria-controls="color-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="color-tab-xml" aria-selected="false" aria-controls="color-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="color-code-css" aria-labelledby="color-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="color-code-swift" aria-labelledby="color-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="color-code-compose" aria-labelledby="color-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="color-code-xml" aria-labelledby="color-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="themes" aria-labelledby="themes-title">
+        <div class="dsd-cat-head">
+          <h2 id="themes-title">Themes</h2>
+          <span class="dsd-ns">mads.theme</span>
+        </div>
+        <p class="dsd-cat-desc">Colour roles that switch between light and dark mode. Components use these roles instead of fixed colours, so they follow the theme. Use the switch at the top of the page to see every component in the other mode.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.theme.{role}</code></div>
+          <div class="dsd-themes" id="theme-panes"></div>
+          <p class="dsd-stage-note">Contrast is measured against each theme's background. AA means normal text is readable; Large means only text from 24px, or 19px bold.</p>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col">Use for</th></tr></thead>
+              <tbody id="theme-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Following the device</p>
+              <p>Without a choice, the theme follows the device setting. The switch overrides it and the choice is remembered.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Accent text</p>
+              <p>Bright accents are too light to read on a light background, so each has a darker text version for light mode. Use these for coloured text; use mads.color for fills.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Shared colours</p>
+              <p>Light text and muted text are mads.color.dark and mads.color.dark-1. The other values are new and only exist as theme roles.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Theme code by platform">
+              <button type="button" role="tab" id="theme-tab-css" aria-selected="true" aria-controls="theme-code-css">CSS</button>
+              <button type="button" role="tab" id="theme-tab-swift" aria-selected="false" aria-controls="theme-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="theme-tab-compose" aria-selected="false" aria-controls="theme-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="theme-tab-xml" aria-selected="false" aria-controls="theme-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="theme-code-css" aria-labelledby="theme-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="theme-code-swift" aria-labelledby="theme-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="theme-code-compose" aria-labelledby="theme-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="theme-code-xml" aria-labelledby="theme-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="shape" aria-labelledby="shape-title">
+        <div class="dsd-cat-head">
+          <h2 id="shape-title">Shape and depth</h2>
+          <span class="dsd-ns">mads.radius · gradient · shadow</span>
+        </div>
+        <p class="dsd-cat-desc">Corner radii, gradients and shadows, all on the 4px grid.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.radius.{size} · mads.gradient.{name} · mads.shadow.{name}</code></div>
+          <h3 class="dsd-subhead">Radius</h3>
+          <div class="dsd-theme-stage" id="radius-demo"></div>
+          <h3 class="dsd-subhead">Gradients</h3>
+          <p class="dsd-stage-note">Where and how to use each one is in <a href="#gradients" class="dsd-link">Gradients</a>.</p>
+          <div class="dsd-swatch-row" id="gradient-demo"></div>
+          <div class="dsd-theme-stage"><p style="margin:0;font:var(--mads-heading-xlarge)"><span class="mads-text-gradient">Product, people and code</span></p></div>
+          <h3 class="dsd-subhead">Shadows</h3>
+          <div class="dsd-theme-stage" style="gap:2rem;padding-block:2.5rem">
+            <div class="dsd-swatch-mini"><span style="height:3rem;width:7rem;border-radius:999px;background:var(--mads-gradient-orange-pink);box-shadow:var(--mads-shadow-glow)"></span><span class="dsd-tok">mads.shadow.glow</span></div>
+            <div class="dsd-swatch-mini"><span style="height:6rem;width:5rem;border-radius:var(--mads-radius-large);background:var(--mads-theme-surface-raised);box-shadow:var(--mads-shadow-raised)"></span><span class="dsd-tok">mads.shadow.raised</span></div>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use for</th></tr></thead>
+              <tbody id="shape-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Grid</p>
+              <p>Every radius is a multiple of 4, so corners sit on the same grid as spacing.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Gradient direction</p>
+              <p>All gradients run left to right. The brand gradient is for display text and decoration, not for backgrounds behind small text.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Glow</p>
+              <p>The glow is for the brand gradient controls only: the theme switch and the primary button on hover.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Shape code by platform">
+              <button type="button" role="tab" id="shape-tab-css" aria-selected="true" aria-controls="shape-code-css">CSS</button>
+              <button type="button" role="tab" id="shape-tab-swift" aria-selected="false" aria-controls="shape-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="shape-tab-compose" aria-selected="false" aria-controls="shape-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="shape-tab-xml" aria-selected="false" aria-controls="shape-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="shape-code-css" aria-labelledby="shape-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="shape-code-swift" aria-labelledby="shape-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="shape-code-compose" aria-labelledby="shape-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="shape-code-xml" aria-labelledby="shape-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="gradients" aria-labelledby="gradients-title">
+        <div class="dsd-cat-head">
+          <h2 id="gradients-title">Gradients</h2>
+          <span class="dsd-ns">mads.gradient</span>
+        </div>
+        <p class="dsd-cat-desc">Where and how gradients are used. Gradients are the signature of MADS, so they are kept for a few jobs and always follow the same colour order.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.gradient.{name} · mads.gradient.ambient</code></div>
+
+          <h3 class="dsd-subhead">The spectrum</h3>
+          <p class="dsd-stage-note">The five accents form one line, in this order. A gradient only joins neighbours on the line, in either direction. Amber to Pink skips Orange but keeps the warm end together, so it is allowed for frames.</p>
+          <div class="dsd-spectrum-bar" aria-hidden="true"></div>
+          <div class="dsd-spectrum">
+            <div style="background:var(--mads-color-amber-gold);color:var(--mads-color-dark)">1 · AmberGold</div>
+            <div style="background:var(--mads-color-blaze-orange);color:var(--mads-color-dark)">2 · BlazeOrange</div>
+            <div style="background:var(--mads-color-neon-pink);color:var(--mads-color-dark)">3 · NeonPink</div>
+            <div style="background:var(--mads-color-blue-violet);color:var(--mads-color-white)">4 · BlueViolet</div>
+            <div style="background:var(--mads-color-azure-blue);color:var(--mads-color-dark)">5 · AzureBlue</div>
+          </div>
+          <div class="dsd-pairs">
+            <span class="dsd-pair" style="--g:var(--mads-gradient-orange-amber)"><i></i>orange-amber</span>
+            <span class="dsd-pair" style="--g:var(--mads-gradient-orange-pink)"><i></i>orange-pink</span>
+            <span class="dsd-pair" style="--g:var(--mads-gradient-amber-pink)"><i></i>amber-pink · new</span>
+            <span class="dsd-pair" style="--g:var(--mads-gradient-pink-violet)"><i></i>pink-violet</span>
+            <span class="dsd-pair" style="--g:var(--mads-gradient-violet-azure)"><i></i>violet-azure</span>
+            <span class="dsd-pair" style="--g:var(--mads-gradient-brand)"><i></i>brand · 1 → 4</span>
+            <span class="dsd-pair is-no" style="--g:linear-gradient(90deg,var(--mads-color-amber-gold),var(--mads-color-azure-blue))"><i></i>amber-azure · not allowed</span>
+          </div>
+
+          <h3 class="dsd-subhead">Where gradients go</h3>
+          <div class="dsd-uses">
+
+            <div class="dsd-use">
+              <div class="dsd-use-stage"><button type="button" class="mads-button">Lorem ipsum</button><button type="button" class="mads-toggle-theme" id="grad-demo-toggle" role="switch" aria-checked="false" aria-label="Example" tabindex="-1" data-demo><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
+              <div class="dsd-use-info"><h4>1 · Action <span class="dsd-tok">orange-pink</span></h4><p>The main action and the theme switch. The only gradient on controls, and only one gradient action per screen.</p></div>
+            </div>
+
+            <div class="dsd-use">
+              <div class="dsd-use-stage"><p class="dsd-mini-h">Lorem ipsum <span class="mads-text-gradient">dolor sit</span></p></div>
+              <div class="dsd-use-info"><h4>2 · Highlight <span class="dsd-tok">brand</span></h4><p>One or two words of a heading, or a big stat. heading.large and up only, one highlight per heading, never body text.</p></div>
+            </div>
+
+            <div class="dsd-use">
+              <div class="dsd-use-stage" style="grid-auto-flow:column;gap:1.5rem">
+                <span class="dsd-avatar-demo mads-frame-gradient">MA</span>
+                <svg viewBox="0 0 24 24" width="64" height="64" aria-hidden="true" style="overflow:visible"><path d="M5 19.5V9.5L12 4.5 19 9.5V19.5Z" fill="none" stroke="url(#mads-grad-mark)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="dsd-use-info"><h4>3 · Brand mark and frames <span class="dsd-tok">amber-pink · orange-pink</span></h4><p>The MA logo, the icon gradient and the 2px outline round the avatar. Frames run top to bottom; nothing else is outlined in a gradient.</p></div>
+            </div>
+
+            <div class="dsd-use">
+              <div class="dsd-use-stage"><div style="display:grid;gap:.5rem;width:100%">
+                <div class="mads-progress"><span>Technology</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-violet-azure);--value:.55"></i></span><output>55%</output></div>
+                <div class="mads-progress"><span>People</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-pink-violet);--value:.3"></i></span><output>30%</output></div>
+                <div class="mads-progress"><span>Product</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-orange-amber);--value:.15"></i></span><output>15%</output></div>
+              </div></div>
+              <div class="dsd-use-info"><h4>4 · Topics in data <span class="dsd-tok">violet-azure · pink-violet · orange-amber</span></h4><p>Each topic keeps its own pair, so a bar is recognisable before its label is read. See the topic table below.</p></div>
+            </div>
+
+            <div class="dsd-use">
+              <div class="dsd-use-stage" style="padding:0"><div class="dsd-ambient-demo mads-ambient" id="ambient-demo">
+                <div class="dsd-topic-btns" role="group" aria-label="Glow colours">
+                  <button type="button" class="mads-button-ghost" aria-current="page" data-a="amber-gold" data-b="blaze-orange">Default</button>
+                  <button type="button" class="mads-button-ghost" data-a="azure-blue" data-b="blue-violet">Technology</button>
+                  <button type="button" class="mads-button-ghost" data-a="neon-pink" data-b="blue-violet">People</button>
+                </div>
+              </div></div>
+              <div class="dsd-use-info"><h4>5 · Ambient glow <span class="dsd-tok">ambient</span></h4><p>Two soft radial glows behind the page, top right and bottom left. Their colours follow the section being read and fade over 1.2s.</p></div>
+            </div>
+
+            <div class="dsd-use">
+              <div class="dsd-use-stage" style="grid-auto-flow:column;gap:1rem">
+                <span style="width:6rem;height:5.5rem;border-radius:var(--mads-radius-large);background:var(--mads-gradient-surface);border:1px solid var(--mads-theme-line)"></span>
+                <div class="dsd-scrim-demo"><div class="head">Sticky header</div><div class="body"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+              </div>
+              <div class="dsd-use-info"><h4>6 · Depth and scrims <span class="dsd-tok">surface · surface-raised · scrim</span></h4><p>Quiet fades between theme surfaces for large panels, and a fade under sticky headers so content slides out of sight. Neutrals only.</p></div>
+            </div>
+          </div>
+
+          <h3 class="dsd-subhead">Topics</h3>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Topic</th><th scope="col">Solid accent</th><th scope="col">Gradient</th><th scope="col">Ambient glow</th><th scope="col">Typical use</th></tr></thead>
+              <tbody id="topic-rows"></tbody>
+            </table>
+          </div>
+
+          <h3 class="dsd-subhead">Do and avoid</h3>
+          <div class="dsd-dodont">
+            <div class="dsd-dd is-do"><div class="dsd-use-stage"><p class="dsd-mini-h">Lorem <span class="mads-text-gradient">ipsum dolor</span></p></div><p><b>Do</b>Highlight the one phrase that carries the heading.</p></div>
+            <div class="dsd-dd is-dont"><div class="dsd-use-stage"><p class="dsd-mini-p mads-text-gradient">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p></div><p><b>Avoid</b>Gradient body text. It is hard to read and the highlight loses its effect.</p></div>
+            <div class="dsd-dd is-do"><div class="dsd-use-stage"><span style="width:100%;height:2.5rem;border-radius:999px;background:var(--mads-gradient-pink-violet)"></span></div><p><b>Do</b>Join neighbours on the spectrum.</p></div>
+            <div class="dsd-dd is-dont"><div class="dsd-use-stage"><span style="width:100%;height:2.5rem;border-radius:999px;background:linear-gradient(90deg,var(--mads-color-amber-gold),var(--mads-color-azure-blue))"></span></div><p><b>Avoid</b>Jumping across it. AmberGold to AzureBlue turns muddy grey-green in the middle.</p></div>
+            <div class="dsd-dd is-do"><div class="dsd-use-stage" style="grid-auto-flow:column;gap:.75rem"><button type="button" class="mads-button" tabindex="-1">Lorem ipsum</button><button type="button" class="mads-button-secondary" tabindex="-1">Dolor</button></div><p><b>Do</b>Pair one gradient action with secondary buttons.</p></div>
+            <div class="dsd-dd is-dont"><div class="dsd-use-stage" style="grid-auto-flow:column;gap:.75rem"><button type="button" class="mads-button" tabindex="-1">Lorem ipsum</button><button type="button" class="mads-button" tabindex="-1">Dolor</button></div><p><b>Avoid</b>Two gradient buttons side by side. Neither reads as the main action.</p></div>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use for</th></tr></thead>
+              <tbody id="grad-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Direction</p>
+              <p>Left to right for controls, text and bars. Top to bottom for frames and the logo legs. 160° for surface fades. Ambient glows are radial.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">How many</p>
+              <p>One gradient action and one highlighted phrase per screen. The ambient glow is always there, but stays at 16% in light mode and 22% in dark.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Contrast</p>
+              <p>Text on a gradient is only allowed on the primary button. White on the orange-pink gradient is below 4.5:1, so keep button labels short.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Gradient code by platform">
+              <button type="button" role="tab" id="grad-tab-css" aria-selected="true" aria-controls="grad-code-css">CSS</button>
+              <button type="button" role="tab" id="grad-tab-swift" aria-selected="false" aria-controls="grad-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="grad-tab-compose" aria-selected="false" aria-controls="grad-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="grad-tab-xml" aria-selected="false" aria-controls="grad-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="grad-code-css" aria-labelledby="grad-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="grad-code-swift" aria-labelledby="grad-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="grad-code-compose" aria-labelledby="grad-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="grad-code-xml" aria-labelledby="grad-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="motion" aria-labelledby="motion-title">
+        <div class="dsd-cat-head">
+          <h2 id="motion-title">Motion</h2>
+          <span class="dsd-ns">mads.motion</span>
+        </div>
+        <p class="dsd-cat-desc">Durations and easing curves shared by every animated element, so the whole interface moves the same way. The values match the existing buttons and icons.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.motion.duration.{fast | base | slow} · mads.motion.easing.{standard | spring | entrance}</code></div>
+          <div class="dsd-theme-stage is-stack">
+            <div class="dsd-motion-row" id="motion-row"></div>
+            <button type="button" class="mads-button-secondary" id="motion-play">Play</button>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use for</th></tr></thead>
+              <tbody id="motion-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Pick the curve</p>
+              <p>Standard for state changes such as hover and colour. Spring for things that move into place, like the switch knob. Entrance for elements arriving on screen.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Scroll reveal</p>
+              <p>Sections rise 48px into place as they scroll in, with mads-reveal. Content is always visible where the browser does not support it.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Reduced motion</p>
+              <p>When the device asks for less motion, every animation stops and states change instantly.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Motion code by platform">
+              <button type="button" role="tab" id="motion-tab-css" aria-selected="true" aria-controls="motion-code-css">CSS</button>
+              <button type="button" role="tab" id="motion-tab-swift" aria-selected="false" aria-controls="motion-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="motion-tab-compose" aria-selected="false" aria-controls="motion-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="motion-tab-xml" aria-selected="false" aria-controls="motion-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="motion-code-css" aria-labelledby="motion-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="motion-code-swift" aria-labelledby="motion-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="motion-code-compose" aria-labelledby="motion-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="motion-code-xml" aria-labelledby="motion-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="icons" aria-labelledby="icons-title">
+        <div class="dsd-cat-head">
+          <h2 id="icons-title">Icons</h2>
+          <span class="dsd-ns">mads.icon</span>
+        </div>
+        <p class="dsd-cat-desc">Seven icons. The chevrons and Home are drawn from the chevron in the middle of the MA logo; Settings is a six-tooth gear with a centre dot; Ideas is a light bulb with a base line. Each is a single line on a 24px grid with the same 3.5 stroke, so the icons scale, take any colour and animate cleanly.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.icon.{chevron.up | chevron.down | chevron.left | chevron.right | home | settings | ideas}</code></div>
+
+          <div class="dsd-toolbar" role="group" aria-label="Icon colour">
+            <span class="dsd-label">Colour</span>
+            <div class="dsd-icon-swatches" id="icon-swatches">
+              <button type="button" class="dsd-icon-sw" style="--c: var(--dsd-ink)" data-c="ink" aria-pressed="true" aria-label="Text colour (currentColor)"></button>
+              <button type="button" class="dsd-icon-sw" style="--c: var(--mads-color-neon-pink)" data-c="neon-pink" aria-pressed="false" aria-label="NeonPink"></button>
+              <button type="button" class="dsd-icon-sw" style="--c: var(--mads-color-blaze-orange)" data-c="blaze-orange" aria-pressed="false" aria-label="BlazeOrange"></button>
+              <button type="button" class="dsd-icon-sw" style="--c: var(--mads-color-amber-gold)" data-c="amber-gold" aria-pressed="false" aria-label="AmberGold"></button>
+              <button type="button" class="dsd-icon-sw" style="--c: var(--mads-color-blue-violet)" data-c="blue-violet" aria-pressed="false" aria-label="BlueViolet"></button>
+              <button type="button" class="dsd-icon-sw" style="--c: var(--mads-color-azure-blue)" data-c="azure-blue" aria-pressed="false" aria-label="AzureBlue"></button>
+              <button type="button" class="dsd-icon-sw is-grad" data-c="gradient" aria-pressed="false" aria-label="Logo gradient"></button>
+            </div>
+            <span class="dsd-toolbar-note">Stroke 3.5, fixed</span>
+          </div>
+
+          <div class="dsd-icon-grid" id="icon-grid"></div>
+          <p class="dsd-toolbar-note">Hover or tap a tile to play its motion. The small row shows each icon at 16, 24 and 32px.</p>
+
+          <h3 class="dsd-subhead">In motion</h3>
+          <div class="dsd-demos">
+            <div class="dsd-demo">
+              <h4>Disclosure</h4>
+              <p>One chevron turns 180° with a slight overshoot when a section opens.</p>
+              <div class="dsd-demo-stage is-stretch">
+                <div class="dsd-acc">
+                  <div class="dsd-acc-item is-open">
+                    <button type="button" class="dsd-acc-head" id="icon-acc-1" aria-expanded="true" aria-controls="icon-acc-1-body">Spacing<svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9.5 12 14.5 19 9.5"/></svg></button>
+                    <div class="dsd-acc-body" id="icon-acc-1-body"><div>8px grid with 4px minor steps: mads.space.0–8</div></div>
+                  </div>
+                  <div class="dsd-acc-item">
+                    <button type="button" class="dsd-acc-head" id="icon-acc-2" aria-expanded="false" aria-controls="icon-acc-2-body">Icons<svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9.5 12 14.5 19 9.5"/></svg></button>
+                    <div class="dsd-acc-body" id="icon-acc-2-body"><div>24px frame, 20px live area, 3.5 stroke.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dsd-demo">
+              <h4>Chevron up to Home</h4>
+              <p>Home is the up chevron with walls and a floor, so one shape grows into the other.</p>
+              <div class="dsd-demo-stage"><svg class="mads-icon" viewBox="0 0 24 24" width="72" height="72" aria-label="Chevron up"><path id="icon-morph-path" d="M5 14.5V14.5L12 9.5 19 14.5V14.5H19"/></svg></div>
+              <button type="button" class="dsd-ghost-btn" id="icon-morph-btn">Morph to Home</button>
+            </div>
+
+            <div class="dsd-demo">
+              <h4>Pager</h4>
+              <p>Left and right chevrons push in the direction of travel when pressed.</p>
+              <div class="dsd-demo-stage">
+                <div class="dsd-pager">
+                  <button type="button" class="dsd-pg-btn is-left" id="icon-prev" aria-label="Previous page"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 9.5 12 14.5 19"/></svg></button>
+                  <div class="dsd-dots" id="icon-dots" aria-live="polite"><span class="dsd-pg-dot is-on"></span><span class="dsd-pg-dot"></span><span class="dsd-pg-dot"></span><span class="dsd-pg-dot"></span></div>
+                  <button type="button" class="dsd-pg-btn is-right" id="icon-next" aria-label="Next page"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 14.5 12 9.5 19"/></svg></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dsd-demo">
+              <h4>Draw on</h4>
+              <p>Each icon is one continuous line, so it can trace itself in when a screen loads.</p>
+              <div class="dsd-demo-stage"><div class="dsd-draw-row" id="icon-draw-row"></div></div>
+              <button type="button" class="dsd-ghost-btn" id="icon-draw-btn">Replay</button>
+            </div>
+          </div>
+
+          <h3 class="dsd-subhead">Construction</h3>
+          <div class="dsd-icon-spec">
+            <svg class="dsd-keyline" viewBox="0 0 24 24" role="img" aria-label="Home icon on its 24px keyline grid">
+              <g fill="none" stroke="var(--dsd-line)" stroke-width=".06">
+                <path d="M0 0H24V24H0Z M2 2H22V22H2Z"/>
+                <path d="M0 4H24M0 8H24M0 12H24M0 16H24M0 20H24M4 0V24M8 0V24M12 0V24M16 0V24M20 0V24" stroke-dasharray=".3 .3"/>
+              </g>
+              <path d="M5 19.5V9.5L12 4.5 19 9.5V19.5Z" fill="none" stroke="var(--dsd-ink)" stroke-opacity=".16" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 19.5V9.5L12 4.5 19 9.5V19.5Z" fill="none" stroke="var(--mads-color-neon-pink)" stroke-width=".15"/>
+              <g fill="var(--mads-color-neon-pink)"><circle cx="5" cy="19.5" r=".35"/><circle cx="5" cy="9.5" r=".35"/><circle cx="12" cy="4.5" r=".35"/><circle cx="19" cy="9.5" r=".35"/><circle cx="19" cy="19.5" r=".35"/></g>
+            </svg>
+            <div class="dsd-table-wrap">
+              <table class="dsd-table dsd-anatomy">
+                <tbody>
+                  <tr><td><span class="dsd-tok">Frame</span></td><td>24 × 24, with a 2px margin (20px live area)</td></tr>
+                  <tr><td><span class="dsd-tok">mads.icon.stroke</span></td><td>3.5 on the 24 grid, the same for every icon. Round caps and joins.</td></tr>
+                  <tr><td><span class="dsd-tok">Chevron angle</span></td><td>7 : 5 run to rise, the slope of the M in the logo</td></tr>
+                  <tr><td><span class="dsd-tok">Chevron bounds</span></td><td>17.5 × 8.5, centred</td></tr>
+                  <tr><td><span class="dsd-tok">Home bounds</span></td><td>17.5 × 18.5, centred, closed with a floor</td></tr>
+                  <tr><td><span class="dsd-tok">Settings bounds</span></td><td>17.6 × 18.3, centred. Six teeth (tips at radius 7.5), body arcs at radius 5.6, and a 3.5 centre dot drawn as a zero-length round-capped line</td></tr>
+                  <tr><td><span class="dsd-tok">Ideas bounds</span></td><td>11.3 × 18.6, centred. A round bulb (radius 4.76 around 12, 9.2) narrowing into a closed neck with rounded corners, then a 3.6-wide base line at y 19.6</td></tr>
+                  <tr><td><span class="dsd-tok">Colour</span></td><td>Follows the text colour (currentColor), so any mads.color works</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">File</th><th scope="col">Web</th><th scope="col">iOS</th><th scope="col">Android</th></tr>
+              </thead>
+              <tbody id="icon-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Icon code by platform">
+              <button type="button" role="tab" id="icon-tab-css" aria-selected="true" aria-controls="icon-code-css">SVG + CSS</button>
+              <button type="button" role="tab" id="icon-tab-swift" aria-selected="false" aria-controls="icon-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="icon-tab-compose" aria-selected="false" aria-controls="icon-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="icon-tab-xml" aria-selected="false" aria-controls="icon-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="icon-code-css" aria-labelledby="icon-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="icon-code-swift" aria-labelledby="icon-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="icon-code-compose" aria-labelledby="icon-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="icon-code-xml" aria-labelledby="icon-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="buttons" aria-labelledby="buttons-title">
+        <div class="dsd-cat-head">
+          <h2 id="buttons-title">Buttons</h2>
+          <span class="dsd-ns">mads.button</span>
+        </div>
+        <p class="dsd-cat-desc">The primary button: a pill with a BlazeOrange to NeonPink gradient, White text in <code class="dsd-inline">mads.text.large</code> and no border. It is the first component built only from MADS tokens.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.button.primary.{part}</code></div>
+
+          <div class="dsd-stage">
+            <div class="dsd-stage-pane is-light">
+              <span class="dsd-stage-tag">On White</span>
+              <button type="button" class="mads-button" id="btn-demo-light">Lorem ipsum dolor sit amet</button>
+              <button type="button" class="mads-button" id="btn-demo-light-2">Lorem ipsum</button>
+            </div>
+            <div class="dsd-stage-pane is-dark">
+              <span class="dsd-stage-tag">On Dark</span>
+              <button type="button" class="mads-button" id="btn-demo-dark">Lorem ipsum dolor sit amet</button>
+              <button type="button" class="mads-button" id="btn-demo-dark-2">Lorem ipsum</button>
+            </div>
+          </div>
+
+          <div class="dsd-states" aria-label="Button states">
+            <div class="dsd-state"><span class="dsd-label">Default</span><button type="button" class="mads-button" tabindex="-1">Lorem ipsum</button><p>Gradient from left to right.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Hover</span><button type="button" class="mads-button is-hover" tabindex="-1">Lorem ipsum</button><p>Gradient shifts slightly towards pink, with a soft glow.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Pressed</span><button type="button" class="mads-button is-pressed" tabindex="-1">Lorem ipsum</button><p>Shrinks to 98% while held.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Focus</span><button type="button" class="mads-button is-focus" tabindex="-1">Lorem ipsum</button><p>NeonPink ring for keyboard users.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Disabled</span><button type="button" class="mads-button" disabled>Lorem ipsum</button><p>40% opacity, no hover.</p></div>
+          </div>
+
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-anatomy">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="dsd-tok">mads.button.primary.background</span></td><td><span class="dsd-val"><span class="dsd-dot" style="--c:var(--mads-color-blaze-orange)"></span>blaze-orange → <span class="dsd-dot" style="--c:var(--mads-color-neon-pink)"></span>neon-pink</span></td><td>Left to right.</td></tr>
+                <tr><td><span class="dsd-tok">mads.button.primary.text</span></td><td><span class="dsd-val">mads.color.white</span></td><td>No border.</td></tr>
+                <tr><td><span class="dsd-tok">mads.button.primary.font</span></td><td><span class="dsd-val">mads.text.large</span></td><td>Onest 15 / 24. With the padding, the button is 48 tall.</td></tr>
+                <tr><td><span class="dsd-tok">mads.button.primary.radius</span></td><td><span class="dsd-val">999 (pill)</span></td><td>Fully rounded ends at any height.</td></tr>
+                <tr><td><span class="dsd-tok">mads.button.primary.padding</span></td><td><span class="dsd-val">12 / 24</span></td><td>Vertical / horizontal, on the 4px minor grid.</td></tr>
+                <tr><td><span class="dsd-tok">mads.button.primary.gap</span></td><td><span class="dsd-val">mads.space.2 (8)</span></td><td>Between the text and an icon.</td></tr>
+                <tr><td><span class="dsd-tok">mads.button.primary.min-height</span></td><td><span class="dsd-val">44</span></td><td>Minimum comfortable tap size on iOS.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Contrast</p>
+              <p>White on BlazeOrange is 3.26:1 and on NeonPink 3.83:1. Both are below the 4.5:1 needed for 15px text, so the label may be hard to read for some people.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Icons</p>
+              <p>An optional icon sits after the text, 1em in size and in the text colour. On hover it nudges 1px in the direction it points.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Motion</p>
+              <p>Hover takes 0.6s, press 0.08s. With reduced motion turned on, states change instantly.</p>
+            </div>
+          </div>
+
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Button code by platform">
+              <button type="button" role="tab" id="button-tab-css" aria-selected="true" aria-controls="button-code-css">CSS</button>
+              <button type="button" role="tab" id="button-tab-swift" aria-selected="false" aria-controls="button-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="button-tab-compose" aria-selected="false" aria-controls="button-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="button-tab-xml" aria-selected="false" aria-controls="button-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="button-code-css" aria-labelledby="button-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="button-code-swift" aria-labelledby="button-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="button-code-compose" aria-labelledby="button-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="button-code-xml" aria-labelledby="button-tab-xml" hidden><code></code></pre>
+          </div>
+
+          <h3 class="dsd-subhead">Secondary, ghost, icon and round buttons</h3>
+          <p class="dsd-stage-note">Paired with the primary button and built from the theme roles, so they work in light and dark mode.</p>
+          <div class="dsd-theme-stage">
+            <button type="button" class="mads-button">Lorem ipsum</button>
+            <button type="button" class="mads-button-secondary">Lorem ipsum</button>
+            <button type="button" class="mads-button-ghost">Lorem ipsum</button>
+            <button type="button" class="mads-button-ghost" aria-current="page">Current</button>
+            <button type="button" class="mads-button-icon" data-dir="prev" aria-label="Previous"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 9.5 12 14.5 19"/></svg></button>
+            <button type="button" class="mads-button-icon" data-dir="next" aria-label="Next"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5 14.5 12 9.5 19"/></svg></button>
+            <button type="button" class="mads-button-round" aria-label="Settings"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button>
+            <button type="button" class="mads-button-round" aria-label="Home"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19.5V9.5L12 4.5 5 9.5V19.5Z"/></svg></button>
+          </div>
+          <div class="dsd-states" aria-label="Secondary button states">
+            <div class="dsd-state"><span class="dsd-label">Default</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary" tabindex="-1">Lorem ipsum</button></span><p>Soft fill with a thin line.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Hover</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary is-hover" tabindex="-1">Lorem ipsum</button></span><p>Fill and line get slightly stronger.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Pressed</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary is-pressed" tabindex="-1">Lorem ipsum</button></span><p>Shrinks to 98%, like the primary.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Focus</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary is-focus" tabindex="-1">Lorem ipsum</button></span><p>Same NeonPink ring as the primary.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Disabled</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-secondary" disabled>Lorem ipsum</button></span><p>40% opacity.</p></div>
+          </div>
+          <div class="dsd-states" aria-label="Round button states">
+            <div class="dsd-state"><span class="dsd-label">Default</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Secondary fill and line, as a circle.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Hover</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round is-hover" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Fill and line get slightly stronger.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Pressed</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round is-pressed" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Shrinks to 98%.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Focus</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round is-focus" aria-label="Settings" tabindex="-1"><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>Same NeonPink ring.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Disabled</span><span class="dsd-theme-stage" style="padding:.75rem"><button type="button" class="mads-button-round" aria-label="Settings" disabled><svg class="mads-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.67 4.62L13.33 4.62L13.82 6.71A5.6 5.6 0 0 1 15.67 7.77L17.73 7.16L19.06 9.46L17.5 10.93A5.6 5.6 0 0 1 17.5 13.07L19.06 14.54L17.73 16.84L15.67 16.23A5.6 5.6 0 0 1 13.82 17.29L13.33 19.38L10.67 19.38L10.18 17.29A5.6 5.6 0 0 1 8.33 16.23L6.27 16.84L4.94 14.54L6.5 13.07A5.6 5.6 0 0 1 6.5 10.93L4.94 9.46L6.27 7.16L8.33 7.77A5.6 5.6 0 0 1 10.18 6.71ZM12 12h.01"/></svg></button></span><p>40% opacity.</p></div>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
+              <tbody id="button-more-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Secondary</p>
+              <p>For the second action next to a primary button, such as Get in touch beside the main call to action. Same size, text and shape as the primary.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Ghost</p>
+              <p>For navigation links and low-emphasis actions. Mono text, no fill until hover. Mark the current page with aria-current.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Icon</p>
+              <p>A 40 circle holding a 20px MADS icon, for previous/next and other icon-only actions. Always give it an accessible name.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Round</p>
+              <p>The secondary button as a 44 circle with a 20px MADS icon and no text, for actions such as Settings next to other secondary buttons. Same fill, line, hover, press and focus as the secondary. Always give it an accessible name.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Button variants code by platform">
+              <button type="button" role="tab" id="button-more-tab-css" aria-selected="true" aria-controls="button-more-code-css">CSS</button>
+              <button type="button" role="tab" id="button-more-tab-swift" aria-selected="false" aria-controls="button-more-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="button-more-tab-compose" aria-selected="false" aria-controls="button-more-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="button-more-tab-xml" aria-selected="false" aria-controls="button-more-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="button-more-code-css" aria-labelledby="button-more-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="button-more-code-swift" aria-labelledby="button-more-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="button-more-code-compose" aria-labelledby="button-more-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="button-more-code-xml" aria-labelledby="button-more-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="toggles" aria-labelledby="toggles-title">
+        <div class="dsd-cat-head">
+          <h2 id="toggles-title">Toggles</h2>
+          <span class="dsd-ns">mads.toggle</span>
+        </div>
+        <p class="dsd-cat-desc">The light and dark mode switch: a gradient pill with a white knob that slides across, showing a sun or a moon. The switch at the top of this page is the same component.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.toggle.theme</code></div>
+          <div class="dsd-theme-stage" style="padding-block:2rem;gap:2rem">
+            <div class="dsd-state"><span class="dsd-label">Light</span><button type="button" class="mads-toggle-theme" id="toggle-demo-light" role="switch" aria-checked="false" aria-label="Example: off" tabindex="-1" data-demo><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
+            <div class="dsd-state"><span class="dsd-label">Dark</span><button type="button" class="mads-toggle-theme" id="toggle-demo-dark" role="switch" aria-checked="true" aria-label="Example: on" tabindex="-1" data-demo><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
+            <div class="dsd-state"><span class="dsd-label">Try it: changes this page</span><button type="button" class="mads-toggle-theme" id="toggle-demo-live" role="switch" aria-checked="false" aria-label="Dark mode" data-theme-toggle><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
+              <tbody id="toggle-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Behaviour</p>
+              <p>It is a switch: on means dark mode. Without a saved choice it shows the device setting. Pressing it saves the choice, so the next visit opens in the same mode.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Motion</p>
+              <p>The knob slides with the spring curve in 350ms while the sun and moon swap with a quarter turn.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Size</p>
+              <p>56 × 36, on the 4px grid. The knob is 28 with a 4 inset.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Toggle code by platform">
+              <button type="button" role="tab" id="toggle-tab-css" aria-selected="true" aria-controls="toggle-code-css">CSS</button>
+              <button type="button" role="tab" id="toggle-tab-swift" aria-selected="false" aria-controls="toggle-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="toggle-tab-compose" aria-selected="false" aria-controls="toggle-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="toggle-tab-xml" aria-selected="false" aria-controls="toggle-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="toggle-code-css" aria-labelledby="toggle-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="toggle-code-swift" aria-labelledby="toggle-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="toggle-code-compose" aria-labelledby="toggle-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="toggle-code-xml" aria-labelledby="toggle-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="cards" aria-labelledby="cards-title">
+        <div class="dsd-cat-head">
+          <h2 id="cards-title">Cards</h2>
+          <span class="dsd-ns">mads.card · mads.stat</span>
+        </div>
+        <p class="dsd-cat-desc">Containers for grouped content: topic cards, compact cards, selectable cards and stats.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.card · mads.card.compact · mads.card.selectable · mads.stat</code></div>
+          <h3 class="dsd-subhead">Card</h3>
+          <div class="dsd-theme-stage is-grid">
+            <div class="mads-card" style="--marker:var(--mads-color-amber-gold)"><h4 class="mads-card-title"><i class="mads-card-marker"></i>Lorem ipsum</h4><p class="mads-card-body">Dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p></div>
+            <div class="mads-card" style="--marker:var(--mads-color-neon-pink)"><h4 class="mads-card-title"><i class="mads-card-marker"></i>Dolor sit</h4><p class="mads-card-body">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p></div>
+            <div class="mads-card" style="--marker:var(--mads-color-azure-blue)"><h4 class="mads-card-title"><i class="mads-card-marker"></i>Amet consectetur</h4><p class="mads-card-body">Duis aute irure dolor in reprehenderit in voluptate velit esse.</p></div>
+          </div>
+          <h3 class="dsd-subhead">Compact card</h3>
+          <div class="dsd-theme-stage is-grid">
+            <div class="mads-card-compact"><b>Lorem ipsum</b><span>Dolor sit amet</span></div>
+            <div class="mads-card-compact"><b>Consectetur</b><span>Adipiscing elit</span></div>
+            <div class="mads-card-compact"><b>Sed do eiusmod</b><span>Tempor incididunt</span></div>
+          </div>
+          <h3 class="dsd-subhead">Selectable card</h3>
+          <div class="dsd-theme-stage is-stack" id="select-demo">
+            <button type="button" class="mads-card-selectable" style="--accent:var(--mads-theme-text-azure-blue)" aria-pressed="true"><span class="n">2012</span><span class="t">Lorem ipsum</span><span class="d">Dolor sit amet, consectetur adipiscing.</span><span class="mads-progress-thin"><i></i></span></button>
+            <button type="button" class="mads-card-selectable" style="--accent:var(--mads-theme-text-neon-pink)" aria-pressed="false"><span class="n">2016</span><span class="t">Dolor sit</span><span class="d">Sed do eiusmod tempor incididunt.</span><span class="mads-progress-thin"><i></i></span></button>
+            <button type="button" class="mads-card-selectable" style="--accent:var(--mads-theme-text-amber-gold)" aria-pressed="false"><span class="n">2021</span><span class="t">Amet</span><span class="d">Ut enim ad minim veniam.</span><span class="mads-progress-thin"><i></i></span></button>
+          </div>
+          <p class="dsd-stage-note">The selected card fills its bar over 8 seconds, then the next one is selected. Click a card to pick it yourself.</p>
+          <h3 class="dsd-subhead">Stat</h3>
+          <div class="dsd-theme-stage">
+            <div class="dsd-stat-row">
+              <div class="mads-stat" style="--accent:var(--mads-theme-text-amber-gold)"><b>20+</b><span>Lorem ipsum dolor</span></div>
+              <div class="mads-stat" style="--accent:var(--mads-theme-text-neon-pink)"><b>5</b><span>Sit amet consectetur</span></div>
+              <div class="mads-stat" style="--accent:var(--mads-theme-text-blue-violet)"><b>6</b><span>Adipiscing elit sed</span></div>
+              <div class="mads-stat" style="--accent:var(--mads-theme-text-azure-blue)"><b>99.9%</b><span>Eiusmod tempor</span></div>
+            </div>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
+              <tbody id="card-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Card</p>
+              <p>Groups a title and a short description. The diamond marker takes any mads.color to tie the card to a topic.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Selectable</p>
+              <p>A card that works as a tab. The selected one gets a surface background, an accent border and title, and a bar that shows how long until the next one.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Stat</p>
+              <p>A large number in the display font with a short label. Colour the number with an accent text role so it stays readable in both themes.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Card code by platform">
+              <button type="button" role="tab" id="card-tab-css" aria-selected="true" aria-controls="card-code-css">CSS</button>
+              <button type="button" role="tab" id="card-tab-swift" aria-selected="false" aria-controls="card-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="card-tab-compose" aria-selected="false" aria-controls="card-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="card-tab-xml" aria-selected="false" aria-controls="card-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="card-code-css" aria-labelledby="card-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="card-code-swift" aria-labelledby="card-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="card-code-compose" aria-labelledby="card-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="card-code-xml" aria-labelledby="card-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="chips" aria-labelledby="chips-title">
+        <div class="dsd-cat-head">
+          <h2 id="chips-title">Chips and tags</h2>
+          <span class="dsd-ns">mads.chip · mads.tag</span>
+        </div>
+        <p class="dsd-cat-desc">Small labels for skills, places and media types.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.chip · mads.chip.location · mads.tag</code></div>
+          <div class="dsd-theme-stage">
+            <span class="mads-chip">Lorem</span><span class="mads-chip">Ipsum dolor</span><span class="mads-chip">Sit amet</span>
+            <span class="mads-chip mads-chip-location">Lorem · Ipsum · Dolor</span>
+            <span class="mads-tag">Video</span><span class="mads-tag">New</span>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
+              <tbody id="chip-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Chip</p>
+              <p>For a set of short keywords, such as skills or tools. Not clickable.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Location chip</p>
+              <p>A chip with a NeonPink dot, for a place or a live status.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Tag</p>
+              <p>A filled capital label that sits on top of media, such as VIDEO on a screen recording.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Chip code by platform">
+              <button type="button" role="tab" id="chip-tab-css" aria-selected="true" aria-controls="chip-code-css">CSS</button>
+              <button type="button" role="tab" id="chip-tab-swift" aria-selected="false" aria-controls="chip-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="chip-tab-compose" aria-selected="false" aria-controls="chip-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="chip-tab-xml" aria-selected="false" aria-controls="chip-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="chip-code-css" aria-labelledby="chip-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="chip-code-swift" aria-labelledby="chip-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="chip-code-compose" aria-labelledby="chip-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="chip-code-xml" aria-labelledby="chip-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="progress" aria-labelledby="progress-title">
+        <div class="dsd-cat-head">
+          <h2 id="progress-title">Progress</h2>
+          <span class="dsd-ns">mads.progress</span>
+        </div>
+        <p class="dsd-cat-desc">Bars that show a share of a whole or the time left.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.progress · mads.progress.thin</code></div>
+          <div class="dsd-theme-stage is-stack">
+            <div style="display:grid;gap:.5625rem;width:100%;max-width:28rem" id="progress-demo">
+              <div class="mads-progress"><span>Lorem</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-violet-azure)" data-v="0.7"></i></span><output>70%</output></div>
+              <div class="mads-progress"><span>Ipsum</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-pink-violet)" data-v="0.2"></i></span><output>20%</output></div>
+              <div class="mads-progress"><span>Dolor</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-orange-amber)" data-v="0.1"></i></span><output>10%</output></div>
+            </div>
+            <button type="button" class="mads-button-secondary" id="progress-shuffle">Change values</button>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
+              <tbody id="progress-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Bar</p>
+              <p>A labelled 8 tall bar with its value on the right. Fill it with one of the mads.gradient pairs.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Thin bar</p>
+              <p>A 4 tall bar without a label, for time running out, as in the selectable card.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Motion</p>
+              <p>Bars grow from the left over 600ms with the standard curve whenever the value changes.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Progress code by platform">
+              <button type="button" role="tab" id="progress-tab-css" aria-selected="true" aria-controls="progress-code-css">CSS</button>
+              <button type="button" role="tab" id="progress-tab-swift" aria-selected="false" aria-controls="progress-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="progress-tab-compose" aria-selected="false" aria-controls="progress-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="progress-tab-xml" aria-selected="false" aria-controls="progress-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="progress-code-css" aria-labelledby="progress-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="progress-code-swift" aria-labelledby="progress-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="progress-code-compose" aria-labelledby="progress-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="progress-code-xml" aria-labelledby="progress-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsd-cat" id="content" aria-labelledby="content-title">
+        <div class="dsd-cat-head">
+          <h2 id="content-title">Lists and quotes</h2>
+          <span class="dsd-ns">mads.list · mads.quote</span>
+        </div>
+        <p class="dsd-cat-desc">Patterns for longer content.</p>
+        <div class="dsd-cat-body">
+          <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.list.diamond · mads.quote · mads.text.gradient</code></div>
+          <div class="dsd-theme-stage is-stack">
+            <ul class="mads-list-diamond" style="--accent:var(--mads-color-azure-blue)">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li>Sed do eiusmod tempor incididunt ut labore et dolore.</li>
+              <li>Ut enim ad minim veniam, quis nostrud exercitation.</li>
+              <li>Duis aute irure dolor in reprehenderit in voluptate.</li>
+            </ul>
+            <blockquote class="mads-quote" style="--accent:var(--mads-color-neon-pink)">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</blockquote>
+          </div>
+          <div class="dsd-table-wrap">
+            <table class="dsd-table dsd-wrap-last">
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Notes</th></tr></thead>
+              <tbody id="content-rows"></tbody>
+            </table>
+          </div>
+          <div class="dsd-rules">
+            <div class="dsd-rule">
+              <p class="dsd-label">Diamond list</p>
+              <p>Each point sits in its own compact card with a rotated square as the bullet. Two columns on wide screens, one on phones.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Quote</p>
+              <p>A 3 wide accent line on the left with xlarge text. Use it for one standout sentence per section.</p>
+            </div>
+            <div class="dsd-rule">
+              <p class="dsd-label">Gradient text</p>
+              <p>mads.text.gradient fills display text with the brand gradient. Keep it to large headings.</p>
+            </div>
+          </div>
+          <div class="dsd-code" data-tabs>
+            <div class="dsd-code-bar" role="tablist" aria-label="Content code by platform">
+              <button type="button" role="tab" id="content-tab-css" aria-selected="true" aria-controls="content-code-css">CSS</button>
+              <button type="button" role="tab" id="content-tab-swift" aria-selected="false" aria-controls="content-code-swift" tabindex="-1">Swift</button>
+              <button type="button" role="tab" id="content-tab-compose" aria-selected="false" aria-controls="content-code-compose" tabindex="-1">Compose</button>
+              <button type="button" role="tab" id="content-tab-xml" aria-selected="false" aria-controls="content-code-xml" tabindex="-1">Android XML</button>
+              <button type="button" class="dsd-copy">Copy</button>
+            </div>
+            <pre role="tabpanel" id="content-code-css" aria-labelledby="content-tab-css"><code></code></pre>
+            <pre role="tabpanel" id="content-code-swift" aria-labelledby="content-tab-swift" hidden><code></code></pre>
+            <pre role="tabpanel" id="content-code-compose" aria-labelledby="content-tab-compose" hidden><code></code></pre>
+            <pre role="tabpanel" id="content-code-xml" aria-labelledby="content-tab-xml" hidden><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="dsd-footer">MA Design System (MADS) · draft</footer>
+</div>
