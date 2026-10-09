@@ -10,7 +10,19 @@ MADS/
 │   └── mads.css             All tokens and component styles. The one stylesheet every MADS page and website uses
 ├── components/              Astro components for the web (see "Use MADS in an Astro project")
 │   ├── icons.js             The shapes of the seven icons. The only place they live
+│   ├── colors.js            Turns colour names ('amber-gold', 'text-azure-blue') into MADS variables
 │   ├── Icon.astro           mads.icon
+│   ├── Button.astro         mads.button: primary, secondary or ghost; a link or a button
+│   ├── IconButton.astro     mads.button.icon and mads.button.round
+│   ├── Card.astro           mads.card
+│   ├── CompactCard.astro    mads.card.compact
+│   ├── SelectableCard.astro mads.card.selectable
+│   ├── Stat.astro           mads.stat
+│   ├── Chip.astro           mads.chip and mads.chip.location
+│   ├── Tag.astro            mads.tag
+│   ├── Progress.astro       mads.progress
+│   ├── DiamondList.astro    mads.list.diamond
+│   ├── Quote.astro          mads.quote
 │   ├── Popover.astro        mads.popover: a round button that opens a floating card
 │   ├── PopoverRow.astro     One row of a popover card: a label and a control
 │   ├── IdeasMenu.astro      The Ideas menu (mads.icon.ideas and a card of links)
@@ -22,8 +34,9 @@ MADS/
 │   └── theme.js             What the theme toggle does
 ├── reference/               The design system reference page
 │   ├── Reference.astro      The page, built from the files above
+│   ├── Samples.astro        The live samples, made with the components
 │   ├── reference.css        The page's own layout and showcases
-│   ├── body.html            The sections
+│   ├── body.html            The sections (<!-- MADS:SAMPLE name --> marks where a sample goes)
 │   └── reference.js         Samples and the code panels
 ├── src/pages/index.astro    Shows the reference when you run this folder as a site
 ├── tokens/
@@ -34,7 +47,7 @@ MADS/
 └── README.md                This file
 ```
 
-**One source for everything.** The reference page loads `css/mads.css` and uses the same components a website does, so a change you check on the reference is the change miguel-adan.com gets. For example, the Ideas glow lives in `css/mads.css` and the bulb's markup lives in `Icon.astro`: change either and both the reference and the website change.
+**One source for everything.** The reference page loads `css/mads.css` and its samples are made with the same components a website uses, so a change you check on the reference is the change miguel-adan.com gets. For example, the Ideas glow lives in `css/mads.css` and the bulb's markup lives in `Icon.astro`: change either and both the reference and the website change.
 
 ## View the design system
 

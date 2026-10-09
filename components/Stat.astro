@@ -1,0 +1,17 @@
+---
+/* mads.stat: a big number over a short label (the slot).
+   <Stat value="20+" accent="text-amber-gold">years building native apps</Stat>
+
+   accent  the number's colour: a mads.theme text role ('text-amber-gold') or a mads.color ('blaze-orange') */
+import { madsColor } from './colors.js';
+
+interface Props {
+  value: string;
+  accent?: string;
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { value, accent, class: className, ...rest } = Astro.props;
+---
+<div class:list={['mads-stat', className]} style={accent ? `--accent:${madsColor(accent)}` : undefined} {...rest}><b set:html={value} /><span><slot /></span></div>

@@ -1,0 +1,23 @@
+---
+/* mads.button.icon (default) or mads.button.round (round): a button with an icon and no text, so it needs a label.
+   <IconButton icon="chevron-left" label="Previous" dir="prev" />
+   <IconButton icon="settings" label="Settings" round />
+
+   dir  'prev' or 'next': the icon nudges that way while the button is pressed (mads.button.icon)
+   Any other attribute (id, tabindex, data-…) goes on the button. */
+import Icon from './Icon.astro';
+import type { icons } from './icons.js';
+
+interface Props {
+  icon: keyof typeof icons;
+  label: string;
+  round?: boolean;
+  dir?: 'prev' | 'next';
+  disabled?: boolean;
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { icon, label, round = false, dir, disabled = false, class: className, ...rest } = Astro.props;
+---
+<button type="button" class:list={[round ? 'mads-button-round' : 'mads-button-icon', className]} data-dir={dir} aria-label={label} disabled={disabled} {...rest}><Icon name={icon} /></button>

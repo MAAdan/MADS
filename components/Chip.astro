@@ -1,0 +1,15 @@
+---
+/* mads.chip, or mads.chip.location with location: a small pill of text (the slot).
+   <Chip>Swift</Chip>  ·  <Chip location>Madrid · Stockholm</Chip>
+
+   as  the element, 'span' by default */
+interface Props {
+  location?: boolean;
+  as?: 'span' | 'div' | 'li';
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { location = false, as: Element = 'span', class: className, ...rest } = Astro.props;
+---
+<Element class:list={['mads-chip', location && 'mads-chip-location', className]} {...rest}><slot /></Element>

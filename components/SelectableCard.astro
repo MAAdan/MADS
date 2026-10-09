@@ -1,0 +1,22 @@
+---
+/* mads.card.selectable: a card that can be picked, with a number, a title, a text (the slot) and a thin bar that
+   fills while it is selected. The page decides what selecting does (switch aria-pressed between the cards).
+   <SelectableCard index="2012" title="Engineering" accent="text-azure-blue" pressed>iOS and web developer…</SelectableCard>
+
+   accent   colour of the selected border, title and bar: a mads.theme text role such as 'text-neon-pink' (colors.js)
+   pressed  whether it's the selected card
+   Any other attribute (id, data-…) goes on the button. */
+import { madsColor } from './colors.js';
+
+interface Props {
+  title: string;
+  index?: string | number;
+  accent?: string;
+  pressed?: boolean;
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { title, index, accent, pressed = false, class: className, ...rest } = Astro.props;
+---
+<button type="button" class:list={['mads-card-selectable', className]} style={accent ? `--accent:${madsColor(accent)}` : undefined} aria-pressed={pressed ? 'true' : 'false'} {...rest}><span class="n">{index}</span><span class="t" set:html={title} /><span class="d"><slot /></span><span class="mads-progress-thin"><i></i></span></button>

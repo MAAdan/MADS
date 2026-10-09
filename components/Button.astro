@@ -1,0 +1,30 @@
+---
+/* mads.button: primary (default), secondary or ghost. A link when it has href, otherwise a <button>.
+   <Button href="#story" icon="chevron-down">Scroll back through my career</Button>
+   <Button variant="secondary" href="#contact">Get in touch</Button>
+   <Button variant="ghost" href="#toolkit" current>Toolkit</Button>
+
+   icon     an icon after the text (icons.js)
+   current  marks the current page (aria-current="page"), for ghost buttons used as navigation
+   Any other attribute (id, aria-label, tabindex, data-…) goes on the element. */
+import Icon from './Icon.astro';
+import type { icons } from './icons.js';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  icon?: keyof typeof icons;
+  current?: boolean;
+  disabled?: boolean;
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { variant = 'primary', href, type = 'button', icon, current = false, disabled = false, class: className, ...rest } = Astro.props;
+const base = { primary: 'mads-button', secondary: 'mads-button-secondary', ghost: 'mads-button-ghost' }[variant];
+const ariaCurrent = current ? 'page' : undefined;
+---
+{href
+  ? <a class:list={[base, className]} href={href} aria-current={ariaCurrent} {...rest}><slot />{icon && <Fragment>{' '}<Icon name={icon} /></Fragment>}</a>
+  : <button type={type} class:list={[base, className]} aria-current={ariaCurrent} disabled={disabled} {...rest}><slot />{icon && <Fragment>{' '}<Icon name={icon} /></Fragment>}</button>}

@@ -1,0 +1,10 @@
+---
+/* mads.tag: a small NeonPink label in capitals, such as "Video" or "New". The text is the slot. */
+interface Props {
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { class: className, ...rest } = Astro.props;
+---
+<span class:list={['mads-tag', className]} {...rest}><slot /></span>

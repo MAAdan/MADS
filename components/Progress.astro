@@ -1,0 +1,25 @@
+---
+/* mads.progress: a label, a bar and the value as a percentage.
+   <Progress label="Technology" value={0.7} fill="violet-azure" />
+
+   value     from 0 to 1
+   fill      the bar's gradient: a mads.gradient name such as 'pink-violet' (colors.js)
+   animate   start the bar empty; a script then sets --value on the bar (data-value has the value to grow to)
+   barId, outputId   ids for the bar and the number, for a script that updates them */
+import { madsGradient } from './colors.js';
+
+interface Props {
+  label: string;
+  value?: number;
+  fill?: string;
+  animate?: boolean;
+  barId?: string;
+  outputId?: string;
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { label, value = 0, fill, animate = false, barId, outputId, class: className, ...rest } = Astro.props;
+const style = [fill && `--fill:${madsGradient(fill)}`, !animate && `--value:${value}`].filter(Boolean).join(';') || undefined;
+---
+<div class:list={['mads-progress', className]} {...rest}><span set:html={label} /><span class="mads-progress-track"><i id={barId} style={style} data-value={value}></i></span><output id={outputId}>{Math.round((animate ? 0 : value) * 100)}%</output></div>

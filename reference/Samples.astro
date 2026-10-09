@@ -1,0 +1,172 @@
+---
+/* The live samples on the reference page, made with the same components a website uses.
+   body.html marks where each one goes with <!-- MADS:SAMPLE name -->, and Reference.astro renders this component there.
+   So a change to a component shows here exactly as it will on the site. */
+import Button from '../components/Button.astro';
+import IconButton from '../components/IconButton.astro';
+import Card from '../components/Card.astro';
+import CompactCard from '../components/CompactCard.astro';
+import SelectableCard from '../components/SelectableCard.astro';
+import Stat from '../components/Stat.astro';
+import Chip from '../components/Chip.astro';
+import Tag from '../components/Tag.astro';
+import Progress from '../components/Progress.astro';
+import DiamondList from '../components/DiamondList.astro';
+import Quote from '../components/Quote.astro';
+import IdeasMenu from '../components/IdeasMenu.astro';
+import SettingsMenu from '../components/SettingsMenu.astro';
+import PopoverRow from '../components/PopoverRow.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const known = ['button-pane-light', 'button-pane-dark', 'button-states', 'button-family', 'button-secondary-states', 'button-round-states', 'card-grid', 'card-compact-grid', 'card-selectable', 'stats', 'chips', 'progress', 'content', 'popovers', 'language'];
+if (!known.includes(name)) throw new Error(`reference/body.html asks for a sample called "${name}", but Samples.astro has none. Known samples: ${known.join(', ')}.`);
+
+const demoLinks = [
+  { href: '#icons', text: 'Icons' },
+  { href: '#buttons', text: 'Buttons' },
+];
+---
+{name === 'button-pane-light' && (
+  <Fragment>
+            <Button id="btn-demo-light">Lorem ipsum dolor sit amet</Button>
+              <Button id="btn-demo-light-2">Lorem ipsum</Button>
+  </Fragment>
+)}
+
+{name === 'button-pane-dark' && (
+  <Fragment>
+            <Button id="btn-demo-dark">Lorem ipsum dolor sit amet</Button>
+              <Button id="btn-demo-dark-2">Lorem ipsum</Button>
+  </Fragment>
+)}
+
+{name === 'button-states' && (
+  <Fragment>
+            <div class="dsd-state"><span class="dsd-label">Default</span><Button tabindex="-1">Lorem ipsum</Button><p>Gradient from left to right.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Hover</span><Button class="is-hover" tabindex="-1">Lorem ipsum</Button><p>Gradient shifts slightly towards pink, with a soft glow.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Pressed</span><Button class="is-pressed" tabindex="-1">Lorem ipsum</Button><p>Shrinks to 98% while held.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Focus</span><Button class="is-focus" tabindex="-1">Lorem ipsum</Button><p>NeonPink ring for keyboard users.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Disabled</span><Button disabled>Lorem ipsum</Button><p>40% opacity, no hover.</p></div>
+  </Fragment>
+)}
+
+{name === 'button-family' && (
+  <Fragment>
+            <Button>Lorem ipsum</Button>
+            <Button variant="secondary">Lorem ipsum</Button>
+            <Button variant="ghost">Lorem ipsum</Button>
+            <Button variant="ghost" current>Current</Button>
+            <IconButton icon="chevron-left" label="Previous" dir="prev" />
+            <IconButton icon="chevron-right" label="Next" dir="next" />
+            <IconButton icon="settings" label="Settings" round />
+            <IconButton icon="home" label="Home" round />
+  </Fragment>
+)}
+
+{name === 'button-secondary-states' && (
+  <Fragment>
+            <div class="dsd-state"><span class="dsd-label">Default</span><span class="dsd-theme-stage" style="padding:.75rem"><Button variant="secondary" tabindex="-1">Lorem ipsum</Button></span><p>Soft fill with a thin line.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Hover</span><span class="dsd-theme-stage" style="padding:.75rem"><Button variant="secondary" class="is-hover" tabindex="-1">Lorem ipsum</Button></span><p>Fill and line get slightly stronger.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Pressed</span><span class="dsd-theme-stage" style="padding:.75rem"><Button variant="secondary" class="is-pressed" tabindex="-1">Lorem ipsum</Button></span><p>Shrinks to 98%, like the primary.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Focus</span><span class="dsd-theme-stage" style="padding:.75rem"><Button variant="secondary" class="is-focus" tabindex="-1">Lorem ipsum</Button></span><p>Same NeonPink ring as the primary.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Disabled</span><span class="dsd-theme-stage" style="padding:.75rem"><Button variant="secondary" disabled>Lorem ipsum</Button></span><p>40% opacity.</p></div>
+  </Fragment>
+)}
+
+{name === 'button-round-states' && (
+  <Fragment>
+            <div class="dsd-state"><span class="dsd-label">Default</span><span class="dsd-theme-stage" style="padding:.75rem"><IconButton icon="settings" label="Settings" round tabindex="-1" /></span><p>Secondary fill and line, as a circle.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Hover</span><span class="dsd-theme-stage" style="padding:.75rem"><IconButton icon="settings" label="Settings" class="is-hover" round tabindex="-1" /></span><p>Fill and line get slightly stronger.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Pressed</span><span class="dsd-theme-stage" style="padding:.75rem"><IconButton icon="settings" label="Settings" class="is-pressed" round tabindex="-1" /></span><p>Shrinks to 98%.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Focus</span><span class="dsd-theme-stage" style="padding:.75rem"><IconButton icon="settings" label="Settings" class="is-focus" round tabindex="-1" /></span><p>Same NeonPink ring.</p></div>
+            <div class="dsd-state"><span class="dsd-label">Disabled</span><span class="dsd-theme-stage" style="padding:.75rem"><IconButton icon="settings" label="Settings" round disabled /></span><p>40% opacity.</p></div>
+  </Fragment>
+)}
+
+{name === 'card-grid' && (
+  <Fragment>
+            <Card title="Lorem ipsum" marker="amber-gold" as="h4">Dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</Card>
+            <Card title="Dolor sit" marker="neon-pink" as="h4">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</Card>
+            <Card title="Amet consectetur" marker="azure-blue" as="h4">Duis aute irure dolor in reprehenderit in voluptate velit esse.</Card>
+  </Fragment>
+)}
+
+{name === 'card-compact-grid' && (
+  <Fragment>
+            <CompactCard title="Lorem ipsum">Dolor sit amet</CompactCard>
+            <CompactCard title="Consectetur">Adipiscing elit</CompactCard>
+            <CompactCard title="Sed do eiusmod">Tempor incididunt</CompactCard>
+  </Fragment>
+)}
+
+{name === 'card-selectable' && (
+  <Fragment>
+            <SelectableCard index="2012" title="Lorem ipsum" accent="text-azure-blue" pressed>Dolor sit amet, consectetur adipiscing.</SelectableCard>
+            <SelectableCard index="2016" title="Dolor sit" accent="text-neon-pink">Sed do eiusmod tempor incididunt.</SelectableCard>
+            <SelectableCard index="2021" title="Amet" accent="text-amber-gold">Ut enim ad minim veniam.</SelectableCard>
+  </Fragment>
+)}
+
+{name === 'stats' && (
+  <Fragment>
+            <Stat value="20+" accent="text-amber-gold">Lorem ipsum dolor</Stat>
+              <Stat value="5" accent="text-neon-pink">Sit amet consectetur</Stat>
+              <Stat value="6" accent="text-blue-violet">Adipiscing elit sed</Stat>
+              <Stat value="99.9%" accent="text-azure-blue">Eiusmod tempor</Stat>
+  </Fragment>
+)}
+
+{name === 'chips' && (
+  <Fragment>
+            <Chip>Lorem</Chip><Chip>Ipsum dolor</Chip><Chip>Sit amet</Chip>
+            <Chip location>Lorem · Ipsum · Dolor</Chip>
+            <Tag>Video</Tag><Tag>New</Tag>
+  </Fragment>
+)}
+
+{name === 'progress' && (
+  <Fragment>
+            <Progress label="Lorem" value={0.7} fill="violet-azure" animate />
+              <Progress label="Ipsum" value={0.2} fill="pink-violet" animate />
+              <Progress label="Dolor" value={0.1} fill="orange-amber" animate />
+  </Fragment>
+)}
+
+{name === 'content' && (
+  <Fragment>
+            <DiamondList accent="azure-blue">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li>Sed do eiusmod tempor incididunt ut labore et dolore.</li>
+              <li>Ut enim ad minim veniam, quis nostrud exercitation.</li>
+              <li>Duis aute irure dolor in reprehenderit in voluptate.</li>
+            </DiamondList>
+            <Quote accent="neon-pink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</Quote>
+  </Fragment>
+)}
+
+{name === 'popovers' && (
+  <Fragment>
+            <span class="dsd-label">Try it: the Ideas and Settings menus from the header</span>
+            <div class="dsd-popover-bar">
+              <IdeasMenu id="demoIdeas" links={demoLinks} shift={50} />
+              <SettingsMenu id="demoSettings">
+                <PopoverRow label="Toggle to dark or light mode"><ThemeToggle /></PopoverRow>
+                <PopoverRow label="Change language" hint="Coming soon: MADS is in English only" labelId="demoLangLabel"><LanguageSwitch lang="es" text="Español" disabled describedby="demoLangLabel" /></PopoverRow>
+              </SettingsMenu>
+            </div>
+  </Fragment>
+)}
+
+{name === 'language' && (
+  <Fragment>
+            <div class="dsd-state"><span class="dsd-label">Link</span><LanguageSwitch lang="es" text="Español" href="#popovers" label="Example: see this page in Spanish" /></div>
+            <div class="dsd-state"><span class="dsd-label">Link, English</span><LanguageSwitch lang="en" text="English" href="#popovers" label="Example: see this page in English" /></div>
+            <div class="dsd-state"><span class="dsd-label">Not translated yet</span><LanguageSwitch lang="es" text="Español" disabled /></div>
+  </Fragment>
+)}

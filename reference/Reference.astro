@@ -9,6 +9,7 @@
 import '../css/mads.css';
 import './reference.css';
 import ThemeInit from '../components/ThemeInit.astro';
+import Samples from './Samples.astro';
 import IdeasMenu from '../components/IdeasMenu.astro';
 import SettingsMenu from '../components/SettingsMenu.astro';
 import PopoverRow from '../components/PopoverRow.astro';
@@ -36,17 +37,13 @@ const {
 const home = icons.home;
 const favicon = 'data:image/svg+xml,' + encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="${home.d}"/></svg>`);
-// The page's sections, cut where the live component samples go (the <!-- MADS:… --> markers in body.html)
-const [beforePopovers, rest] = body.split('<!-- MADS:POPOVER-DEMOS -->');
-const [betweenDemos, afterLanguage] = rest.split('<!-- MADS:LANGUAGE-DEMOS -->');
+// The page's sections, cut where the live samples go (<!-- MADS:SAMPLE name --> in body.html): even parts are
+// the page's own HTML, odd parts the names of the samples Samples.astro renders with the real components
+const parts = body.split(/<!-- MADS:SAMPLE ([\w-]+) -->/);
 // reference.js draws the icon showcase from the same shapes as Icon.astro, and shows the popover's code from
 // css/mads.css and components/popover.js themselves, so the Code panel can't drift from what websites get
 const popoverCss = madsCss.slice(madsCss.lastIndexOf('/* =====', madsCss.indexOf('mads.popover: a mads.button.round'))).trim();
 const iconData = inlineScript(`window.MADS_ICONS = ${JSON.stringify(icons)};\nwindow.MADS_SOURCE = ${JSON.stringify({ popoverCss, popoverJs })};`);
-const demoLinks = [
-  { href: '#icons', text: 'Icons' },
-  { href: '#buttons', text: 'Buttons' },
-];
 ---
 <!doctype html>
 <html lang="en">
@@ -83,20 +80,7 @@ img { max-width: 100%; }
     </div>
   </div>
 </header>
-<Fragment set:html={beforePopovers} />
-            <span class="dsd-label">Try it: the Ideas and Settings menus from the header</span>
-            <div class="dsd-popover-bar">
-              <IdeasMenu id="demoIdeas" links={demoLinks} shift={50} />
-              <SettingsMenu id="demoSettings">
-                <PopoverRow label="Toggle to dark or light mode"><ThemeToggle /></PopoverRow>
-                <PopoverRow label="Change language" hint="Coming soon: MADS is in English only" labelId="demoLangLabel"><LanguageSwitch lang="es" text="Español" disabled describedby="demoLangLabel" /></PopoverRow>
-              </SettingsMenu>
-            </div>
-<Fragment set:html={betweenDemos} />
-            <div class="dsd-state"><span class="dsd-label">Link</span><LanguageSwitch lang="es" text="Español" href="#popovers" label="Example: see this page in Spanish" /></div>
-            <div class="dsd-state"><span class="dsd-label">Link, English</span><LanguageSwitch lang="en" text="English" href="#popovers" label="Example: see this page in English" /></div>
-            <div class="dsd-state"><span class="dsd-label">Not translated yet</span><LanguageSwitch lang="es" text="Español" disabled /></div>
-<Fragment set:html={afterLanguage} />
+{parts.map((part, i) => i % 2 === 1 ? <Samples name={part} /> : <Fragment set:html={part} />)}
 <Fragment set:html={iconData} />
 <Fragment set:html={inlineScript(script)} />
 </body>

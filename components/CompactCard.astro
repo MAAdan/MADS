@@ -1,0 +1,12 @@
+---
+/* mads.card.compact: a mono title over a short text (the slot).
+   <CompactCard title="Stockholm">Sweden · CET</CompactCard> */
+interface Props {
+  title: string;
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { title, class: className, ...rest } = Astro.props;
+---
+<div class:list={['mads-card-compact', className]} {...rest}><b set:html={title} /><span><slot /></span></div>

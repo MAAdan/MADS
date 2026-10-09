@@ -1,0 +1,16 @@
+---
+/* mads.list.diamond: a list with small diamond bullets. Put <li> items in the slot.
+   <DiamondList accent="azure-blue"><li>Own the backlog</li><li>…</li></DiamondList>
+
+   accent  the diamonds' colour (colors.js) */
+import { madsColor } from './colors.js';
+
+interface Props {
+  accent?: string;
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { accent, class: className, ...rest } = Astro.props;
+---
+<ul class:list={['mads-list-diamond', className]} style={accent ? `--accent:${madsColor(accent)}` : undefined} {...rest}><slot /></ul>

@@ -475,6 +475,14 @@ const MADSX = (() => {
   ]);
   fill('button-more', {
     css: [
+      cm('<!-- Astro (the @maadan/mads package) -->'),
+      esc("import Button from '@maadan/mads/components/Button.astro';"),
+      esc("import IconButton from '@maadan/mads/components/IconButton.astro';"),
+      esc('<Button variant="secondary" href="#contact">Lorem ipsum</Button>'),
+      esc('<Button variant="ghost" href="#toolkit" current>Lorem ipsum</Button>'),
+      esc('<IconButton icon="chevron-left" label="Previous" dir="prev" />'),
+      esc('<IconButton icon="settings" label="Settings" round />'),
+      '',
       cm('/* Needs mads.theme, mads.radius and mads.motion */'),
       '.mads-button-secondary {',
       '  display: inline-flex; align-items: center; justify-content: center; gap: var(--mads-space-2);',
@@ -1167,6 +1175,16 @@ const MADSX = (() => {
   }
   fill('card', {
     css: [
+      cm('<!-- Astro (the @maadan/mads package) -->'),
+      esc("import Card from '@maadan/mads/components/Card.astro';"),
+      esc("import CompactCard from '@maadan/mads/components/CompactCard.astro';"),
+      esc("import SelectableCard from '@maadan/mads/components/SelectableCard.astro';"),
+      esc("import Stat from '@maadan/mads/components/Stat.astro';"),
+      esc('<Card title="Lorem ipsum" marker="amber-gold">Dolor sit amet.</Card>'),
+      esc('<CompactCard title="Lorem ipsum">Dolor sit amet</CompactCard>'),
+      esc('<SelectableCard index="2012" title="Lorem ipsum" accent="text-azure-blue" pressed>Dolor sit amet.</SelectableCard>'),
+      esc('<Stat value="20+" accent="text-amber-gold">Lorem ipsum dolor</Stat>'),
+      '',
       '.mads-card {',
       '  display: grid; gap: var(--mads-space-3); padding: 1.5rem; border-radius: var(--mads-radius-large);',
       '  background: var(--mads-theme-surface); border: 1px solid var(--mads-theme-line); color: var(--mads-theme-text);',
@@ -1285,6 +1303,11 @@ const MADSX = (() => {
   ]);
   fill('chip', {
     css: [
+      cm('<!-- Astro (the @maadan/mads package) -->'),
+      esc("import Chip from '@maadan/mads/components/Chip.astro';"),
+      esc("import Tag from '@maadan/mads/components/Tag.astro';"),
+      esc('<Chip>Lorem</Chip> <Chip location>Lorem · Ipsum</Chip> <Tag>Video</Tag>'),
+      '',
       '.mads-chip {',
       '  display: inline-flex; align-items: center; gap: var(--mads-space-2); padding: .5rem .75rem;',
       '  border: 1px solid var(--mads-theme-line); border-radius: var(--mads-radius-full);',
@@ -1401,7 +1424,7 @@ const MADSX = (() => {
     const bars = [...demo.querySelectorAll('.mads-progress-track i')];
     const outs = [...demo.querySelectorAll('output')];
     const set = vals => bars.forEach((b, k) => { b.style.setProperty('--value', vals[k]); outs[k].textContent = Math.round(vals[k] * 100) + '%'; });
-    requestAnimationFrame(() => requestAnimationFrame(() => set(bars.map(b => +b.dataset.v))));
+    requestAnimationFrame(() => requestAnimationFrame(() => set(bars.map(b => +b.dataset.value))));
     document.getElementById('progress-shuffle')?.addEventListener('click', () => {
       const r = [Math.random() + .1, Math.random() + .1, Math.random() + .1]; const s = r[0] + r[1] + r[2];
       const p = r.map(x => Math.round(x / s * 100)); p[0] = 100 - p[1] - p[2];
@@ -1410,6 +1433,10 @@ const MADSX = (() => {
   }
   fill('progress', {
     css: [
+      cm('<!-- Astro (the @maadan/mads package) -->'),
+      esc("import Progress from '@maadan/mads/components/Progress.astro';"),
+      esc('<Progress label="Lorem" value={0.7} fill="violet-azure" />'),
+      '',
       cm('<!-- <div class="mads-progress"><span>Label</span><span class="mads-progress-track"><i style="--value:.7; --fill:var(--mads-gradient-violet-azure)"></i></span><output>70%</output></div> -->'),
       '.mads-progress { display: grid; grid-template-columns: 6rem 1fr 2.5rem; gap: .75rem; align-items: center;',
       '  font: 500 var(--mads-text-default-size)/1 var(--mads-font-mono); color: var(--mads-theme-text-muted); }',
@@ -1491,6 +1518,12 @@ const MADSX = (() => {
   ]);
   fill('content', {
     css: [
+      cm('<!-- Astro (the @maadan/mads package) -->'),
+      esc("import DiamondList from '@maadan/mads/components/DiamondList.astro';"),
+      esc("import Quote from '@maadan/mads/components/Quote.astro';"),
+      esc('<DiamondList accent="azure-blue"><li>Lorem ipsum</li><li>Dolor sit</li></DiamondList>'),
+      esc('<Quote accent="neon-pink">Lorem ipsum dolor sit amet.</Quote>'),
+      '',
       '.mads-list-diamond { list-style: none; margin: 0; padding: 0; display: grid;',
       '  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--mads-space-2); }',
       '.mads-list-diamond li { position: relative; padding: 1rem 1rem 1rem 2.5rem;',
@@ -2044,6 +2077,11 @@ const MADSX = (() => {
   const code = {
     css: [
       cm('/* mads.button.primary — needs the mads.color, mads.text and mads.space tokens */'),
+      cm('<!-- Astro (the @maadan/mads package) -->'),
+      esc("import Button from '@maadan/mads/components/Button.astro';"),
+      esc('<Button href="#story" icon="chevron-down">Lorem ipsum</Button>'),
+      esc('<Button disabled>Lorem ipsum</Button>'),
+      '',
       ':root {',
       '  --mads-button-primary-background: linear-gradient(90deg, var(--mads-color-blaze-orange), var(--mads-color-neon-pink));',
       '  --mads-button-primary-text: var(--mads-color-white);',

@@ -1,0 +1,20 @@
+---
+/* mads.card: a title with a diamond marker, and a short text (the slot).
+   <Card title="Product management" marker="amber-gold">Backlog management for native apps…</Card>
+
+   marker  the diamond's colour: a mads.color name such as 'neon-pink' (see colors.js)
+   as      the title's heading level, 'h3' by default
+   Text values can contain HTML. Any other attribute goes on the card. */
+import { madsColor } from './colors.js';
+
+interface Props {
+  title: string;
+  marker?: string;
+  as?: 'h2' | 'h3' | 'h4' | 'h5';
+  class?: string;
+  [attribute: string]: unknown;
+}
+
+const { title, marker, as: Heading = 'h3', class: className, ...rest } = Astro.props;
+---
+<div class:list={['mads-card', className]} style={marker ? `--marker:${madsColor(marker)}` : undefined} {...rest}><Heading class="mads-card-title"><i class="mads-card-marker"></i><Fragment set:html={title} /></Heading><p class="mads-card-body"><slot /></p></div>
