@@ -24,7 +24,7 @@ interface Props {
 }
 
 const { name } = Astro.props;
-const known = ['button-pane-light', 'button-pane-dark', 'button-states', 'button-family', 'button-secondary-states', 'button-round-states', 'card-grid', 'card-compact-grid', 'card-selectable', 'stats', 'chips', 'progress', 'content', 'popovers', 'language'];
+const known = ['button-pane-light', 'button-pane-dark', 'button-states', 'button-family', 'button-secondary-states', 'button-round-states', 'card-grid', 'card-compact-grid', 'card-selectable', 'stats', 'chips', 'progress', 'content', 'popovers', 'language', 'toggle-states', 'grad-action', 'grad-topics', 'ambient-topics', 'grad-do-buttons', 'grad-dont-buttons', 'motion-play', 'progress-shuffle'];
 if (!known.includes(name)) throw new Error(`reference/body.html asks for a sample called "${name}", but Samples.astro has none. Known samples: ${known.join(', ')}.`);
 
 const demoLinks = [
@@ -168,5 +168,59 @@ const demoLinks = [
             <div class="dsd-state"><span class="dsd-label">Link</span><LanguageSwitch lang="es" text="Español" href="#popovers" label="Example: see this page in Spanish" /></div>
             <div class="dsd-state"><span class="dsd-label">Link, English</span><LanguageSwitch lang="en" text="English" href="#popovers" label="Example: see this page in English" /></div>
             <div class="dsd-state"><span class="dsd-label">Not translated yet</span><LanguageSwitch lang="es" text="Español" disabled /></div>
+  </Fragment>
+)}
+
+{name === 'toggle-states' && (
+  <Fragment>
+            <div class="dsd-state"><span class="dsd-label">Light</span><ThemeToggle id="toggle-demo-light" label="Example: off" live={false} tabindex="-1" data-demo /></div>
+            <div class="dsd-state"><span class="dsd-label">Dark</span><ThemeToggle id="toggle-demo-dark" label="Example: on" live={false} checked tabindex="-1" data-demo /></div>
+            <div class="dsd-state"><span class="dsd-label">Try it: changes this page</span><ThemeToggle id="toggle-demo-live" /></div>
+  </Fragment>
+)}
+
+{name === 'grad-action' && (
+  <Fragment>
+            <Button>Lorem ipsum</Button><ThemeToggle id="grad-demo-toggle" label="Example" live={false} tabindex="-1" data-demo />
+  </Fragment>
+)}
+
+{name === 'grad-topics' && (
+  <Fragment>
+            <Progress label="Technology" value={0.55} fill="violet-azure" />
+                <Progress label="People" value={0.3} fill="pink-violet" />
+                <Progress label="Product" value={0.15} fill="orange-amber" />
+  </Fragment>
+)}
+
+{name === 'ambient-topics' && (
+  <Fragment>
+            <Button variant="ghost" current data-a="amber-gold" data-b="blaze-orange">Default</Button>
+                  <Button variant="ghost" data-a="azure-blue" data-b="blue-violet">Technology</Button>
+                  <Button variant="ghost" data-a="neon-pink" data-b="blue-violet">People</Button>
+  </Fragment>
+)}
+
+{name === 'grad-do-buttons' && (
+  <Fragment>
+            <Button tabindex="-1">Lorem ipsum</Button><Button variant="secondary" tabindex="-1">Dolor</Button>
+  </Fragment>
+)}
+
+{name === 'grad-dont-buttons' && (
+  <Fragment>
+            <Button tabindex="-1">Lorem ipsum</Button><Button tabindex="-1">Dolor</Button>
+  </Fragment>
+)}
+
+{name === 'motion-play' && (
+  <Fragment>
+            <Button variant="secondary" id="motion-play">Play</Button>
+  </Fragment>
+)}
+
+{name === 'progress-shuffle' && (
+  <Fragment>
+            <Button variant="secondary" id="progress-shuffle">Change values</Button>
   </Fragment>
 )}

@@ -604,7 +604,7 @@
           <div class="dsd-uses">
 
             <div class="dsd-use">
-              <div class="dsd-use-stage"><button type="button" class="mads-button">Lorem ipsum</button><button type="button" class="mads-toggle-theme" id="grad-demo-toggle" role="switch" aria-checked="false" aria-label="Example" tabindex="-1" data-demo><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
+              <div class="dsd-use-stage"><!-- MADS:SAMPLE grad-action --></div>
               <div class="dsd-use-info"><h4>1 · Action <span class="dsd-tok">orange-pink</span></h4><p>The main action and the theme switch. The only gradient on controls, and only one gradient action per screen.</p></div>
             </div>
 
@@ -623,9 +623,7 @@
 
             <div class="dsd-use">
               <div class="dsd-use-stage"><div style="display:grid;gap:.5rem;width:100%">
-                <div class="mads-progress"><span>Technology</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-violet-azure);--value:.55"></i></span><output>55%</output></div>
-                <div class="mads-progress"><span>People</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-pink-violet);--value:.3"></i></span><output>30%</output></div>
-                <div class="mads-progress"><span>Product</span><span class="mads-progress-track"><i style="--fill:var(--mads-gradient-orange-amber);--value:.15"></i></span><output>15%</output></div>
+                <!-- MADS:SAMPLE grad-topics -->
               </div></div>
               <div class="dsd-use-info"><h4>4 · Topics in data <span class="dsd-tok">violet-azure · pink-violet · orange-amber</span></h4><p>Each topic keeps its own pair, so a bar is recognisable before its label is read. See the topic table below.</p></div>
             </div>
@@ -633,9 +631,7 @@
             <div class="dsd-use">
               <div class="dsd-use-stage" style="padding:0"><div class="dsd-ambient-demo mads-ambient" id="ambient-demo">
                 <div class="dsd-topic-btns" role="group" aria-label="Glow colours">
-                  <button type="button" class="mads-button-ghost" aria-current="page" data-a="amber-gold" data-b="blaze-orange">Default</button>
-                  <button type="button" class="mads-button-ghost" data-a="azure-blue" data-b="blue-violet">Technology</button>
-                  <button type="button" class="mads-button-ghost" data-a="neon-pink" data-b="blue-violet">People</button>
+                  <!-- MADS:SAMPLE ambient-topics -->
                 </div>
               </div></div>
               <div class="dsd-use-info"><h4>5 · Ambient glow <span class="dsd-tok">ambient</span></h4><p>Two soft radial glows behind the page, top right and bottom left. Their colours follow the section being read and fade over 1.2s.</p></div>
@@ -664,8 +660,8 @@
             <div class="dsd-dd is-dont"><div class="dsd-use-stage"><p class="dsd-mini-p mads-text-gradient">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p></div><p><b>Avoid</b>Gradient body text. It is hard to read and the highlight loses its effect.</p></div>
             <div class="dsd-dd is-do"><div class="dsd-use-stage"><span style="width:100%;height:2.5rem;border-radius:999px;background:var(--mads-gradient-pink-violet)"></span></div><p><b>Do</b>Join neighbours on the spectrum.</p></div>
             <div class="dsd-dd is-dont"><div class="dsd-use-stage"><span style="width:100%;height:2.5rem;border-radius:999px;background:linear-gradient(90deg,var(--mads-color-amber-gold),var(--mads-color-azure-blue))"></span></div><p><b>Avoid</b>Jumping across it. AmberGold to AzureBlue turns muddy grey-green in the middle.</p></div>
-            <div class="dsd-dd is-do"><div class="dsd-use-stage" style="grid-auto-flow:column;gap:.75rem"><button type="button" class="mads-button" tabindex="-1">Lorem ipsum</button><button type="button" class="mads-button-secondary" tabindex="-1">Dolor</button></div><p><b>Do</b>Pair one gradient action with secondary buttons.</p></div>
-            <div class="dsd-dd is-dont"><div class="dsd-use-stage" style="grid-auto-flow:column;gap:.75rem"><button type="button" class="mads-button" tabindex="-1">Lorem ipsum</button><button type="button" class="mads-button" tabindex="-1">Dolor</button></div><p><b>Avoid</b>Two gradient buttons side by side. Neither reads as the main action.</p></div>
+            <div class="dsd-dd is-do"><div class="dsd-use-stage" style="grid-auto-flow:column;gap:.75rem"><!-- MADS:SAMPLE grad-do-buttons --></div><p><b>Do</b>Pair one gradient action with secondary buttons.</p></div>
+            <div class="dsd-dd is-dont"><div class="dsd-use-stage" style="grid-auto-flow:column;gap:.75rem"><!-- MADS:SAMPLE grad-dont-buttons --></div><p><b>Avoid</b>Two gradient buttons side by side. Neither reads as the main action.</p></div>
           </div>
           <div class="dsd-table-wrap">
             <table class="dsd-table">
@@ -713,7 +709,7 @@
           <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.motion.duration.{fast | base | slow} · mads.motion.easing.{standard | spring | entrance}</code></div>
           <div class="dsd-theme-stage is-stack">
             <div class="dsd-motion-row" id="motion-row"></div>
-            <button type="button" class="mads-button-secondary" id="motion-play">Play</button>
+            <!-- MADS:SAMPLE motion-play -->
           </div>
           <div class="dsd-table-wrap">
             <table class="dsd-table dsd-wrap-last">
@@ -1005,9 +1001,7 @@
         <div class="dsd-cat-body">
           <div class="dsd-naming"><span class="dsd-label">Naming</span><code>mads.toggle.theme</code></div>
           <div class="dsd-theme-stage" style="padding-block:2rem;gap:2rem">
-            <div class="dsd-state"><span class="dsd-label">Light</span><button type="button" class="mads-toggle-theme" id="toggle-demo-light" role="switch" aria-checked="false" aria-label="Example: off" tabindex="-1" data-demo><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
-            <div class="dsd-state"><span class="dsd-label">Dark</span><button type="button" class="mads-toggle-theme" id="toggle-demo-dark" role="switch" aria-checked="true" aria-label="Example: on" tabindex="-1" data-demo><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
-            <div class="dsd-state"><span class="dsd-label">Try it: changes this page</span><button type="button" class="mads-toggle-theme" id="toggle-demo-live" role="switch" aria-checked="false" aria-label="Dark mode" data-theme-toggle><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg></span></button></div>
+            <!-- MADS:SAMPLE toggle-states -->
           </div>
           <div class="dsd-table-wrap">
             <table class="dsd-table dsd-wrap-last">
@@ -1217,7 +1211,7 @@
             <div style="display:grid;gap:.5625rem;width:100%;max-width:28rem" id="progress-demo">
               <!-- MADS:SAMPLE progress -->
             </div>
-            <button type="button" class="mads-button-secondary" id="progress-shuffle">Change values</button>
+            <!-- MADS:SAMPLE progress-shuffle -->
           </div>
           <div class="dsd-table-wrap">
             <table class="dsd-table dsd-wrap-last">

@@ -5,17 +5,23 @@
 
    label       accessible name (default "Dark mode")
    labelDark   optional accessible name while dark mode is on, such as "Dark mode on. Switch to light mode"
-   labelLight  optional accessible name while light mode is on */
+   labelLight  optional accessible name while light mode is on
+   live        false for a sample that only shows a state and doesn't change the page (default true)
+   checked     the state a sample shows (live toggles follow the page's theme instead)
+   Any other attribute (id, tabindex, data-…) goes on the button. */
 interface Props {
   id?: string;
   label?: string;
   labelDark?: string;
   labelLight?: string;
+  live?: boolean;
+  checked?: boolean;
+  [attribute: string]: unknown;
 }
 
-const { id, label = 'Dark mode', labelDark, labelLight } = Astro.props;
+const { id, label = 'Dark mode', labelDark, labelLight, live = true, checked = false, ...rest } = Astro.props;
 ---
-<button type="button" class="mads-toggle-theme" id={id} role="switch" aria-checked="false" aria-label={label} data-theme-toggle data-label-dark={labelDark} data-label-light={labelLight}><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5" /></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor" /></svg></span></button>
+<button type="button" class="mads-toggle-theme" id={id} role="switch" aria-checked={checked ? 'true' : 'false'} aria-label={label} data-theme-toggle={live ? true : undefined} data-label-dark={labelDark} data-label-light={labelLight} {...rest}><span class="knob"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5" /></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor" /></svg></span></button>
 
 <script>
   import './theme.js';
