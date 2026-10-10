@@ -1,3 +1,14 @@
+/* ===== The MADS tokens, read from css/mads.css when the page is built (reference/tokens.js) =====
+   Every value the foundation tables, specimens and Code panels show comes from here, so they always match the
+   stylesheet websites use. The lists below only add what the stylesheet can't say: what each token is for, its
+   platform names and sample text. A token with no description still appears, marked "no description yet". */
+const TOK = window.MADS_TOKENS;
+const describe = (kind, key, meta) => {
+  if (meta[key]) return meta[key];
+  console.warn(`MADS reference: ${kind} "${key}" is in css/mads.css but has no description in reference/reference.js`);
+  return { use: 'No description yet' };
+};
+
 /* ===== mads.font — specimens, fallback preview and platform code ===== */
 (() => {
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -175,24 +186,26 @@ const MADSX = (() => {
 /* ===== mads.theme ===== */
 (() => {
   const { esc, cm, fill, rows, v } = MADSX;
-  const T = [
-    { k: 'background',       l: ['F6F4FB'],       d: ['100C20'],       use: 'Page background' },
-    { k: 'surface',          l: ['FFFFFF'],       d: ['1A1433'],       use: 'Cards and panels' },
-    { k: 'surface-raised',   l: ['E9E4F6'],       d: ['241C45'],       use: 'Raised areas and media frames' },
-    { k: 'surface-idle',     l: ['EEECF3'],       d: ['1E1B29'],       use: 'Unselected selectable cards' },
-    { k: 'text',             l: ['17122B'],       d: ['F4F0FB'],       use: 'Main text', text: true, note: 'Light: mads.color.dark' },
-    { k: 'text-muted',       l: ['544D74'],       d: ['B4ABC9'],       use: 'Secondary text', text: true, note: 'Light: mads.color.dark-1' },
-    { k: 'text-faint',       l: ['8A83A6'],       d: ['7D7497'],       use: 'Captions and years', text: true },
-    { k: 'line',             l: ['28145A', .12],  d: ['ECE4FF', .10],  use: 'Borders and dividers' },
-    { k: 'fill-soft',        l: ['28145A', .05],  d: ['FFFFFF', .05],  use: 'Secondary buttons, tracks, chips' },
-    { k: 'fill-ghost',       l: ['28145A', .09],  d: ['FFFFFF', .07],  use: 'Hover on soft fills' },
-    { k: 'text-amber-gold',  l: ['A86400'],       d: ['FFBE0B'],       use: 'AmberGold text', text: true },
-    { k: 'text-azure-blue',  l: ['1D5FD0'],       d: ['5B9BFF'],       use: 'AzureBlue text', text: true },
-    { k: 'text-neon-pink',   l: ['CC0058'],       d: ['FF3D8B'],       use: 'NeonPink text', text: true },
-    { k: 'text-blue-violet', l: ['6A25D1'],       d: ['A878FF'],       use: 'BlueViolet text', text: true },
-    { k: 'focus',            l: ['FFBE0B'],       d: ['FFBE0B'],       use: 'Focus ring (mads.color.amber-gold)' }
-  ];
-  const BG = { l: 'F6F4FB', d: '100C20' };
+  const T_META = {
+    'background':       { use: 'Page background' },
+    'surface':          { use: 'Cards and panels' },
+    'surface-raised':   { use: 'Raised areas and media frames' },
+    'surface-idle':     { use: 'Unselected selectable cards' },
+    'text':             { use: 'Main text', text: true, note: 'Light: mads.color.dark' },
+    'text-muted':       { use: 'Secondary text', text: true, note: 'Light: mads.color.dark-1' },
+    'text-faint':       { use: 'Captions and years', text: true },
+    'line':             { use: 'Borders and dividers' },
+    'fill-soft':        { use: 'Secondary buttons, tracks, chips' },
+    'fill-ghost':       { use: 'Hover on soft fills' },
+    'text-amber-gold':  { use: 'AmberGold text', text: true },
+    'text-azure-blue':  { use: 'AzureBlue text', text: true },
+    'text-neon-pink':   { use: 'NeonPink text', text: true },
+    'text-blue-violet': { use: 'BlueViolet text', text: true },
+    'focus':            { use: 'Focus ring (mads.color.amber-gold)' }
+  };
+  /* l and d: the light and dark values, [hex] or [hex, alpha] */
+  const T = Object.keys(TOK.theme.light).map(k => ({ k, l: TOK.theme.light[k], d: TOK.theme.dark[k], ...describe('theme role', k, T_META) }));
+  const BG = { l: TOK.theme.light.background[0], d: TOK.theme.dark.background[0] };
   const rgbA = h => [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16));
   const css = ([h, a]) => a == null ? `#${h}` : `rgb(${rgbA(h).join(' ')} / ${String(a).replace(/^0/, '')})`;
   const lum = h => { const [r, g, b] = rgbA(h).map(x => { x /= 255; return x <= .03928 ? x / 12.92 : ((x + .055) / 1.055) ** 2.4; }); return .2126 * r + .7152 * g + .0722 * b; };
@@ -301,15 +314,21 @@ const MADSX = (() => {
 /* ===== mads.radius, mads.gradient, mads.shadow ===== */
 (() => {
   const { esc, cm, fill, rows, v } = MADSX;
-  const R = [['small', 8, 'Focus outlines, bars'], ['medium', 16, 'Compact cards, list items'], ['large', 20, 'Cards, selectable cards'], ['xlarge', 28, 'Large media panels'], ['full', 999, 'Buttons, chips, toggles']];
-  const G = [
-    ['brand', ['amber-gold', 'blaze-orange', 'neon-pink', 'blue-violet'], [0, .35, .7, 1], 'Display text, decoration'],
-    ['orange-pink', ['blaze-orange', 'neon-pink'], [0, 1], 'Primary button, theme toggle'],
-    ['pink-violet', ['neon-pink', 'blue-violet'], [0, 1], 'Progress fills'],
-    ['violet-azure', ['blue-violet', 'azure-blue'], [0, 1], 'Progress fills'],
-    ['orange-amber', ['blaze-orange', 'amber-gold'], [0, 1], 'Progress fills']
-  ];
-  const S = [['glow', '0 6px 18px -8px NeonPink at 60%', 'Theme toggle'], ['raised', '0 20px 50px -20px black at 80%', 'Phone frames, floating media']];
+  const R_META = { small: { use: 'Focus outlines, bars' }, medium: { use: 'Compact cards, list items' }, large: { use: 'Cards, selectable cards' }, xlarge: { use: 'Large media panels' }, full: { use: 'Buttons, chips, toggles' } };
+  const R = Object.entries(TOK.radius).map(([n, value]) => [n, value, describe('radius', n, R_META).use]);
+  const G_META = {
+    'brand':        { use: 'Display text, decoration' },
+    'orange-pink':  { use: 'Primary button, theme toggle' },
+    'pink-violet':  { use: 'Progress fills' },
+    'violet-azure': { use: 'Progress fills' },
+    'orange-amber': { use: 'Progress fills' },
+    'amber-pink':   { use: 'Frames: avatar outline, map routes' }
+  };
+  const G = Object.entries(TOK.gradient).map(([n, g]) => [n, g.colors, g.stops, describe('gradient', n, G_META).use]);
+  const S_META = { glow: { use: 'Theme toggle' }, raised: { use: 'Phone frames, floating media' } };
+  /* written out in words, e.g. "0 6px 18px -8px NeonPink at 60%" */
+  const colourName = hex => hex === '000000' ? 'black' : (Object.entries(TOK.color).find(([, h]) => h === hex) || [])[0]?.replace(/(^|-)(\w)/g, (_, d, c) => c.toUpperCase()) || '#' + hex;
+  const S = Object.entries(TOK.shadow).map(([n, x]) => [n, `${x.x} ${x.y}px ${x.blur}px ${x.spread}px ${colourName(x.color)} at ${Math.round(x.alpha * 100)}%`, describe('shadow', n, S_META).use]);
   const camel = k => k.replace(/-(\w)/g, (_, c) => c.toUpperCase());
   const snake = k => k.replace(/-/g, '_');
 
@@ -394,8 +413,10 @@ const MADSX = (() => {
 /* ===== mads.motion ===== */
 (() => {
   const { esc, cm, fill, rows, v } = MADSX;
-  const D = [['fast', 200, 'Hover, colour and press feedback'], ['base', 350, 'Switches, tabs, opening sections'], ['slow', 600, 'Gradient shifts, bars filling']];
-  const E = [['standard', [.2, .7, .2, 1], 'State changes'], ['spring', [.34, 1.56, .64, 1], 'Things settling into place, with a small overshoot'], ['entrance', [.2, .9, .25, 1.15], 'Elements arriving on screen']];
+  const D_META = { fast: { use: 'Hover, colour and press feedback' }, base: { use: 'Switches, tabs, opening sections' }, slow: { use: 'Gradient shifts, bars filling' } };
+  const D = Object.entries(TOK.motion.duration).map(([n, ms]) => [n, ms, describe('duration', n, D_META).use]);
+  const E_META = { standard: { use: 'State changes' }, spring: { use: 'Things settling into place, with a small overshoot' }, entrance: { use: 'Elements arriving on screen' } };
+  const E = Object.entries(TOK.motion.easing).map(([n, curve]) => [n, curve, describe('easing', n, E_META).use]);
   rows('motion-rows', [
     ...D.map(([n, ms, use]) => [`mads.motion.duration.${n}`, v(ms + 'ms'), use]),
     ...E.map(([n, c, use]) => [`mads.motion.easing.${n}`, v(`cubic-bezier(${c.join(', ')})`), use]),
@@ -1615,14 +1636,17 @@ const MADSX = (() => {
     ['Product', `${dot('amber-gold')}${v('amber-gold')}`, `${bar('orange-amber')}${v('orange-amber')}`, `${dot('amber-gold')}${dot('blaze-orange')}${v('amber + orange')}`, 'Product, planning and delivery content']
   ].map(r => [r[0], ...r.slice(1)]));
 
+  const stopsOf = n => (TOK.gradient[n]?.colors || []).join(' → ');
+  const SHORT = { 'amber-gold': 'amber', 'blaze-orange': 'orange', 'neon-pink': 'pink', 'blue-violet': 'violet', 'azure-blue': 'azure' };
+  const short = n => (TOK.gradient[n]?.colors || []).map(c => SHORT[c] || c).join(' → ');
   rows('grad-rows', [
-    ['mads.gradient.orange-pink', v('blaze-orange → neon-pink'), 'Action: primary button, theme switch, logo bar'],
-    ['mads.gradient.brand', v('amber → orange → pink → violet'), 'Highlight: a phrase in a heading or a big stat'],
-    ['mads.gradient.amber-pink', v('amber-gold → neon-pink') + '<span class="dsd-sub">new</span>', 'Frames: avatar outline (top to bottom), map routes'],
-    ['mads.gradient.violet-azure', v('blue-violet → azure-blue'), 'Topic: Technology'],
-    ['mads.gradient.pink-violet', v('neon-pink → blue-violet'), 'Topic: People'],
-    ['mads.gradient.orange-amber', v('blaze-orange → amber-gold'), 'Topic: Product'],
-    ['mads.gradient.ambient', v('2 radial glows · 16% / 22%') + '<span class="dsd-sub">new</span>', 'Page background, colours follow the topic'],
+    ['mads.gradient.orange-pink', v(stopsOf('orange-pink')), 'Action: primary button, theme switch, logo bar'],
+    ['mads.gradient.brand', v(short('brand')), 'Highlight: a phrase in a heading or a big stat'],
+    ['mads.gradient.amber-pink', v(stopsOf('amber-pink')) + '<span class="dsd-sub">new</span>', 'Frames: avatar outline (top to bottom), map routes'],
+    ['mads.gradient.violet-azure', v(stopsOf('violet-azure')), 'Topic: Technology'],
+    ['mads.gradient.pink-violet', v(stopsOf('pink-violet')), 'Topic: People'],
+    ['mads.gradient.orange-amber', v(stopsOf('orange-amber')), 'Topic: Product'],
+    ['mads.gradient.ambient', v(`2 radial glows · ${TOK.ambient.light}% / ${TOK.ambient.dark}%`) + '<span class="dsd-sub">new</span>', 'Page background, colours follow the topic'],
     ['mads.gradient.surface', v('surface → background, 160°') + '<span class="dsd-sub">new</span>', 'Large panels and stages'],
     ['mads.gradient.surface-raised', v('surface-raised → surface, 180°') + '<span class="dsd-sub">new</span>', 'Media placeholders, avatar backgrounds'],
     ['mads.gradient.scrim', v('background → transparent') + '<span class="dsd-sub">new</span>', 'Under sticky headers']
@@ -2259,17 +2283,18 @@ const MADSX = (() => {
 
 /* ===== mads.color — swatches, contrast, table and platform code ===== */
 (() => {
-  const COLORS = [
-    { key: 'dark',         name: 'Dark',        hex: '17122B', group: 'neutrals' },
-    { key: 'dark-1',       name: 'Dark 1',      hex: '544D74', group: 'neutrals' },
-    { key: 'light',        name: 'Light',       hex: '757575', group: 'neutrals' },
-    { key: 'white',        name: 'White',       hex: 'FFFFFF', group: 'neutrals' },
-    { key: 'amber-gold',   name: 'AmberGold',   hex: 'FFBE0B', group: 'accents' },
-    { key: 'blaze-orange', name: 'BlazeOrange', hex: 'FB5607', group: 'accents' },
-    { key: 'neon-pink',    name: 'NeonPink',    hex: 'FF006E', group: 'accents' },
-    { key: 'blue-violet',  name: 'BlueViolet',  hex: '8338EC', group: 'accents' },
-    { key: 'azure-blue',   name: 'AzureBlue',   hex: '3A86FF', group: 'accents' }
-  ];
+  const COLOR_META = {
+    'dark':         { name: 'Dark',        group: 'neutrals' },
+    'dark-1':       { name: 'Dark 1',      group: 'neutrals' },
+    'light':        { name: 'Light',       group: 'neutrals' },
+    'white':        { name: 'White',       group: 'neutrals' },
+    'amber-gold':   { name: 'AmberGold',   group: 'accents' },
+    'blaze-orange': { name: 'BlazeOrange', group: 'accents' },
+    'neon-pink':    { name: 'NeonPink',    group: 'accents' },
+    'blue-violet':  { name: 'BlueViolet',  group: 'accents' },
+    'azure-blue':   { name: 'AzureBlue',   group: 'accents' }
+  };
+  const COLORS = Object.entries(TOK.color).map(([key, hex]) => ({ key, hex, name: key, group: 'accents', ...describe('colour', key, COLOR_META) }));
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const cm = s => `<span class="dsd-cm">${esc(s)}</span>`;
   const rgb = h => [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16));
@@ -2375,11 +2400,14 @@ const MADSX = (() => {
 
 /* ===== mads.label — specimens, table and platform code ===== */
 (() => {
-  const L = [
-    { name: 'default', size: 15, lh: 20, apple: 'subheadline', sample: 'Foundations' },
-    { name: 'small',   size: 13, lh: 16, apple: 'footnote',    sample: 'Updated 4 October 2026' },
-    { name: 'xsmall',  size: 11, lh: 16, apple: 'caption2',    sample: 'New' }
-  ];
+  const L_META = {
+    default: { apple: 'subheadline', sample: 'Foundations' },
+    small:   { apple: 'footnote',    sample: 'Updated 4 October 2026' },
+    xsmall:  { apple: 'caption2',    sample: 'New' }
+  };
+  const L = ['default', 'small', 'xsmall', ...Object.keys(TOK.label).filter(n => !['default', 'small', 'xsmall'].includes(n))]
+    .filter(name => TOK.label[name])
+    .map(name => ({ name, ...TOK.label[name], apple: 'caption2', sample: 'Lorem ipsum', ...describe('label size', name, L_META) }));
   const rem = px => `${px / 16}rem`;
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const cm = s => `<span class="dsd-cm">${esc(s)}</span>`;
@@ -2548,15 +2576,18 @@ const MADSX = (() => {
 
 /* ===== mads.heading — specimens, table and platform code ===== */
 (() => {
-  const H = [
-    { name: 'hero',    size: 46, max: 120, lh: .95, html: 'h1', apple: 'largeTitle', sample: 'MADS', fluid: true },
-    { name: 'xxlarge', size: 35, lh: 36, html: 'h1', apple: 'largeTitle', sample: 'MA Design System' },
-    { name: 'xlarge',  size: 27, lh: 36, html: 'h2', apple: 'title',      sample: 'Spacing on an 8px grid' },
-    { name: 'large',   size: 23, lh: 32, html: 'h3', apple: 'title2',     sample: 'Fonts and fallbacks' },
-    { name: 'default', size: 21, lh: 28, html: 'h4', apple: 'title3',     sample: 'Text sizes for every platform' },
-    { name: 'small',   size: 17, lh: 24, html: 'h5', apple: 'headline',   sample: 'Line height and scaling' },
-    { name: 'xsmall',  size: 15, lh: 24, html: 'h6', apple: 'subheadline', sample: 'Code for web, iOS and Android' }
-  ];
+  const H_META = {
+    hero:    { html: 'h1', apple: 'largeTitle', sample: 'MADS' },
+    xxlarge: { html: 'h1', apple: 'largeTitle', sample: 'MA Design System' },
+    xlarge:  { html: 'h2', apple: 'title',      sample: 'Spacing on an 8px grid' },
+    large:   { html: 'h3', apple: 'title2',     sample: 'Fonts and fallbacks' },
+    default: { html: 'h4', apple: 'title3',     sample: 'Text sizes for every platform' },
+    small:   { html: 'h5', apple: 'headline',   sample: 'Line height and scaling' },
+    xsmall:  { html: 'h6', apple: 'subheadline', sample: 'Code for web, iOS and Android' }
+  };
+  /* largest first; the hero size is fluid: it grows from size to max with the window */
+  const H = Object.entries(TOK.heading).sort(([a, x], [b, y]) => (b === 'hero') - (a === 'hero') || y.size - x.size)
+    .map(([name, v]) => ({ name, ...v, ...(name === 'hero' ? { fluid: true } : {}), html: 'h6', apple: 'body', sample: 'Lorem ipsum', ...describe('heading size', name, H_META) }));
   const rem = px => `${px / 16}rem`;
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const cm = s => `<span class="dsd-cm">${esc(s)}</span>`;
@@ -2776,16 +2807,17 @@ const MADSX = (() => {
 
 /* ===== mads.text — specimens, table and platform code ===== */
 (() => {
-  const TEXT = [
-    { name: 'small',   size: 11, lh: 16, apple: 'caption2',
+  const TEXT_META = {
+    small:   { apple: 'caption2',
       sample: 'Footnote: spacing values are the same number in px, pt and dp. Updated 4 October 2026.' },
-    { name: 'default', size: 13, lh: 20, apple: 'footnote',
+    default: { apple: 'footnote',
       sample: 'Spacing sits on an 8px grid. When no step fits, use a multiple of 4px. Every token has one exact name, so a person or an agent can point to it.' },
-    { name: 'large',   size: 15, lh: 24, apple: 'subheadline',
+    large:   { apple: 'subheadline',
       sample: 'Spacing sits on an 8px grid. When no step fits, use a multiple of 4px. Every token has one exact name, so a person or an agent can point to it.' },
-    { name: 'xlarge',  size: 17, lh: 28, apple: 'body',
+    xlarge:  { apple: 'body',
       sample: 'Spacing sits on an 8px grid. When no step fits, use a multiple of 4px. Every token has one exact name, so a person or an agent can point to it.' }
-  ];
+  };
+  const TEXT = Object.entries(TOK.text).map(([name, v]) => ({ name, ...v, apple: 'body', sample: 'Lorem ipsum dolor sit amet.', ...describe('text size', name, TEXT_META) }));
   const rem = px => `${px / 16}rem`;
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const cm = s => `<span class="dsd-cm">${esc(s)}</span>`;
@@ -2938,7 +2970,7 @@ const MADSX = (() => {
 
 /* ===== mads.space — single source of truth for the table and the platform code ===== */
 (() => {
-  const SPACE = [0, 4, 8, 16, 32, 64, 128, 256, 512];
+  const SPACE = TOK.space;
   const rem = px => px === 0 ? '0' : `${px / 16}rem`;
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
