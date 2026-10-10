@@ -35,6 +35,7 @@ MADS/
 ├── reference/               The design system reference page
 │   ├── Reference.astro      The page, built from the files above
 │   ├── tokens.js            Reads every token value from css/mads.css for the page's tables, specimens and code
+│   ├── css-rules.js         Picks each component's rules out of css/mads.css for its CSS code tab
 │   ├── Samples.astro        The live samples, made with the components
 │   ├── reference.css        The page's own layout and showcases
 │   ├── body.html            The sections (<!-- MADS:SAMPLE name --> marks where a sample goes)
@@ -145,6 +146,8 @@ Each component file starts with a short note on what it does and the options it 
 **Publishing a new version.** Commit and push your changes, bump `version` in `package.json`, and tag the commit with the same number, without a "v" like the earlier versions (for example `git tag 0.8.1 && git push origin main 0.8.1`). Websites move to it with `npm install github:MAAdan/MADS#0.8.1`.
 
 **Tokens.** `css/mads.css` is the one place token values live. The reference page reads them from it when it's built (`reference/tokens.js`): the tables, specimens and Code panels for spacing, text, headings, labels, colours, themes, radii, gradients, shadows and motion all follow it, and a new token appears there by itself (its description goes in the `…_META` lists in `reference/reference.js`). The build stops if the stylesheet is inconsistent, for example if the two copies of the dark theme disagree. After changing a token, update `tokens/mads-tokens.json` to match; `npm run check:tokens` lists any difference.
+
+**Component code.** The CSS tab of each component shows its rules straight from `css/mads.css`, and the toggle and popover tabs show `components/theme.js`, `ThemeInit.astro` and `popover.js` themselves, so the code you copy is the code websites run. `CODE_TABS` in `reference/css-rules.js` lists the classes each tab shows; when you add a component class, add it there. The build stops if a class listed there no longer has a rule in `css/mads.css`.
 
 **Icons.** Change an icon's shape in `components/icons.js`, then update its SVG file in `icons/` to match. `npm run check:icons` lists any file that no longer matches.
 
